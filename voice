@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ボイスドラマ</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #fffaf0;
+      padding: 20px;
+    }
+    .content {
+      max-width: 800px;
+      margin: auto;
+    }
+    audio {
+      width: 100%;
+      margin: 10px 0 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <h1>🎧 ボイスドラマ置き場</h1>
+    <p>声優にハマって私の気まぐれで作ったボイスドラマです。</p>
+
+    <h2>🌟 タイトル1</h2>
+    <audio controls>
+      <source src="voice1.mp3" type="audio/mpeg">
+      お使いのブラウザでは音声が再生できません。
+    </audio>
+
+    <h2>🌟 タイトル2</h2>
+    <audio controls>
+      <source src="voice2.mp3" type="audio/mpeg">
+      お使いのブラウザでは音声が再生できません。
+    </audio>
+
+    <!-- もう1本あればここに追加 -->
+  </div>
+</body>
+</html>
