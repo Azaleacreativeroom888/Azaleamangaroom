@@ -7,24 +7,36 @@
   <title>イラストを見る</title>
   <style>
     body {
+      margin: 0;
       font-family: sans-serif;
       background-color: #fffaf0;
-      margin: 10px;
     }
-    .content {
-      max-width: 800px;
-      margin: auto;
+    /* ナビゲーションバー */
+    .navbar {
+      background-color: #4682B4;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    img {
-      max-width: 100%;
-      height: auto;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    .navbar h1 {
+      color: white;
+      margin: 0;
+      font-size: 20px;
+    }
+    .nav-links a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .nav-links a:hover {
+      text-decoration: underline;
     }
   </style>
-</head>
-<body style="font-family: sans-serif; background-color: #e6e6fa;">
+  </head>
+  <body style="font-family: sans-serif; background-color: #e6e6fa;">
+  <div class="navbar">
   <h1>Azadeaの創作部屋🌸</h1>
 
   <!-- FC2カウンター ここから -->
@@ -35,8 +47,7 @@
   <p>「ないなら作ればいいじゃない」の精神で、思いついたものを自由にカタチにしています。✏️</p>
   <p>メインは漫画制作ですが、気になることにはなんでも挑戦中。どうぞ、ごゆっくりご覧ください！</p>
 
-  <h2>メニュー</h2>
-  <ul>
+  <div class="nav-links">
     <li><a href="manga.html">漫画を見る</a></li>
     <li><a href="blog.html">ブログを読む</a></li>
     <li><a href="otaku.html">趣味を見る</a></li>
