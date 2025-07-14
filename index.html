@@ -2,64 +2,86 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>Azaleaの創作部屋
-  </title><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>イラストを見る</title>
+  <title>Azadeaの創作部屋</title>
   <style>
     body {
       margin: 0;
-      font-family: sans-serif;
-      background-color: #fffaf0;
+      font-family: "メイリオ", sans-serif;
+      background-color: #eeebff;
     }
-    /* ナビゲーションバー */
+    /* ナビゲーションバーを横に並べる */
     .navbar {
+      display: flex;
       background-color: #4682B4;
       padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
     }
     .navbar h1 {
       color: white;
-      margin: 0;
       font-size: 20px;
+      margin: 0;
     }
     .nav-links a {
       color: white;
-      margin-left: 20px;
       text-decoration: none;
+      margin-left: 20px;
       font-weight: bold;
     }
     .nav-links a:hover {
       text-decoration: underline;
     }
+
+    /* メイン内容 */
+    .main-content {
+      padding: 30px;
+    }
+
+    /* イラストギャラリー */
+    .gallery {
+      margin-top: 20px;
+    }
+
+    .gallery img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+
   </style>
-  </head>
-  <body style="font-family: sans-serif; background-color: #e6e6fa;">
+</head>
+<body>
+
+  <!-- ナビゲーションバー -->
   <div class="navbar">
-  <h1>Azadeaの創作部屋🌸</h1>
+    <h1>Azadeaの創作部屋</h1>
+    <div class="nav-links">
+      <a href="index.html">ホーム</a>
+      <a href="manga.html">漫画</a>
+      <a href="blog.html">ブログ</a>
+      <a href="hobby.html">趣味</a>
+      <a href="illustration.html">イラスト</a>
+      <a href="voice.html">ボイス</a>
+      <a href="anime.html">アニメ</a>
+      <a href="blender.html">3D</a>
+      <a href="self.html">自己紹介</a>
+    </div>
+  </div>
 
-  <!-- FC2カウンター ここから -->
-<script language="javascript" type="text/javascript" src="//counter1.fc2.com/counter.php?id=40461671&main=1"></script><noscript><img src="//counter1.fc2.com/counter_img.php?id=40461671&main=1" /></noscript>
-<!-- FC2カウンター ここまで -->
+  <!-- メイン本文 -->
+  <div class="main-content">
+    <p>こんにちは！このサイトでは私の漫画やブログ、イラストなどを紹介しています🎨</p>
+    <p>最新のお知らせ: <strong>近日、激弱勇者の2話を公開予定です！</strong></p>
 
-  <p>こんにちは！このサイトでは私の漫画作品やブログを紹介しています。</p>
-  <p>「ないなら作ればいいじゃない」の精神で、思いついたものを自由にカタチにしています。✏️</p>
-  <p>メインは漫画制作ですが、気になることにはなんでも挑戦中。どうぞ、ごゆっくりご覧ください！</p>
+    <!-- イラスト表示 -->
+    <div class="gallery">
+      <h2>🎨 最近のイラスト</h2>
+      <img src="myart1.jpg" alt="イラスト1">
+      <img src="myart2.jpg" alt="イラスト2">
+    </div>
+  </div>
 
-  <div class="nav-links">
-    <a href="manga.html">漫画を見る</a></li>
-    <a href="blog.html">ブログを読む</a></li>
-    <a href="otaku.html">趣味を見る</a></li>
-    <a href="illustration.html">イラストを見る</a></li>
-    <a href="voice.html">ボイスドラマを聴く</a></li>
-    <a href="anime.html">アニメーションを見る</a></li>
-    <a href="blender.html">モデリングを見る</a></li>
-    <a href="contact.html">お問い合わせ</a></li>
-    <a href="about.html">自己紹介</a></li>
-  </ul>
-
-  <p>最新のお知らせ: <strong>近日、激弱勇者の２話を公開予定です！</strong></p>
 </body>
 </html>
-
