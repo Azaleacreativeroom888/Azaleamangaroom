@@ -2,42 +2,88 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Azaleaの創作部屋</title>
+
+  <!-- SNSでのシェア時に表示される情報 -->
+  <meta property="og:title" content="Azalea's Idea Lab🌸" />
+  <meta property="og:description" content="制作した漫画をこのサイトで紹介してます" />
+  <meta property="og:image" content="https://lilythlovemanga888.github.io/lilyth-s-creative/manga1-thumb.jpg" />
+  <meta property="og:url" content="https://lilythlovemanga888.github.io/lilyth-s-creative/index_en.html" />
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Azaleaの創作部屋" />
+
   <style>
     body {
       margin: 0;
       font-family: "メイリオ", sans-serif;
       background-color: #e6e6fa;
     }
-    /* ナビゲーションバーを横に並べる */
+
     .navbar {
       display: flex;
-      background-color: #325d80;
-      padding: 10px 20px;
-      align-items: center;
       justify-content: space-between;
-    }
-    .navbar h1 {
+      align-items: center;
+      background-color: #325d80;
       color: white;
-      font-size: 20px;
-      margin: 0;
+      padding: 10px 20px;
+      position: relative;
     }
+
+    .navbar h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .menu-toggle {
+      font-size: 24px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
     .nav-links a {
       color: white;
       text-decoration: none;
-      margin-left: 20px;
       font-weight: bold;
     }
+
     .nav-links a:hover {
       text-decoration: underline;
     }
 
-    /* メイン内容 */
+    /* モバイル用 */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #325d80;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        padding: 10px;
+        z-index: 1;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+    }
+
     .main-content {
       padding: 30px;
     }
 
-    /* イラストギャラリー */
     .gallery {
       margin-top: 20px;
     }
@@ -49,7 +95,6 @@
       border-radius: 12px;
       box-shadow: 0 0 5px rgba(0,0,0,0.2);
     }
-
   </style>
 </head>
 <body>
@@ -57,42 +102,55 @@
   <!-- ナビゲーションバー -->
   <div class="navbar">
     <h1>Azalea's Idea Lab🌸</h1>
-    <div class="nav-links">
-      <a href="manga_en.html">Manga</a>
-      <a href="blog_en.html">Blog</a>
-      <a href="progress_en.html">Progress</a>
-      <a href="otaku_en.html">Hobby</a>
-      <a href="illustration_en.html">Picture</a>
-      <a href="voice_en.html">Voice</a>
-      <a href="anime_en.html">Anime</a>
-      <a href="about_en.html">My profile</a>
-      <a href="contact_en.html">Information</a>
-      <a href="index.html">日本語</a>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="manga.html">Mnaga</a>
+      <a href="blog.html">Blog</a>
+      <a href="progress.html">Progress</a>
+      <a href="otaku.html">Hobby</a>
+      <a href="illustration.html">Picture</a>
+      <a href="voice.html">Voice</a>
+      <a href="anime.html">Anime</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Link</a>
+      <a href="index_en.html">English</a>
     </div>
   </div>
 
   <!-- メイン本文 -->
   <div class="main-content">
-    <p>Hi！ This site is about Azalea's creative works.🎨</p>
-    <p>New apdates: <strong>I am working on 2nd chapter of 'Chicken Warrior'！</strong></p>
+    <p>こんにちは！このサイトでは私の漫画やブログ、イラストなどを紹介しています🎨</p>
+    <p>最新のお知らせ: <strong>近日、激弱勇者の2話を公開予定です！</strong></p>
 
     <!-- イラスト表示 -->
     <div class="gallery">
-      <h2>🎨 Latest work</h2>
+      <h2>🎨 Latest Works</h2>
+
       <a href="manga1-1.html">
-      <img src="manga1-thumb.jpg" alt="激弱勇者" width="200">
-        
+        <img src="manga1-thumb.jpg" alt="激弱勇者" width="200">
+      </a>
+
       <a href="illustration.html">
-      <img src="illust5.jpg" alt="イラスト" width="200">
+        <img src="illust5.jpg" alt="イラスト" width="200">
+      </a>
 
       <a href="progress.html">
-      <img src="sword_wip3.png" alt="イラスト" width="200">
+        <img src="sword_wip3.png" alt="イラスト" width="200">
+      </a>
 
       <!-- FC2カウンター ここから -->
-<script language="javascript" type="text/javascript" src="//counter1.fc2.com/counter.php?id=40461671&main=1"></script><noscript><img src="//counter1.fc2.com/counter_img.php?id=40461671&main=1" /></noscript>
-<!-- FC2カウンター ここまで -->
+      <script language="javascript" type="text/javascript" src="//counter1.fc2.com/counter.php?id=40461671&main=1"></script>
+      <noscript><img src="//counter1.fc2.com/counter_img.php?id=40461671&main=1" /></noscript>
+      <!-- FC2カウンター ここまで -->
     </div>
   </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+  </script>
 
 </body>
 </html>
