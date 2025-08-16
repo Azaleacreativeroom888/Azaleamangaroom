@@ -16,10 +16,10 @@
   <style>
     body {
       margin: 0;
-      font-family: "メイリオ", sans-serif;
-      background: linear-gradient(135deg, #e6e6fa, #ffe4f0, #d0e7ff);
-      background-attachment: fixed;
+      font-family: "Hiragino Sans", "メイリオ", sans-serif;
+      background: #f9f6fb;
       color: #333;
+      line-height: 1.7;
     }
 
     /* ナビゲーションバー */
@@ -27,17 +27,17 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: linear-gradient(90deg, #b39ddb, #f48fb1, #90caf9);
+      background: linear-gradient(90deg, #bbaedb, #e8c4d8, #b6d4f0);
       color: white;
-      padding: 12px 20px;
+      padding: 12px 24px;
       position: relative;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
 
     .navbar h1 {
       margin: 0;
       font-size: 22px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+      font-weight: 600;
     }
 
     .menu-toggle {
@@ -55,13 +55,12 @@
     .nav-links a {
       color: white;
       text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s;
+      font-weight: 500;
+      transition: color 0.3s;
     }
 
     .nav-links a:hover {
-      color: #ffe4f0;
-      text-shadow: 0 0 8px #fff;
+      color: #fdf5ff;
     }
 
     /* モバイル用 */
@@ -73,13 +72,13 @@
       .nav-links {
         display: none;
         flex-direction: column;
-        background: linear-gradient(180deg, #b39ddb, #f48fb1, #90caf9);
+        background: linear-gradient(180deg, #bbaedb, #e8c4d8, #b6d4f0);
         position: absolute;
         top: 60px;
         right: 0;
         width: 220px;
         padding: 15px;
-        border-radius: 0 0 12px 12px;
+        border-radius: 0 0 10px 10px;
         box-shadow: 0 3px 8px rgba(0,0,0,0.2);
         z-index: 1;
       }
@@ -91,12 +90,13 @@
 
     /* 本文 */
     .main-content {
-      padding: 40px;
-      text-align: center;
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
     }
 
     .main-content p strong {
-      color: #b83b7f;
+      color: #7b4b94;
     }
 
     /* ギャラリー */
@@ -105,23 +105,26 @@
     }
 
     .gallery h2 {
-      color: #7b1fa2;
+      color: #6a4c93;
       margin-bottom: 20px;
-      text-shadow: 1px 1px 2px rgba(255,255,255,0.6);
+      font-weight: 600;
+      border-bottom: 2px solid #d8c7e8;
+      display: inline-block;
+      padding-bottom: 5px;
     }
 
     .gallery img {
       max-width: 200px;
       height: auto;
       margin: 10px;
-      border-radius: 15px;
-      box-shadow: 0 6px 12px rgba(150, 100, 200, 0.3);
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
       transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .gallery img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 16px rgba(255, 150, 200, 0.4);
+      transform: scale(1.03);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.2);
     }
   </style>
 </head>
@@ -165,10 +168,9 @@
         <img src="sword_wip5.png" alt="制作途中">
       </a>
 
-      <!-- FC2カウンター ここから -->
+      <!-- FC2カウンター -->
       <script language="javascript" type="text/javascript" src="//counter1.fc2.com/counter.php?id=40461671&main=1"></script>
       <noscript><img src="//counter1.fc2.com/counter_img.php?id=40461671&main=1" /></noscript>
-      <!-- FC2カウンター ここまで -->
     </div>
   </div>
 
