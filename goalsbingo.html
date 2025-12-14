@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2026年の目標ビンゴ</title>
+  <style>
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+      background: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #222;
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    .bingo-wrapper {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 2rem;
+    }
+    .cell {
+      background: #fff;
+      border-radius: 14px;
+      min-height: 110px;
+      padding: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+    .cell:hover {
+      transform: translateY(-2px);
+    }
+    .cell.done {
+      background: #dff3e3;
+      text-decoration: line-through;
+      color: #555;
+    }
+    .cell.free {
+      background: #fff3cd;
+      font-weight: bold;
+    }
+    .note {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #555;
+      background: #fafafa;
+      padding: 1rem;
+      border-left: 4px solid #ccc;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 0.85rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>2026年 目標ビンゴ</h1>
+    <p>達成したらマスをクリック</p>
+  </header>
+
+  <main>
+    <div class="bingo-wrapper">
+      <div class="cell">4ページ漫画を20本描く</div>
+      <div class="cell">短編を3本まとめる</div>
+      <div class="cell">低年齢向け表現を研究</div>
+      <div class="cell">自分の作風を言語化</div>
+      <div class="cell">ネームを人に見せる</div>
+
+      <div class="cell">1週間運動を続ける</div>
+      <div class="cell">朝の間食を減らす</div>
+      <div class="cell">体調を崩さず1か月</div>
+      <div class="cell">散歩を習慣にする</div>
+      <div class="cell">睡眠を優先する</div>
+
+      <div class="cell">SNSを見すぎない</div>
+      <div class="cell">他人の断定を流す</div>
+      <div class="cell free">FREE<br />生きててえらい</div>
+      <div class="cell">不安で描かない</div>
+      <div class="cell">自分を責めすぎない</div>
+
+      <div class="cell">新ジャンルに挑戦</div>
+      <div class="cell">好きな作品を分析</div>
+      <div class="cell">推しを見つける</div>
+      <div class="cell">月1で振り返り</div>
+      <div class="cell">途中で目標を変える</div>
+
+      <div class="cell">楽しく描けた日</div>
+      <div class="cell">納得のいく1作</div>
+      <div class="cell">誰かに届いた実感</div>
+      <div class="cell">描かない日を許す</div>
+      <div class="cell">2026年を生き抜く</div>
+    </div>
+
+    <div class="note">
+      ビンゴしなくてもOK。埋まったマスの数＝ちゃんと生きた証拠。
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 My Website</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.cell').forEach(cell => {
+      cell.addEventListener('click', () => {
+        cell.classList.toggle('done');
+      });
+    });
+  </script>
+</body>
+</html>
