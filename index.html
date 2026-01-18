@@ -122,6 +122,12 @@
       width: 100%;
       display: block;
     }
+    
+    .slide-item {
+      width: 180px;     /* 好きな幅 */
+      height: 260px;    /* 単行本っぽい縦長 */
+      flex-shrink: 0;   /* これ超重要 */
+    }
   </style>
 </head>
 <body>
@@ -197,6 +203,7 @@ document.querySelector('.prev').onclick = () => {
 
 </body>
 </html>
+
 
 
 
