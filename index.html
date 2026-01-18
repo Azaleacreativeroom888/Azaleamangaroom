@@ -99,29 +99,28 @@
       color: #b83b7f;
     }
 
-    /* ギャラリー */
-    .gallery {
-      margin-top: 30px;
+    .slider {
+      position: relative;
+      width: 100%;
     }
 
-    .gallery h2 {
-      color: #7b1fa2;
-      margin-bottom: 20px;
-      text-shadow: 1px 1px 2px rgba(255,255,255,0.6);
+    .slider-window {
+      overflow: hidden;   /* ← はみ出した部分を隠す */
     }
 
-    .gallery img {
-      max-width: 200px;
-      height: auto;
-      margin: 10px;
-      border-radius: 15px;
-      box-shadow: 0 6px 12px rgba(150, 100, 200, 0.3);
-      transition: transform 0.3s, box-shadow 0.3s;
+    .slider-track {
+      display: flex;
+      transition: transform 0.4s ease;
     }
 
-    .gallery img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 16px rgba(255, 150, 200, 0.4);
+    .slide-item {
+      min-width: 200px;   /* ジャンプの単行本幅っぽい */
+      margin-right: 16px;
+    }
+
+    .slide-item img {
+      width: 100%;
+      display: block;
     }
   </style>
 </head>
@@ -152,20 +151,20 @@
     <p>最新のお知らせ: <strong>４ページ漫画描いてます！</strong></p>
 
     <!-- イラスト表示 -->
-    <div class="gallery">
-      <h2>🎨 最近の作品</h2>
+    <div class="slider">
+  <button class="prev">‹</button>
 
-      <a href="manga1-1.html">
-        <img src="manga1-thumb.jpg" alt="激弱勇者">
-      </a>
+  <div class="slider-window">
+    <div class="slider-track">
+      <div class="slide-item"><img src="manga1-thumb.jpg"></div>
+      <div class="slide-item"><img src="manga2-thumb.jpg"></div>
+      <div class="slide-item"><img src="manga3-thumb.jpg"></div>
+      <div class="slide-item"><img src="manga4-thumb.jpg"></div>
+    </div>
+  </div>
 
-      <a href="illustration.html">
-        <img src="illust5.jpg" alt="イラスト">
-      </a>
-
-      <a href="progress.html">
-        <img src="stick_wip1.png" alt="制作途中">
-      </a>
+  <button class="next">›</button>
+</div>
 
       <!-- FC2カウンター ここから -->
       <script language="javascript" type="text/javascript" src="//counter1.fc2.com/counter.php?id=40461671&main=1"></script>
@@ -179,6 +178,22 @@
       document.getElementById("navLinks").classList.toggle("active");
     }
   </script>
+
+  <script>
+let index = 0;
+const track = document.querySelector('.slider-track');
+const itemWidth = 216; // 200 + margin
+
+document.querySelector('.next').onclick = () => {
+  index++;
+  track.style.transform = `translateX(${-itemWidth * index}px)`;
+};
+
+document.querySelector('.prev').onclick = () => {
+  index = Math.max(0, index - 1);
+  track.style.transform = `translateX(${-itemWidth * index}px)`;
+};
+</script>
 
 </body>
 </html>
