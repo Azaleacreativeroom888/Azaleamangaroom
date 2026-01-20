@@ -104,9 +104,30 @@
       width: 100%;
     }
 
+    .slider-container {
+      display: flex;
+      align-items: center; /* ← 画像の縦中央にボタン */
+      gap: 10px;
+}
+
+    .prev,
+    .next {
+      font-size: 32px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #b5b5b5;
+}
+
+    .prev:hover,
+    .next:hover {
+      color: white;
+}
+
     .slider-window {
-      overflow: hidden;   /* ← はみ出した部分を隠す */
-    }
+      overflow: hidden;
+      width: 600px; /* 好きな幅に */
+}
 
     .slider-track {
       display: flex;
@@ -157,13 +178,11 @@
     <p>最新のお知らせ: <strong>４ページ漫画描いてます！</strong></p>
 
     <!-- イラスト表示 -->
-    <div class="slider">
-      
+  <div class="slider-container">
   <button class="prev">‹</button>
 
   <div class="slider-window">
     <div class="slider-track">
-      
       <div class="slide-item">
         <a href="manga4-1.html">
           <img src="manga4-thumb.jpg">
@@ -247,6 +266,7 @@ document.querySelector('.prev').onclick = () => {
 
 </body>
 </html>
+
 
 
 
