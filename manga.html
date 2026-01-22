@@ -88,6 +88,28 @@
       .nav-links.active {
         display: flex;
       }
+      .manga-list {
+       display: grid;
+       grid-template-columns: repeat(3, 1fr);
+       gap: 40px; /* 作品同士の間隔 */
+}
+
+      .manga-item {
+       max-width: 250px; /* サムネがデカすぎる場合 */
+}
+
+      @media (max-width: 900px) {
+      .manga-list {
+       grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+      @media (max-width: 500px) {
+     .manga-list {
+       grid-template-columns: 1fr;
+  }
+}
+
     }
   </style>
 </head>
@@ -206,6 +228,7 @@
   <p><a href="index.html">← トップページに戻る</a></p>
 </body>
 </html>
+
 
 
 
