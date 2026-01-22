@@ -30,6 +30,8 @@
       color: #ffc500;
       padding: 12px 20px;
       box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 1000;
     }
 
     .navbar h1 {
@@ -81,11 +83,23 @@
       }
     }
 
-    /* ナビ（モバイル） */
     @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
+     .nav-links {
+      display: none;
+      flex-direction: column;
+      background: #173322;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 220px;
+      padding: 15px;
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+      z-index: 1001;
       }
+    }
+
+
 
       .nav-links {
         display: none;
@@ -223,6 +237,7 @@
   <p><a href="index.html">← トップページに戻る</a></p>
 </body>
 </html>
+
 
 
 
