@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>漫画一覧</title>
+
   <style>
     body {
       font-family: sans-serif;
@@ -11,10 +12,7 @@
       margin: 10px;
       color: #ffc500;
     }
-    .content {
-      max-width: 800px;
-      margin: auto;
-    }
+
     img {
       max-width: 100%;
       height: auto;
@@ -31,14 +29,12 @@
       background: #1f3d2b;
       color: #ffc500;
       padding: 12px 20px;
-      position: relative;
       box-shadow: 0 3px 10px rgba(0,0,0,0.2);
     }
 
     .navbar h1 {
       margin: 0;
       font-size: 22px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
     }
 
     .menu-toggle {
@@ -49,23 +45,43 @@
 
     .nav-links {
       display: flex;
-      flex-wrap: wrap;
       gap: 18px;
+      flex-wrap: wrap;
     }
 
     .nav-links a {
       color: #ffc500;
       text-decoration: none;
       font-weight: bold;
-      transition: all 0.3s;
     }
 
-    .nav-links a:hover {
-      color: #ffe4f0;
-      text-shadow: 0 0 8px #fff;
+    /* ===== 漫画一覧レイアウト ===== */
+    .manga-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-bottom: 60px;
     }
 
-    /* モバイル用 */
+    .manga-item {
+      max-width: 250px;
+    }
+
+    /* タブレット */
+    @media (max-width: 900px) {
+      .manga-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* スマホ */
+    @media (max-width: 500px) {
+      .manga-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ナビ（モバイル） */
     @media (max-width: 768px) {
       .menu-toggle {
         display: block;
@@ -80,41 +96,17 @@
         right: 0;
         width: 220px;
         padding: 15px;
-        border-radius: 0 0 12px 12px;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-        z-index: 1;
       }
 
       .nav-links.active {
         display: flex;
       }
-      .manga-list {
-       display: grid;
-       grid-template-columns: repeat(3, 1fr);
-       gap: 40px; /* 作品同士の間隔 */
-}
-
-      .manga-item {
-       max-width: 250px; /* サムネがデカすぎる場合 */
-}
-
-      @media (max-width: 900px) {
-      .manga-list {
-       grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-      @media (max-width: 500px) {
-     .manga-list {
-       grid-template-columns: 1fr;
-  }
-}
-
     }
   </style>
 </head>
 
-  <!-- ナビゲーションバー -->
+<body>
+
   <div class="navbar">
     <h1>Azaleaの創作部屋🌸</h1>
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
@@ -132,6 +124,13 @@
       <a href="index_en.html">English</a>
     </div>
   </div>
+
+  <h1>📚 漫画一覧</h1>
+
+  <!-- ここから下は今のHTMLそのままでOK -->
+
+</body>
+</html>
   
 <body style="font-family: sans-serif; background-color: #1f3d2b; color: #ffc500;">
   <h1>📚 漫画一覧</h1>
@@ -228,6 +227,7 @@
   <p><a href="index.html">← トップページに戻る</a></p>
 </body>
 </html>
+
 
 
 
