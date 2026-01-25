@@ -56,46 +56,49 @@
 
     <div class="page-number" id="pageNumber"></div>
 
-    <div class="controls">
-      <button onclick="prevPage()">← 前のページ</button>
-      <button onclick="nextPage()">次のページ →</button>
-    </div>
+  <div class="controls">
+    <button id="prevBtn">← 前のページ</button>
+    <button id="nextBtn">次のページ →</button>
   </div>
 
+
   <script>
-    const pages = [
-      "manga1-page1.jpg",
-      "manga1-page2.jpg",
-      "manga1-page3.jpg"
-      "manga1-page4.jpg"
-    ];
+  const pages = [
+    "manga1-page1.jpg",
+    "manga1-page2.jpg",
+    "manga1-page3.jpg"
+    "manga1-page4.jpg"
+  ];
 
-    let currentPage = 0;
+  let currentPage = 0;
 
-    const img = document.getElementById("mangaPage");
-    const pageNumber = document.getElementById("pageNumber");
+  const img = document.getElementById("mangaPage");
+  const pageNumber = document.getElementById("pageNumber");
+  const nextBtn = document.getElementById("nextBtn");
+  const prevBtn = document.getElementById("prevBtn");
 
-    function updatePage() {
-      img.src = pages[currentPage];
-      pageNumber.textContent = (currentPage + 1) + " / " + pages.length;
+  function updatePage() {
+    img.src = pages[currentPage];
+    pageNumber.textContent = (currentPage + 1) + " / " + pages.length;
+  }
+
+  nextBtn.addEventListener("click", () => {
+    if (currentPage < pages.length - 1) {
+      currentPage++;
+      updatePage();
     }
+  });
 
-    function nextPage() {
-      if (currentPage < pages.length - 1) {
-        currentPage++;
-        updatePage();
-      }
+  prevBtn.addEventListener("click", () => {
+    if (currentPage > 0) {
+      currentPage--;
+      updatePage();
     }
+  });
 
-    function prevPage() {
-      if (currentPage > 0) {
-        currentPage--;
-        updatePage();
-      }
-    }
-
-    updatePage();
-  </script>
+  updatePage();
+</script>
 
 </body>
 </html>
+
