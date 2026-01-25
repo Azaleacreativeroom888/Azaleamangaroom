@@ -1,172 +1,120 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>激弱勇者 - 第1話</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>激弱勇者 - 第1話</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      background: #f4f1ea; /* 本っぽい色 */
-      font-family: sans-serif;
-      text-align: center;
-    }
+<style>
+  body {
+    background: #f5f5f5;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+  }
 
-    .viewer {
-      max-width: 800px;
-      margin: 20px auto;
-    }
+  .viewer {
+    display: flex;
+    justify-content: center;
+    max-width: 900px;
+    margin: 20px auto;
+  }
 
-    .page {
-      background: #fff;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      padding: 10px;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-    }
+  .page {
+    width: 45%;
+  }
 
-/* 見開き */
-    .page img {
-      width: 48%;
-      height: auto;
-    }
+  .page img {
+    width: 100%;
+    height: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  }
 
-/* スマホは1ページ表示 */
-    @media (max-width: 600px) {
-    .page {
-      flex-direction: column;
-    }
-
-    .page img {
-      width: 100%;
-    }
-
-   #rightPage {
+  /* 左ページは最初非表示 */
+  .left img {
     display: none;
-    }
   }
 
-    .controls {
-      display: flex;
-      justify-content: space-between;
-      max-width: 800px;
-      margin: 15px auto;
-      padding: 0 20px;
-   }
-
-    button {
-      font-size: 16px;
-      padding: 8px 16px;
-      margin: 0 10px;
-      cursor: pointer;
-    }
-
-    .page-number {
-      margin-top: 8px;
-      font-size: 14px;
-      color: #555;
-    }
-
-   @media (max-width: 600px) {
-   .page img {
-     max-height: 85vh;
-    }
+  .controls {
+    display: flex;
+    justify-content: space-between;
+    max-width: 900px;
+    margin: 20px auto;
   }
-  </style>
+
+  button {
+    font-size: 16px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+</style>
 </head>
+
 <body>
 
-  <div class="viewer">
-
-    <div class="page">
-      <img id="leftPage" alt="左ページ">
-      <img id="rightPage" alt="右ページ">
-    </div>
-
-    <div class="page-number" id="pageNumber"></div>
-
-    <div class="controls">
-  <!-- 左側：次のページ -->
-     <button id="nextBtn">← 次のページ</button>
-
-  <!-- 右側：前のページ -->
-     <button id="prevBtn">前のページ →</button>
-    </div>
-
-
+<div class="viewer">
+  <div class="page left">
+    <img id="leftPage" src="" alt="">
   </div>
 
-  <script>
-const pages = [
-  "manga1-page1.jpg",
-  "manga1-page2.jpg",
-  "manga1-page3.jpg",
-  "manga1-page4.jpg",
-  "manga1-page5.jpg"
-];
+  <div class="page right">
+    <img id="rightPage" src="page1.jpg" alt="漫画ページ">
+  </div>
+</div>
 
-let currentPage = 0;
+<div class="controls">
+  <!-- 左：次のページ -->
+  <button onclick="nextPage()">次のページ</button>
 
-const rightPage = document.getElementById("rightPage");
-const leftPage  = document.getElementById("leftPage");
-const pageNumber = document.getElementById("pageNumber");
-const nextBtn = document.getElementById("nextBtn"); // 左：進む
-const prevBtn = document.getElementById("prevBtn"); // 右：戻る
+  <!-- 右：前のページ -->
+  <button onclick="prevPage()">前のページ</button>
+</div>
 
-function isMobile() {
-  return window.innerWidth <= 600;
-}
+<script>
+  // ▼ 表示したい漫画ページを順番に書く
+  const pages = [
+    "manga1-page1.jpg",
+    "manga1-page2.jpg",
+    "manga1-page3.jpg",
+    "manga-1page4.jpg",
+  ];
 
-function updatePage() {
-  if (currentPage === 0) {
-    rightPage.src = pages[0];
-    leftPage.style.display = "none";
-  } else {
-    rightPage.src = pages[currentPage];
-    if (pages[currentPage + 1] && !isMobile()) {
-      leftPage.src = pages[currentPage + 1];
-      leftPage.style.display = "block";
+  let currentPage = 1;
+
+  const leftImg = document.getElementById("leftPage");
+  const rightImg = document.getElementById("rightPage");
+
+  function render() {
+    if (currentPage === 1) {
+      // 1ページ目：右だけ表示
+      leftImg.style.display = "none";
+      rightImg.src = pages[0];
     } else {
-      leftPage.style.display = "none";
+      // 見開き
+      leftImg.style.display = "block";
+      rightImg.src = pages[currentPage - 1];
+      leftImg.src = pages[currentPage - 2] || "";
     }
   }
 
-  pageNumber.textContent = (currentPage + 1) + " / " + pages.length;
-}
+  // 左ボタン：次のページ
+  function nextPage() {
+    if (currentPage < pages.length) {
+      currentPage++;
+      render();
+    }
+  }
 
-/* 左ボタン：次へ */
-nextBtn.addEventListener("click", () => {
-  if (currentPage === 0) {
-    currentPage = 1;
-  } else {
-    currentPage += isMobile() ? 1 : 2;
+  // 右ボタン：前のページ
+  function prevPage() {
+    if (currentPage > 1) {
+      currentPage--;
+      render();
+    }
   }
-  if (currentPage >= pages.length) {
-    currentPage = pages.length - 1;
-  }
-  updatePage();
-});
 
-/* 右ボタン：前へ */
-prevBtn.addEventListener("click", () => {
-  if (currentPage === 1) {
-    currentPage = 0;
-  } else {
-    currentPage -= isMobile() ? 1 : 2;
-  }
-  if (currentPage < 0) {
-    currentPage = 0;
-  }
-  updatePage();
-});
-
-window.addEventListener("resize", updatePage);
-updatePage();
+  render();
 </script>
-
 
 </body>
 </html>
-
