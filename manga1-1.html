@@ -2,36 +2,100 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>激弱勇者 - 第1話</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
+      margin: 0;
+      background: #f4f1ea; /* 本っぽい色 */
       font-family: sans-serif;
-      background-color: #fffaf0;
-      margin: 10px;
+      text-align: center;
     }
-    .content {
+
+    .viewer {
       max-width: 800px;
-      margin: auto;
+      margin: 20px auto;
     }
-    img {
-      max-width: 100%;
+
+    .page {
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      padding: 10px;
+    }
+
+    .page img {
+      width: 100%;
       height: auto;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .controls {
+      margin: 15px 0;
+    }
+
+    button {
+      font-size: 16px;
+      padding: 8px 16px;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+
+    .page-number {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #555;
     }
   </style>
 </head>
-<body style="font-family: sans-serif; background-color: #e6e6fa;">
-  <h1>激弱勇者 - 第1話</h1>
+<body>
 
-  <img src="manga1-page1.jpg" alt="第1ページ" width="500"><br>
-  <img src="manga1-page2.jpg" alt="第2ページ" width="500"><br>
-  <img src="manga1-page3.jpg" alt="第3ページ" width="500"><br>
-  <img src="manga1-page4.jpg" alt="第4ページ" width="500"><br>
-  <!-- 必要な分だけ画像を追加OK！ -->
+  <div class="viewer">
+    <div class="page">
+      <img id="mangaPage" src="manga1-page1.jpg" alt="第１ページ">
+    </div>
 
-  <p><a href="manga.html">← 漫画一覧に戻る</a></p>
+    <div class="page-number" id="pageNumber"></div>
+
+    <div class="controls">
+      <button onclick="prevPage()">← 前のページ</button>
+      <button onclick="nextPage()">次のページ →</button>
+    </div>
+  </div>
+
+  <script>
+    const pages = [
+      "manga1-page1.jpg",
+      "manga1-page2.jpg",
+      "manga1-page3.jpg"
+      "manga1-page4.jpg"
+    ];
+
+    let currentPage = 0;
+
+    const img = document.getElementById("mangaPage");
+    const pageNumber = document.getElementById("pageNumber");
+
+    function updatePage() {
+      img.src = pages[currentPage];
+      pageNumber.textContent = (currentPage + 1) + " / " + pages.length;
+    }
+
+    function nextPage() {
+      if (currentPage < pages.length - 1) {
+        currentPage++;
+        updatePage();
+      }
+    }
+
+    function prevPage() {
+      if (currentPage > 0) {
+        currentPage--;
+        updatePage();
+      }
+    }
+
+    updatePage();
+  </script>
+
 </body>
 </html>
