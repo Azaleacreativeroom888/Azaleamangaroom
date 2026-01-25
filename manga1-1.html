@@ -22,18 +22,31 @@
       background: #fff;
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
       padding: 10px;
-      max-height: 90vh;          /* 画面からはみ出さない */
       display: flex;
       justify-content: center;
-      align-items: center;
+      gap: 10px;
+    }
+
+/* 見開き */
+    .page img {
+      width: 48%;
+      height: auto;
+    }
+
+/* スマホは1ページ表示 */
+    @media (max-width: 600px) {
+    .page {
+      flex-direction: column;
     }
 
     .page img {
-      max-width: 100%;
-      max-height: 90vh;          /* 高さを制限 */
-      width: auto;
-      height: auto;
+      width: 100%;
     }
+
+   #rightPage {
+    display: none;
+    }
+  }
 
     .controls {
       margin: 15px 0;
@@ -68,10 +81,11 @@
 
     <div class="page-number" id="pageNumber"></div>
 
-  <div class="controls">
-    <button id="prevBtn">← 前のページ</button>
-    <button id="nextBtn">次のページ →</button>
+  <div class="page">
+    <img id="leftPage" alt="左ページ">
+    <img id="rightPage" alt="右ページ">
   </div>
+
 
 
   <script>
@@ -79,42 +93,58 @@
     "manga1-page1.jpg",
     "manga1-page2.jpg",
     "manga1-page3.jpg",
-    "manga1-page4.jpg",
+    "manga1-page4.jpg"
   ];
 
   let currentPage = 0;
 
-  const img = document.getElementById("mangaPage");
+  const leftPage = document.getElementById("leftPage");
+  const rightPage = document.getElementById("rightPage");
   const pageNumber = document.getElementById("pageNumber");
   const nextBtn = document.getElementById("nextBtn");
   const prevBtn = document.getElementById("prevBtn");
 
+  function isMobile() {
+    return window.innerWidth <= 600;
+  }
+
   function updatePage() {
-    img.src = pages[currentPage];
+    leftPage.src = pages[currentPage];
+
+    if (!isMobile() && pages[currentPage + 1]) {
+      rightPage.src = pages[currentPage + 1];
+      rightPage.style.display = "block";
+    } else {
+      rightPage.style.display = "none";
+    }
+
     pageNumber.textContent = (currentPage + 1) + " / " + pages.length;
   }
 
-  nextBtn.addEventListener("click", function () {
-    currentPage++;
+  nextBtn.addEventListener("click", () => {
+    currentPage += isMobile() ? 1 : 2;
     if (currentPage >= pages.length) {
       currentPage = pages.length - 1;
     }
     updatePage();
   });
 
-  prevBtn.addEventListener("click", function () {
-    currentPage--;
+  prevBtn.addEventListener("click", () => {
+    currentPage -= isMobile() ? 1 : 2;
     if (currentPage < 0) {
       currentPage = 0;
     }
     updatePage();
   });
 
+  window.addEventListener("resize", updatePage);
+
   updatePage();
 </script>
 
 </body>
 </html>
+
 
 
 
