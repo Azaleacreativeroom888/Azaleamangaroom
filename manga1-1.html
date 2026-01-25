@@ -74,15 +74,21 @@
 </head>
 <body>
 
-  <div class="page-number" id="pageNumber"></div>
+  <div class="viewer">
 
-  <div class="page">
-    <img id="leftPage" alt="左ページ">
-    <img id="rightPage" alt="右ページ">
+    <div class="page">
+      <img id="leftPage" alt="左ページ">
+      <img id="rightPage" alt="右ページ">
+    </div>
+
+    <div class="page-number" id="pageNumber"></div>
+
+    <div class="controls">
+      <button id="prevBtn">← 前のページ</button>
+      <button id="nextBtn">次のページ →</button>
+    </div>
+
   </div>
-
-  <button id="nextBtn">
-  <button id="prevBtn">
 
   <script>
   const pages = [
@@ -140,6 +146,7 @@
 
 </body>
 </html>
+
 
 
 
