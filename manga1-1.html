@@ -49,8 +49,12 @@
   }
 
     .controls {
-      margin: 15px 0;
-    }
+      display: flex;
+      justify-content: space-between;
+      max-width: 800px;
+      margin: 15px auto;
+      padding: 0 20px;
+   }
 
     button {
       font-size: 16px;
@@ -84,75 +88,85 @@
     <div class="page-number" id="pageNumber"></div>
 
     <div class="controls">
-      <button id="prevBtn">← 前のページ</button>
-      <button id="nextBtn">次のページ →</button>
+  <!-- 左側：次のページ -->
+     <button id="nextBtn">← 次のページ</button>
+
+  <!-- 右側：前のページ -->
+     <button id="prevBtn">前のページ →</button>
     </div>
+
 
   </div>
 
   <script>
-  const pages = [
-    "manga1-page1.jpg",
-    "manga1-page2.jpg",
-    "manga1-page3.jpg",
-    "manga1-page4.jpg"
-  ];
+const pages = [
+  "manga1-page1.jpg",
+  "manga1-page2.jpg",
+  "manga1-page3.jpg",
+  "manga1-page4.jpg",
+  "manga1-page5.jpg"
+];
 
-  let currentPage = 0;
+let currentPage = 0;
 
-  const leftPage = document.getElementById("leftPage");
-  const rightPage = document.getElementById("rightPage");
-  const pageNumber = document.getElementById("pageNumber");
-  const nextBtn = document.getElementById("nextBtn");
-  const prevBtn = document.getElementById("prevBtn");
+const rightPage = document.getElementById("rightPage");
+const leftPage  = document.getElementById("leftPage");
+const pageNumber = document.getElementById("pageNumber");
+const nextBtn = document.getElementById("nextBtn"); // 左：進む
+const prevBtn = document.getElementById("prevBtn"); // 右：戻る
 
-  function isMobile() {
-    return window.innerWidth <= 600;
-  }
+function isMobile() {
+  return window.innerWidth <= 600;
+}
 
-  function updatePage() {
-    leftPage.src = pages[currentPage];
-
-    if (!isMobile() && pages[currentPage + 1]) {
-      rightPage.src = pages[currentPage + 1];
-      rightPage.style.display = "block";
+function updatePage() {
+  if (currentPage === 0) {
+    rightPage.src = pages[0];
+    leftPage.style.display = "none";
+  } else {
+    rightPage.src = pages[currentPage];
+    if (pages[currentPage + 1] && !isMobile()) {
+      leftPage.src = pages[currentPage + 1];
+      leftPage.style.display = "block";
     } else {
-      rightPage.style.display = "none";
+      leftPage.style.display = "none";
     }
-
-    pageNumber.textContent = (currentPage + 1) + " / " + pages.length;
   }
 
-  nextBtn.addEventListener("click", () => {
+  pageNumber.textContent = (currentPage + 1) + " / " + pages.length;
+}
+
+/* 左ボタン：次へ */
+nextBtn.addEventListener("click", () => {
+  if (currentPage === 0) {
+    currentPage = 1;
+  } else {
     currentPage += isMobile() ? 1 : 2;
-    if (currentPage >= pages.length) {
-      currentPage = pages.length - 1;
-    }
-    updatePage();
-  });
-
-  prevBtn.addEventListener("click", () => {
-    currentPage -= isMobile() ? 1 : 2;
-    if (currentPage < 0) {
-      currentPage = 0;
-    }
-    updatePage();
-  });
-
-  window.addEventListener("resize", updatePage);
-
+  }
+  if (currentPage >= pages.length) {
+    currentPage = pages.length - 1;
+  }
   updatePage();
+});
+
+/* 右ボタン：前へ */
+prevBtn.addEventListener("click", () => {
+  if (currentPage === 1) {
+    currentPage = 0;
+  } else {
+    currentPage -= isMobile() ? 1 : 2;
+  }
+  if (currentPage < 0) {
+    currentPage = 0;
+  }
+  updatePage();
+});
+
+window.addEventListener("resize", updatePage);
+updatePage();
 </script>
+
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
 
