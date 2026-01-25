@@ -1,5 +1,5 @@
-url: https://azaleacreativeroom888.github.io/Azaleamangaroom/
-baseurl: "Azaleamangaroom"
+url: https://azaleacreativeroom888.github.io
+baseurl: "/Azaleamangaroom/"
 
 plugins:
   - jekyll-sitemap
