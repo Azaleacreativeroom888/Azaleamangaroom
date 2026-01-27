@@ -1,120 +1,37 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>激弱勇者 - 第1話</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-  body {
-    background: #f5f5f5;
-    text-align: center;
-    margin: 0;
-    padding: 20px;
-  }
-
-  .viewer {
-    display: flex;
-    justify-content: center;
-    max-width: 900px;
-    margin: 20px auto;
-  }
-
-  .page {
-    width: 45%;
-  }
-
-  .page img {
-    width: 100%;
-    height: auto;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
-  }
-
-  /* 左ページは最初非表示 */
-  .left img {
-    display: none;
-  }
-
-  .controls {
-    display: flex;
-    justify-content: space-between;
-    max-width: 900px;
-    margin: 20px auto;
-  }
-
-  button {
-    font-size: 16px;
-    padding: 10px 20px;
-    cursor: pointer;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>激弱勇者 - 第1話</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #fffaf0;
+      margin: 10px;
+    }
+    .content {
+      max-width: 800px;
+      margin: auto;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
+<body style="font-family: sans-serif; background-color: #e6e6fa;">
+  <h1>激弱勇者 - 第1話</h1>
 
-<body>
+  <img src="manga1-page1.jpg" alt="第1ページ" width="500"><br>
+  <img src="manga1-page2.jpg" alt="第2ページ" width="500"><br>
+  <img src="manga1-page3.jpg" alt="第3ページ" width="500"><br>
+  <img src="manga1-page4.jpg" alt="第4ページ" width="500"><br>
+  <!-- 必要な分だけ画像を追加OK！ -->
 
-<div class="viewer">
-  <div class="page left">
-    <img id="leftPage" src="" alt="">
-  </div>
-
-  <div class="page right">
-    <img id="rightPage" src="page1.jpg" alt="漫画ページ">
-  </div>
-</div>
-
-<div class="controls">
-  <!-- 左：次のページ -->
-  <button onclick="nextPage()">次のページ</button>
-
-  <!-- 右：前のページ -->
-  <button onclick="prevPage()">前のページ</button>
-</div>
-
-<script>
-  // ▼ 表示したい漫画ページを順番に書く
-  const pages = [
-    "manga1-page1.jpg",
-    "manga1-page2.jpg",
-    "manga1-page3.jpg",
-    "manga-1page4.jpg",
-  ];
-
-  let currentPage = 1;
-
-  const leftImg = document.getElementById("leftPage");
-  const rightImg = document.getElementById("rightPage");
-
-  function render() {
-    if (currentPage === 1) {
-      // 1ページ目：右だけ表示
-      leftImg.style.display = "none";
-      rightImg.src = pages[0];
-    } else {
-      // 見開き
-      leftImg.style.display = "block";
-      rightImg.src = pages[currentPage - 1];
-      leftImg.src = pages[currentPage - 2] || "";
-    }
-  }
-
-  // 左ボタン：次のページ
-  function nextPage() {
-    if (currentPage < pages.length) {
-      currentPage++;
-      render();
-    }
-  }
-
-  // 右ボタン：前のページ
-  function prevPage() {
-    if (currentPage > 1) {
-      currentPage--;
-      render();
-    }
-  }
-
-  render();
-</script>
-
+  <p><a href="manga.html">← 漫画一覧に戻る</a></p>
 </body>
 </html>
