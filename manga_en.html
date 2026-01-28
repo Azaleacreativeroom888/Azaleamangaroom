@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manga</title>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #1f3d2b;
+      margin: 10px;
+      color: #ffc500;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    /* ナビゲーションバー */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1f3d2b;
+      color: #ffc500;
+      padding: 12px 20px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 1000;
+    }
+
+    .navbar h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .menu-toggle {
+      font-size: 26px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #ffc500;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* ===== 漫画一覧レイアウト ===== */
+    .manga-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .manga-item {
+      max-width: 250px;
+    }
+
+    /* タブレット */
+    @media (max-width: 900px) {
+      .manga-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* スマホ */
+    @media (max-width: 500px) {
+      .manga-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+     .nav-links {
+      display: none;
+      flex-direction: column;
+      background: #173322;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 220px;
+      padding: 15px;
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+      z-index: 1001;
+  }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block !important;
+        color: #ffc500;
+        z-index: 1100;
+        position: relative;
+     }
+
+    @media (max-width: 768px) {
+      .nav-links.active {
+        display: flex;
+  }
+}
+      
+    .navbar {
+      position: relative;
+      z-index: 1000;
+      }
+    }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #1f3d2b;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 220px;
+        padding: 15px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+
+<script>
+function toggleMenu() {
+  document.getElementById("navLinks").classList.toggle("active");
+}
+</script>
+
+</body>
+</html>
+  
+<body style="font-family: sans-serif; background-color: #1f3d2b; color: #ffc500;">
+  <h1>📚 Manga</h1>
+
+   <div class="manga-item">
+    <h2>『Last Idol』</h2>
+     <p>読み切り / SF　2025</p>
+      <a href="manga4-1.html">
+       <img src="manga4-thumb.jpg" alt="最後のアイドル" width="200">
+      </a>
+     <p><a href="manga4-1.html">▶ 読み切りを読む</a></p>
+   </div>
+
+   <div class="manga-item">
+    <h2>『The Bus driver』</h2>
+     <p>読み切り / 日常　2025</p>
+      <a href="manga7-1.html">
+       <img src="manga7-page1.jpg" alt="バスの運転手" width="200">
+      </a>
+     <p><a href="manga7-1.html">▶ 読み切りを読む</a></p>
+   </div>
+
+   <div class="manga-item">
+    <h2>『Chicken Warrier』</h2>
+     <p>ファンタジー / Hero　2025</p>
+      <a href="manga1-1.html">
+       <img src="manga1-thumb.jpg" alt="激弱勇者" width="200">
+     </a>
+    <p><a href="manga1-1.html">▶ 第1話を読む</a></p>
+    <p><a href="manga1-2.html">▶ 第2話を読む</a></p>
+   </div>
+
+   <div class="manga-item">
+    <h2>『Hina's sweet stand』</h2>
+     <p>日常 / Baking　2024</p>
+      <a href="manga2-3.html">
+       <img src="illust12.jpg" alt="比奈のスイーツスタンドの表紙" width="200">
+      </a>
+     <p><a href="manga2-1.html">▶ 第1話を読む</a></p>
+     <p><a href="manga2-2.html">▶ 第2話を読む</a></p>
+     <p><a href="manga2-3.html">▶ 第3話を読む</a></p>
+   </div>
+
+   <div class="manga-item">
+    <h2>『Hinding Idol』</h2>
+     <p>読み切り / Office　2023</p>
+      <a href="manga9-1.html">
+       <img src="manga9-page1.jpg" alt="清掃員アイドル" width="200">
+      </a>
+      <p><a href="manga9-1.html">▶ 読み切りを読む</a></p>
+   </div>
+
+   <div class="manga-item">
+   <h2>『2.5 musical』</h2>
+    <p>読み切り / 青春　2023</p>
+     <a href="manga3-1.html">
+      <img src="manga3-thumb.jpg" alt="2.5次元舞台" width="200">
+     </a>
+     <p><a href="manga3-1.html">▶ 読み切りを読む</a></p>
+   </div>
+
+   <div class="manga-item">
+    <h2>『Sexy senpai』</h2>
+     <p>読み切り / Romance　2022</p>
+      <a href="manga8-1.html">
+       <img src="manga8-page1.jpg" alt="エロい先輩" width="200">
+      </a>
+      <p><a href="manga8-1.html">▶ 読み切りを読む</a></p>
+   </div>
+
+   <div class="manga-item">
+    <h2>『中国拳法お婆ちゃん』</h2>
+     <p>読み切り / Action　2022</p>
+      <a href="manga5-1.html">
+       <img src="manga5-page1.jpg" alt="中国拳法お婆ちゃん" width="200">
+      </a>
+      <p><a href="manga5-1.html">▶ 読み切りを読む</a></p>
+   </div>
+  
+   <div class="manga-item">
+    <h2>『ハートの小瓶』</h2>
+     <p>読み切り / Romance　2022</p>
+      <a href="manga6-1.html">
+       <img src="manga6-page1.jpg" alt="ハートの小瓶" width="200">
+      </a>
+      <p><a href="manga6-1.html">▶ 読み切りを読む</a></p>
+   </div>
+
+  <p><a href="index.html">← トップページに戻る</a></p>
+</body>
+</html>
