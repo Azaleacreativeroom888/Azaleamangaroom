@@ -1,5 +1,8 @@
 url: https://azaleacreativeroom888.github.io
 baseurl: "/Azaleamangaroom"
 
+title: Azaleaの創作部屋
+description: オリジナル漫画・イラスト中心の個人創作サイト
+
 plugins:
   - jekyll-sitemap
