@@ -75,46 +75,91 @@
       max-width: 250px;
     }
 
-    /* タブレット */
-    @media (max-width: 900px) {
-      .manga-list {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    /* スマホ */
-    @media (max-width: 500px) {
-      .manga-list {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 768px) {
-     .nav-links {
-      display: none;
-      flex-direction: column;
-      background: #173322;
-      position: absolute;
-      top: 60px;
-      right: 0;
-      width: 220px;
-      padding: 15px;
-      border-radius: 0 0 12px 12px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-      z-index: 1001;
-  }
-
+   /* モバイル用 */
     @media (max-width: 768px) {
       .menu-toggle {
-        display: block !important;
-        color: #ffc500;
-        z-index: 1100;
-        position: relative;
-     }
+        display: block;
+      }
 
-    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #1f3d2b;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 220px;
+        padding: 15px;
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        z-index: 1;
+      }
+
       .nav-links.active {
         display: flex;
+      }
+    }
+
+    /* 本文 */
+    .main-content {
+      padding: 40px;
+      text-align: center;
+    }
+
+    .main-content p strong {
+      color: #ffc500;
+    }
+
+    .slider {
+      position: relative;
+      width: 100%;
+    }
+
+    .slider-container {
+      display: flex;
+      align-items: center; /* ← 画像の縦中央にボタン */
+      gap: 10px;
+}
+
+    .prev,
+    .next {
+      font-size: 32px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #b5b5b5;
+}
+
+    .prev:hover,
+    .next:hover {
+      color: white;
+}
+
+    .slider-window {
+      overflow: hidden;
+      max-width: 1400px; /* 好きな幅 */
+      margin: 0 auto;
+}
+
+    .slider-track {
+      display: flex;
+      transition: transform 0.4s ease;
+    }
+
+    .slide-item {
+      min-width: 200px;   /* ジャンプの単行本幅っぽい */
+      margin-right: 16px;
+    }
+
+    .slide-item img {
+      width: 100%;
+      display: block;
+    }
+    
+    .slide-item {
+      width: 180px;     /* 好きな幅 */
+      height: 260px;    /* 単行本っぽい縦長 */
+      flex-shrink: 0;   /* これ超重要 */
     }
   </style>
 </head>
@@ -235,6 +280,7 @@ function toggleMenu() {
   <p><a href="index.html">← トップページに戻る</a></p>
 </body>
 </html>
+
 
 
 
