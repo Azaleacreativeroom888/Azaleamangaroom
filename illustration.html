@@ -22,6 +22,154 @@
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
+    
+      /* ナビゲーションバー */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1f3d2b;
+      color: #ffc500;
+      padding: 12px 20px;
+      position: relative;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+
+    .navbar h1 {
+      margin: 0;
+      font-size: 22px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .menu-toggle {
+      font-size: 26px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .nav-links a {
+      color: #ffc500;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #ffe4f0;
+      text-shadow: 0 0 8px #fff;
+    }
+
+    /* モバイル用 */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #1f3d2b;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 220px;
+        padding: 15px;
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        z-index: 1;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+    }
+
+    /* 本文 */
+    .main-content {
+      padding: 40px;
+      text-align: center;
+    }
+
+    .main-content p strong {
+      color: #ffc500;
+    }
+
+    .slider {
+      position: relative;
+      width: 100%;
+    }
+
+    .slider-container {
+      display: flex;
+      align-items: center; /* ← 画像の縦中央にボタン */
+      gap: 10px;
+}
+
+    .prev,
+    .next {
+      font-size: 32px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #b5b5b5;
+}
+
+    .prev:hover,
+    .next:hover {
+      color: white;
+}
+
+    .slider-window {
+      overflow: hidden;
+      max-width: 1400px; /* 好きな幅 */
+      margin: 0 auto;
+}
+
+    .slider-track {
+      display: flex;
+      transition: transform 0.4s ease;
+    }
+
+    .slide-item {
+      min-width: 200px;   /* ジャンプの単行本幅っぽい */
+      margin-right: 16px;
+    }
+
+    .slide-item img {
+      width: 100%;
+      display: block;
+    }
+    
+    .slide-item {
+      width: 180px;     /* 好きな幅 */
+      height: 260px;    /* 単行本っぽい縦長 */
+      flex-shrink: 0;   /* これ超重要 */
+    }
+  </style>
+</head>
+  
+<body>
+
+  <!-- ナビゲーションバー -->
+  <div class="navbar">
+    <h1>Azaleaの創作部屋🌸</h1>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="news.html">最新情報</a>
+      <a href="manga.html">漫画</a>
+      <a href="blog.html">ブログ</a>
+      <a href="illustration.html">ギャラリー</a>
+      <a href="about.html">自己紹介</a>
+      <a href="contact.html">リンク</a>
+      <a href="manga_en.html">English</a>
+    </div>
+  </div>
   </style>
 </head>
 <body style="font-family: sans-serif; background-color: #1f3d2b;">
@@ -51,6 +199,7 @@
   <p><a href="index.html">← トップページに戻る</a></p>
 </body>
 </html>
+
 
 
 
