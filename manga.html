@@ -31,12 +31,12 @@
       padding: 12px 20px;
       box-shadow: 0 3px 10px rgba(0,0,0,0.2);
       position: relative;
-      z-index: 1000;
     }
 
     .navbar h1 {
       margin: 0;
       font-size: 22px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
     }
 
     .menu-toggle {
@@ -55,6 +55,12 @@
       color: #ffc500;
       text-decoration: none;
       font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #ffe4f0;
+      text-shadow: 0 0 8px #fff;
     }
 
     /* ===== 漫画一覧レイアウト ===== */
@@ -127,6 +133,9 @@
         right: 0;
         width: 220px;
         padding: 15px;
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        z-index: 1;
       }
 
       .nav-links.active {
@@ -252,6 +261,7 @@ function toggleMenu() {
   <p><a href="index.html">← トップページに戻る</a></p>
 </body>
 </html>
+
 
 
 
