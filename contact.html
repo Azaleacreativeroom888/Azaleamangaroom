@@ -173,6 +173,30 @@
       flex-shrink: 0;   /* これ超重要 */
     }
   </style>
+
+  <script>
+function toggleMenu() {
+  document.getElementById("navLinks").classList.toggle("active");
+}
+</script>
+
+
+<body>
+  <div class="navbar">
+    <h1>Azaleaの創作部屋🌸</h1>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="nav-links" id="navLinks">
+      <a href="news.html">最新情報</a>
+      <a href="manga.html">漫画</a>
+      <a href="blog.html">ブログ</a>
+      <a href="illustration.html">ギャラリー</a>
+      <a href="about.html">自己紹介</a>
+      <a href="contact.html">リンク</a>
+      <a href="manga_en.html">English</a>
+    </div>
+  </div>
+</body>
+  
 </head>
 <body style="font-family: sans-serif; background-color: #1f3d2b;">
   <h1>お問い合わせ📮</h1>
@@ -193,4 +217,5 @@
   <p><a href="index.html">← トップページに戻る</a></p>
 </body>
 </html>
+
 
