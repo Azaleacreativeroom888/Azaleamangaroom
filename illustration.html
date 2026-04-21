@@ -3,19 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>イラストを見る</title>
+  <title>自己紹介 - Azaleaの創作部屋</title>
   <style>
     body {
       margin: 0;
       font-family: "メイリオ", sans-serif;
       background-color: #1f3d2b;
       background-attachment: fixed;
-      color: #ffc500
+      color: #b5b5b5;
     }
-    .content {
-      max-width: 800px;
-      margin: auto;
-    }
+
     img {
       max-width: 100%;
       height: auto;
@@ -23,8 +20,8 @@
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-    
-      /* ナビゲーションバー */
+
+    /* ナビゲーションバー */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -50,8 +47,8 @@
 
     .nav-links {
       display: flex;
-      flex-wrap: wrap;
       gap: 18px;
+      flex-wrap: wrap;
     }
 
     .nav-links a {
@@ -66,7 +63,19 @@
       text-shadow: 0 0 8px #fff;
     }
 
-    /* モバイル用 */
+    /* ===== 漫画一覧レイアウト ===== */
+    .manga-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .manga-item {
+      max-width: 250px;
+    }
+
+   /* モバイル用 */
     @media (max-width: 768px) {
       .menu-toggle {
         display: block;
@@ -153,18 +162,17 @@
       flex-shrink: 0;   /* これ超重要 */
     }
   </style>
-</head>
 
-<script>
-    function toggleMenu() {
-      document.getElementById("navLinks").classList.toggle("active");
-    }
-</script>
+  <script>
+function toggleMenu() {
+  document.getElementById("navLinks").classList.toggle("active");
+}
+  </script>
+
 
 <body>
-  <!-- ナビゲーションバー -->
   <div class="navbar">
-    <h1>Azaleaの創作部屋🌸</h1>
+    <h1><a href="index.html"><span style="color: #d4af37;">Azaleaの創作部屋🌸</span></a></h1>
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <div class="nav-links" id="navLinks">
       <a href="news.html">最新情報</a>
