@@ -172,6 +172,60 @@
       height: 260px;    /* 単行本っぽい縦長 */
       flex-shrink: 0;   /* これ超重要 */
     }
+
+    .row {
+  margin: 40px;
+}
+
+/* 3つ並び */
+.grid-posters {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* カード */
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+/* 画像 */
+.card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+/* ホバーで拡大 */
+.card:hover img {
+  transform: scale(1.1);
+}
+
+/* タイトルオーバーレイ */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  color: white;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+/* ホバーで表示 */
+.card:hover .overlay {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .grid-posters {
+    grid-template-columns: 1fr;
+  }
+}
   </style>
 
   <script>
@@ -203,18 +257,78 @@ function toggleMenu() {
 
   <p>ご連絡は以下のSNSからお願いします。</p>
 
-  <ul>
-    <li><a href="https://rookie.shonenjump.com/users/14728546961183734555" target="_blank">ジャンプルーキー</a></li>
-    <li><a href="https://bsky.app/profile/azaleaazalea88.bsky.social" target="_blank">bluesky</a></li>
-    <li><a href="https://azaleacreativeroom888.github.io/storyreviewazalea/" target="_blank">書評サイト（まだ作りかけです）</a></li>
-    <li><a href="https://www.pixiv.net/users/105728284" target="_blank">Pixiv（二次創作はこのサイトにあります）</a></li>
-    <li><a href="https://kakuyomu.jp/users/azalea_azalea72" target="_blank">カクヨム</a></li>
-    <li><a href="https://daysneo.com/author/Sam333333Sam/" target="_blank">DaysNEO</a></li>
-    <li><a href="https://mangahack.com/users/100611/comics" target="_blank">マンガハック</a></li>
-    <li><a href="https://www.youtube.com/@LilyPopins0512" target="_blank">リリポピのYouTube</a>
-    <li><a href="https://lilipopi.github.io/lilypopins/" target="_blank">リリポピのホームページ</a>
-    <p>これは私が友達とLily Popinsのにちじょうというポッドキャストをやっていて、そのホームページとYouTubeです。リリーが私です。可愛いホームページなので見てみてください。</p>
-  </ul>
+  <section class="row">
+  <h2>おすすめ作品</h2>
+
+  <div class="grid-posters">
+    <a href="https://rookie.shonenjump.com/users/14728546961183734555" target="_blank" class="card">
+      <img src="img1.jpg">
+      <div class="overlay">
+        <p>ジャンプルーキー</p>
+      </div>
+    </a>
+
+    <a href="https://bsky.app/profile/azaleaazalea88.bsky.social" target="_blank" class="card">
+      <img src="img2.jpg">
+      <div class="overlay">
+        <p>bluesky</p>
+      </div>
+    </a>
+
+    <a href="https://azaleacreativeroom888.github.io/storyreviewazalea/" target="_blank" class="card">
+      <img src="img3.jpg">
+      <div class="overlay">
+        <p>書評サイト（まだ作りかけです）</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="grid-posters">
+    <a href="https://www.pixiv.net/users/105728284" target="_blank" class="card">
+      <img src="img1.jpg">
+      <div class="overlay">
+        <p>Pixiv（二次創作はこのサイトにあります）</p>
+      </div>
+    </a>
+
+    <a href="https://kakuyomu.jp/users/azalea_azalea72" target="_blank" target="_blank" class="card">
+      <img src="img2.jpg">
+      <div class="overlay">
+        <p>カクヨム</p>
+      </div>
+    </a>
+
+    <a href="https://daysneo.com/author/Sam333333Sam/" target="_blank" class="card">
+      <img src="img3.jpg">
+      <div class="overlay">
+        <p>DaysNEO</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="grid-posters">
+    <a href="https://mangahack.com/users/100611/comics" target="_blank" target="_blank" class="card">
+      <img src="img1.jpg">
+      <div class="overlay">
+        <p>マンガハック</p>
+      </div>
+    </a>
+
+    <a href="https://www.youtube.com/@LilyPopins0512" target="_blank" class="card">
+      <img src="img2.jpg">
+      <div class="overlay">
+        <p>リリポピのYouTube</p>
+      </div>
+    </a>
+
+    <a href="https://lilipopi.github.io/lilypopins/" target="_blank" target="_blank" class="card">
+      <img src="img3.jpg">
+      <div class="overlay">
+        <p>リリポピのホームページ</p>
+      </div>
+    </a>
+  </div>
+</section>
 
   <p><a href="index.html">← トップページに戻る</a></p>
 </body>
