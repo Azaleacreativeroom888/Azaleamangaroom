@@ -1,214 +1,149 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Azaleaのブログ</title>
+<meta charset="UTF-8">
+<title>Blog</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: "メイリオ", sans-serif;
-      background-color: #1f3d2b;
-      background-attachment: fixed;
-      color: #ffc500
-    }
-    .content {
-      max-width: 800px;
-      margin: auto;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    
-      /* ナビゲーションバー */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #1f3d2b;
-      color: #ffc500;
-      padding: 12px 20px;
-      position: relative;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-    }
-
-    .navbar h1 {
-      margin: 0;
-      font-size: 22px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-    }
-
-    .menu-toggle {
-      font-size: 26px;
-      cursor: pointer;
-      display: none;
-    }
-
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
-    }
-
-    .nav-links a {
-      color: #ffc500;
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: #ffe4f0;
-      text-shadow: 0 0 8px #fff;
-    }
-
-    /* モバイル用 */
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
-
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        background: #1f3d2b;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 220px;
-        padding: 15px;
-        border-radius: 0 0 12px 12px;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-        z-index: 1;
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-    }
-
-    /* 本文 */
-    .main-content {
-      padding: 40px;
-      text-align: center;
-    }
-
-    .main-content p strong {
-      color: #ffc500;
-    }
-
-    .slider {
-      position: relative;
-      width: 100%;
-    }
-
-    .slider-container {
-      display: flex;
-      align-items: center; /* ← 画像の縦中央にボタン */
-      gap: 10px;
+<style>
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #f5f5f5;
 }
 
-    .prev,
-    .next {
-      font-size: 32px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #b5b5b5;
+header {
+  background: #fff;
+  padding: 15px 30px;
+  border-bottom: 1px solid #ddd;
+  font-weight: bold;
 }
 
-    .prev:hover,
-    .next:hover {
-      color: white;
+.container {
+  display: flex;
+  max-width: 1100px;
+  margin: 20px auto;
+  gap: 20px;
 }
 
-    .slider-window {
-      overflow: hidden;
-      max-width: 1400px; /* 好きな幅 */
-      margin: 0 auto;
+.main {
+  flex: 3;
 }
 
-    .slider-track {
-      display: flex;
-      transition: transform 0.4s ease;
-    }
+.card {
+  background: #fff;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: 0.2s;
+}
 
-    .slide-item {
-      min-width: 200px;   /* ジャンプの単行本幅っぽい */
-      margin-right: 16px;
-    }
+.card:hover {
+  transform: translateY(-3px);
+}
 
-    .slide-item img {
-      width: 100%;
-      display: block;
-    }
-    
-    .slide-item {
-      width: 180px;     /* 好きな幅 */
-      height: 260px;    /* 単行本っぽい縦長 */
-      flex-shrink: 0;   /* これ超重要 */
-    }
-  </style>
+.card img {
+  width: 100%;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.date {
+  font-size: 12px;
+  color: gray;
+}
+
+.title {
+  font-size: 18px;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: #333;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+/* サイドバー */
+.sidebar {
+  flex: 1;
+}
+
+.pickup {
+  background: #fff;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.pickup h3 {
+  margin-top: 0;
+}
+
+.pickup-item {
+  margin-bottom: 10px;
+}
+
+.pickup-item a {
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+}
+</style>
 </head>
-
-<script>
-    function toggleMenu() {
-      document.getElementById("navLinks").classList.toggle("active");
-    }
-</script>
 
 <body>
-  <!-- ナビゲーションバー -->
-  <div class="navbar">
-    <h1><a href="index.html"><span style="color: #d4af37;">Azaleaの創作部屋🌸</span></a></h1>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <div class="nav-links" id="navLinks">
-      <a href="news.html">最新情報</a>
-      <a href="manga.html">漫画</a>
-      <a href="blog.html">ブログ</a>
-      <a href="illustration.html">ギャラリー</a>
-      <a href="about.html">自己紹介</a>
-      <a href="contact.html">リンク</a>
-      <a href="manga_en.html">English</a>
+
+<header>My Blog</header>
+
+<div class="container">
+
+  <!-- メイン -->
+  <div class="main">
+
+    <div class="card">
+      <img src="sample1.jpg">
+      <div class="card-content">
+        <div class="date">2026年4月15日</div>
+        <div class="title">見たものいろいろ</div>
+          <p>家族につまんないって言われたギャグ漫画。ボツにした～～（泣）</p>
+          <img src="clipstudio1.png" alt="ボツのギャグ漫画">
+      </div>
     </div>
+
   </div>
-</body>
-</head>
-  
-<body style="font-family: sans-serif; background-color: #1f3d2b; color: #b5b5b5;">
-  <h1>Azaleaのブログ📝</h1>
 
-  <p>ここでは創作に関する活動報告や日々の気づきなどを綴っています。文章が支離滅裂になってるときは落ち込んでます</p>
+  <!-- サイド -->
+  <div class="sidebar">
 
-  <h2>最新記事</h2>
-  <ul>
-    <p>
-      <a href="blog2026.html">
-        <span style="color: #d4af37;">2026年のブログ</span>
-      </a>
-    </p>
+    <div class="pickup">
+      <h3>過去の記事</h3>
 
-    <p>
-      <a href="blog2025.html">
-        <span style="color: #d4af37;">2025年のブログ</span>
-      </a>
-    
-    <p>
-      <a href="progress.html">
-        <span style="color: #d4af37;">進捗ノート</span>
-      </a>
-    </p>
-  </ul>
+      <div class="pickup-item">
+        <a href="blog2026.html">▶ ブログ 2026年</a>
+      </div>
 
-  <p>
-    <a href="index.html">
-      <span style="color: #d4af37;">←トップページに戻る</span>
-    </a>
-  </p>
+      <div class="pickup-item">
+        <a href="blog2025.html">▶ ブログ 2025年</a>
+      </div>
+
+      <div class="pickup-item">
+        <a href="pregress.html">▶ 進捗ノート</a>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
 </body>
 </html>
