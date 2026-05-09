@@ -1,179 +1,393 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>自己紹介 - Azaleaの創作部屋</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "メイリオ", sans-serif;
-      background-color: #1f3d2b;
-      background-attachment: fixed;
-      color: #b5b5b5;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自己紹介 - Azaleaの創作部屋</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9922a;
+    --gold-light: #e8c060;
+    --parchment: #e8d5a3;
+    --forest: #1a3020;
+    --ink-bg: #1a0e08;
+  }
 
-    img {
-      max-width: 100%;
-      height: auto;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* ナビゲーションバー */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #1f3d2b;
-      color: #ffc500;
-      padding: 12px 20px;
-      position: relative;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-    }
+  body {
+    font-family: 'Noto Serif JP', 'メイリオ', serif;
+    background-color: var(--ink-bg);
+    background-image:
+      radial-gradient(ellipse at 20% 20%, rgba(42,24,14,0.8) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, rgba(45,26,74,0.4) 0%, transparent 60%),
+      repeating-linear-gradient(
+        45deg, transparent, transparent 40px,
+        rgba(201,146,42,0.03) 40px, rgba(201,146,42,0.03) 41px
+      );
+    background-attachment: fixed;
+    color: #e8d5a3;
+    min-height: 100vh;
+  }
 
-    .navbar h1 {
-      margin: 0;
-      font-size: 22px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-    }
+  /* ナビゲーション */
+  .navbar {
+    background: linear-gradient(135deg, #0f2018 0%, #1a3020 50%, #0f1a28 100%);
+    border-bottom: 2px solid var(--gold);
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(201,146,42,0.3);
+  }
 
-    .menu-toggle {
-      font-size: 26px;
-      cursor: pointer;
-      display: none;
-    }
+  .navbar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    position: relative;
+  }
+
+  .navbar h1 a {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    color: var(--gold-light);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px rgba(201,146,42,0.6);
+  }
+
+  .nav-links { display: flex; gap: 4px; }
+
+  .nav-links a {
+    color: #c8b88a;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 6px 12px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    transition: all 0.3s;
+    letter-spacing: 0.5px;
+    position: relative;
+  }
+
+  .nav-links a::before {
+    content: '✦';
+    position: absolute;
+    left: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 7px;
+    opacity: 0;
+    color: var(--gold);
+    transition: opacity 0.3s;
+  }
+
+  .nav-links a:hover {
+    color: var(--gold-light);
+    border-color: rgba(201,146,42,0.4);
+    background: rgba(201,146,42,0.08);
+    padding-left: 18px;
+  }
+
+  .nav-links a:hover::before { opacity: 1; }
+
+  .menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--gold-light);
+    background: none;
+    border: none;
+  }
+
+  /* メインコンテンツ */
+  .main-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+
+  /* ページタイトル */
+  .page-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .page-header::before {
+    content: '';
+    display: block;
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 28px;
+  }
+
+  .page-header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 26px;
+    color: var(--gold-light);
+    letter-spacing: 4px;
+    text-shadow: 0 0 16px rgba(201,146,42,0.4);
+    margin-bottom: 8px;
+  }
+
+  .page-header .subtitle {
+    font-size: 12px;
+    color: #7a6040;
+    letter-spacing: 3px;
+  }
+
+  /* セクションカード */
+  .section-card {
+    background: linear-gradient(135deg, rgba(26,48,32,0.5), rgba(15,20,35,0.4));
+    border: 1px solid rgba(201,146,42,0.2);
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .section-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(180deg, var(--gold), transparent);
+    border-radius: 4px 0 0 4px;
+  }
+
+  .section-card h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    color: var(--gold-light);
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(201,146,42,0.2);
+  }
+
+  .section-card p {
+    font-size: 14px;
+    color: #c8b070;
+    line-height: 2;
+    margin-bottom: 10px;
+  }
+
+  .section-card p:last-child { margin-bottom: 0; }
+
+  .section-card strong {
+    color: var(--gold-light);
+  }
+
+  /* イントロカード（特別） */
+  .intro-card {
+    background: linear-gradient(135deg, rgba(42,26,74,0.35), rgba(26,48,32,0.5));
+    border: 1px solid rgba(201,146,42,0.35);
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .intro-card::after {
+    content: '✦';
+    position: absolute;
+    top: 12px; right: 16px;
+    font-size: 10px;
+    color: rgba(201,146,42,0.3);
+  }
+
+  .intro-card p {
+    font-size: 14px;
+    color: #c8b070;
+    line-height: 2.2;
+  }
+
+  /* 好きなものリスト */
+  .likes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .like-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #b09050;
+    padding: 8px 10px;
+    background: rgba(201,146,42,0.05);
+    border: 1px solid rgba(201,146,42,0.12);
+    border-radius: 3px;
+    transition: all 0.2s;
+  }
+
+  .like-item:hover {
+    background: rgba(201,146,42,0.1);
+    border-color: rgba(201,146,42,0.3);
+    color: var(--gold-light);
+  }
+
+  .like-item::before {
+    content: '✦';
+    font-size: 7px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* 注意書きカード */
+  .notice-card {
+    background: rgba(122,26,46,0.15);
+    border: 1px solid rgba(122,26,46,0.35);
+    border-radius: 4px;
+    padding: 20px 28px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .notice-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(180deg, #7a1a2e, transparent);
+    border-radius: 4px 0 0 4px;
+  }
+
+  .notice-card h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    color: #c06070;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+  }
+
+  .notice-card p {
+    font-size: 12px;
+    color: #8a5060;
+    line-height: 1.9;
+    margin-bottom: 8px;
+  }
+
+  .notice-card p:last-child { margin-bottom: 0; }
+
+  /* 区切り線 */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 32px 0;
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,146,42,0.4));
+  }
+
+  .divider-line.right {
+    background: linear-gradient(90deg, rgba(201,146,42,0.4), transparent);
+  }
+
+  .divider-star { color: var(--gold); font-size: 14px; }
+
+  /* リンクボタン */
+  .link-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+
+  .link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, rgba(42,72,53,0.7), rgba(26,48,32,0.8));
+    border: 1px solid rgba(201,146,42,0.35);
+    border-radius: 3px;
+    color: var(--gold-light);
+    font-size: 13px;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+  }
+
+  .link-btn:hover {
+    border-color: var(--gold);
+    background: linear-gradient(135deg, rgba(60,100,70,0.8), rgba(42,72,53,0.9));
+    box-shadow: 0 0 12px rgba(201,146,42,0.2);
+  }
+
+  /* フッターメッセージ */
+  .footer-msg {
+    text-align: center;
+    padding: 20px 0 0;
+    font-size: 13px;
+    color: #7a6040;
+    letter-spacing: 2px;
+  }
+
+  footer.footer-notice {
+    background: rgba(26,48,32,0.4);
+    border-top: 1px solid rgba(201,146,42,0.2);
+    padding: 24px;
+    text-align: center;
+  }
+
+  footer.footer-notice p {
+    font-size: 11px;
+    color: #6a5840;
+    line-height: 1.9;
+    max-width: 800px;
+    margin: 0 auto 8px;
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle { display: block; }
 
     .nav-links {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 56px; right: 0;
+      width: 200px;
+      background: #0f2018;
+      border: 1px solid rgba(201,146,42,0.3);
+      border-radius: 0 0 8px 8px;
+      padding: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
 
-    .nav-links a {
-      color: #ffc500;
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
+    .nav-links.active { display: flex; }
 
-    .nav-links a:hover {
-      color: #ffe4f0;
-      text-shadow: 0 0 8px #fff;
-    }
+    .likes-grid { grid-template-columns: 1fr; }
 
-    /* ===== 漫画一覧レイアウト ===== */
-    .manga-list {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 40px;
-      margin-bottom: 60px;
-    }
+    .section-card, .intro-card { padding: 20px 18px; }
 
-    .manga-item {
-      max-width: 250px;
-    }
-
-   /* モバイル用 */
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
-
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        background: #1f3d2b;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 220px;
-        padding: 15px;
-        border-radius: 0 0 12px 12px;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-        z-index: 1;
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-    }
-
-    /* 本文 */
-    .main-content {
-      padding: 40px;
-      text-align: center;
-    }
-
-    .main-content p strong {
-      color: #ffc500;
-    }
-
-    .slider {
-      position: relative;
-      width: 100%;
-    }
-
-    .slider-container {
-      display: flex;
-      align-items: center; /* ← 画像の縦中央にボタン */
-      gap: 10px;
-}
-
-    .prev,
-    .next {
-      font-size: 32px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #b5b5b5;
-}
-
-    .prev:hover,
-    .next:hover {
-      color: white;
-}
-
-    .slider-window {
-      overflow: hidden;
-      max-width: 1400px; /* 好きな幅 */
-      margin: 0 auto;
-}
-
-    .slider-track {
-      display: flex;
-      transition: transform 0.4s ease;
-    }
-
-    .slide-item {
-      min-width: 200px;   /* ジャンプの単行本幅っぽい */
-      margin-right: 16px;
-    }
-
-    .slide-item img {
-      width: 100%;
-      display: block;
-    }
-    
-    .slide-item {
-      width: 180px;     /* 好きな幅 */
-      height: 260px;    /* 単行本っぽい縦長 */
-      flex-shrink: 0;   /* これ超重要 */
-    }
-  </style>
-
-  <script>
-function toggleMenu() {
-  document.getElementById("navLinks").classList.toggle("active");
-}
-  </script>
-
+    .main-wrap { padding: 40px 16px 60px; }
+  }
+</style>
+</head>
 
 <body>
-  <div class="navbar">
-    <h1><a href="index.html"><span style="color: #d4af37;">Azaleaの創作部屋🌸</span></a></h1>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <h1><a href="index.html">✦ Azaleaの創作部屋 ✦</a></h1>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="メニューを開く">☰</button>
     <div class="nav-links" id="navLinks">
       <a href="news.html">最新情報</a>
       <a href="manga.html">漫画</a>
@@ -183,50 +397,89 @@ function toggleMenu() {
       <a href="manga_en.html">English</a>
     </div>
   </div>
-</body>
-</head>
+</nav>
 
-<body>
-  <div class="content">
-    <h1>🌷 自己紹介</h1>
+<main class="main-wrap">
 
-    <p>こんにちは！漫画とイラストを描くのが大好きな、<strong>Azalea72（アザレアななじゅうに）</strong>です。</p>
+  <header class="page-header">
+    <h1>自己紹介</h1>
+    <p class="subtitle">— About Azalea72 —</p>
+  </header>
 
-    <h2>🐣　このサイトについて</h2>
-    <p>このサイトは、SNSに投稿した作品は時間が経つと過去作が検索しづらくなってしまうと感じたことから、私が制作した自作漫画を、いつでも気軽に読んでいただけるように作りました。少し恥ずかしい気持ちもありますが、過去に描いた拙い漫画も含めて、楽しんでいただけたら幸いです。</p>
-    
-    <h2>📖 好きなもの</h2>
-    <ul>
-      <li>英語学習</li>
-      <li>漫画・イラスト制作</li>
-      <li>映画・アニメ・YouTube鑑賞</li>
-      <li>企画展に行く</li>
-      <li>お喋り</li>
-      <li>裁縫とちょっと編物</li>
-      <li>小説・漫画を読む</li>
-      <li>声優と海外俳優大好き</li>
-      <li>ウェブデザインの勉強</li>
-      <li>ゲームはまだ模索中</li>
-    </ul>
-
-    <h2>😺 性格</h2>
-    <p>お喋りなのですが、かなりビビリな性格なのでホラー映画観れないし、けっこう人見知りします</p>
-    <p>ネガティブですが、楽しいときはテンション上がります</p>
-
-    <h2>🌱 目標</h2>
-    <p>読んだ人の心に残る作品を作ること</p>
-    <p>このサイトでは、私の作品や活動をゆるっと紹介していきます。よろしくお願いします！</p>
-    
-    <h2>💥　ご案内</h2>
-    <p>当サイトに掲載されている画像・文章・作品について、AI学習への利用、トレース（トレパク）、無断転載・転載、二次利用を禁止します。当サイト内の作品・文章について、スクリーンショットの転載は禁止および無断引用はご遠慮ください。</p>
-    <p>Please refrain from using any images, text, or works on this website for AI training, tracing, unauthorized reproduction, redistribution, or secondary use. Screenshots and unauthorized quotations of the content on this website are not allowed.</p>
-
-    <a href=""></a>
-
-    <p>漫画を早速読む⇒「<a href="manga.html">漫画</a>」</p>
-    <p>イラストを見る⇒「<a href="illustration.html">ギャラリー</a>」</p>
-
-    <p style="margin-top: 40px;">👣 来てくれてありがとう！</p>
+  <div class="intro-card">
+    <p>
+      こんにちは！漫画とイラストを描くのが大好きな、<br>
+      <strong>Azalea72（アザレアななじゅうに）</strong> です。<br>
+      来てくれてありがとう！👣
+    </p>
   </div>
+
+  <div class="section-card">
+    <h2>🐣 このサイトについて</h2>
+    <p>SNSに投稿した作品は時間が経つと過去作が検索しづらくなってしまうと感じたことから、私が制作した自作漫画を、いつでも気軽に読んでいただけるように作りました。</p>
+    <p>少し恥ずかしい気持ちもありますが、過去に描いた拙い漫画も含めて、楽しんでいただけたら幸いです。</p>
+  </div>
+
+  <div class="section-card">
+    <h2>📖 好きなもの</h2>
+    <div class="likes-grid">
+      <div class="like-item">英語学習</div>
+      <div class="like-item">漫画・イラスト制作</div>
+      <div class="like-item">映画・アニメ・YouTube鑑賞</div>
+      <div class="like-item">企画展に行く</div>
+      <div class="like-item">お喋り</div>
+      <div class="like-item">裁縫とちょっと編物</div>
+      <div class="like-item">小説・漫画を読む</div>
+      <div class="like-item">声優と海外俳優が大好き</div>
+      <div class="like-item">ウェブデザインの勉強</div>
+      <div class="like-item">ゲームはまだ模索中</div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <h2>😺 性格</h2>
+    <p>お喋りなのですが、かなりビビリな性格なのでホラー映画観れないし、けっこう人見知りします。</p>
+    <p>ネガティブですが、楽しいときはテンション上がります！</p>
+  </div>
+
+  <div class="section-card">
+    <h2>🌱 目標</h2>
+    <p>読んだ人の心に残る作品を作ること。</p>
+    <p>このサイトでは、私の作品や活動をゆるっと紹介していきます。よろしくお願いします！</p>
+  </div>
+
+  <div class="divider">
+    <div class="divider-line"></div>
+    <span class="divider-star">✦</span>
+    <div class="divider-line right"></div>
+  </div>
+
+  <div class="section-card">
+    <h2>📚 作品を読む</h2>
+    <div class="link-buttons">
+      <a class="link-btn" href="manga.html">📖 漫画を読む</a>
+      <a class="link-btn" href="illustration.html">🖼 イラストを見る</a>
+    </div>
+  </div>
+
+  <div class="notice-card">
+    <h2>💥 ご案内</h2>
+    <p>当サイトに掲載されている画像・文章・作品について、AI学習への利用、トレース（トレパク）、無断転載・転載、二次利用を禁止します。スクリーンショットの転載・無断引用はご遠慮ください。</p>
+    <p>Please refrain from using any images, text, or works on this website for AI training, tracing, unauthorized reproduction, redistribution, or secondary use. Screenshots and unauthorized quotations of the content on this website are not allowed.</p>
+  </div>
+
+</main>
+
+<footer class="footer-notice">
+  <p>当サイトに掲載されている画像・文章・作品について、AI学習への利用、トレース（トレパク）、無断転載・転載、二次利用を禁止します。</p>
+  <p>Please refrain from using any images, text, or works on this website for AI training, tracing, unauthorized reproduction, redistribution, or secondary use.</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+  }
+</script>
+
 </body>
 </html>
