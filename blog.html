@@ -1,253 +1,319 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ブログ</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ブログ - Azaleaの創作部屋</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9922a;
+    --gold-light: #e8c060;
+    --forest: #1a3020;
+    --ink-bg: #1a0e08;
+  }
 
-  <style>
-    body {
-      margin: 0;
-      font-family: "メイリオ", sans-serif;
-      background-color: #1f3d2b;
-      background-attachment: fixed;
-      color: #ffc500
-    }
-    .content {
-      max-width: 800px;
-      margin: auto;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    
-      /* ナビゲーションバー */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #1f3d2b;
-      color: #ffc500;
-      padding: 12px 20px;
-      position: relative;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-    }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    .navbar h1 {
-      margin: 0;
-      font-size: 22px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-    }
+  body {
+    font-family: 'Noto Serif JP', 'メイリオ', serif;
+    background-color: var(--ink-bg);
+    background-image:
+      radial-gradient(ellipse at 20% 20%, rgba(42,24,14,0.8) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, rgba(45,26,74,0.4) 0%, transparent 60%),
+      repeating-linear-gradient(
+        45deg, transparent, transparent 40px,
+        rgba(201,146,42,0.03) 40px, rgba(201,146,42,0.03) 41px
+      );
+    background-attachment: fixed;
+    color: #e8d5a3;
+    min-height: 100vh;
+  }
 
-    .menu-toggle {
-      font-size: 26px;
-      cursor: pointer;
-      display: none;
-    }
+  /* ナビ */
+  .navbar {
+    background: linear-gradient(135deg, #0f2018 0%, #1a3020 50%, #0f1a28 100%);
+    border-bottom: 2px solid var(--gold);
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(201,146,42,0.3);
+  }
+
+  .navbar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    position: relative;
+  }
+
+  .navbar h1 a {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    color: var(--gold-light);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px rgba(201,146,42,0.6);
+  }
+
+  .nav-links { display: flex; gap: 4px; }
+
+  .nav-links a {
+    color: #c8b88a;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 6px 12px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    transition: all 0.3s;
+    letter-spacing: 0.5px;
+    position: relative;
+  }
+
+  .nav-links a::before {
+    content: '✦';
+    position: absolute;
+    left: 4px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 7px;
+    opacity: 0;
+    color: var(--gold);
+    transition: opacity 0.3s;
+  }
+
+  .nav-links a:hover {
+    color: var(--gold-light);
+    border-color: rgba(201,146,42,0.4);
+    background: rgba(201,146,42,0.08);
+    padding-left: 18px;
+  }
+
+  .nav-links a:hover::before { opacity: 1; }
+
+  .menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--gold-light);
+    background: none;
+    border: none;
+  }
+
+  /* ページヘッダー */
+  .page-header {
+    text-align: center;
+    padding: 52px 24px 36px;
+  }
+
+  .page-header::before {
+    content: '';
+    display: block;
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 28px;
+  }
+
+  .page-header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 26px;
+    color: var(--gold-light);
+    letter-spacing: 4px;
+    text-shadow: 0 0 16px rgba(201,146,42,0.4);
+    margin-bottom: 8px;
+  }
+
+  .page-header .subtitle {
+    font-size: 12px;
+    color: #7a6040;
+    letter-spacing: 3px;
+  }
+
+  /* メインレイアウト */
+  .container {
+    display: flex;
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    gap: 28px;
+    align-items: flex-start;
+  }
+
+  /* ブログカード */
+  .main { flex: 3; }
+
+  .blog-card {
+    background: linear-gradient(135deg, rgba(26,48,32,0.55), rgba(15,20,35,0.45));
+    border: 1px solid rgba(201,146,42,0.22);
+    border-radius: 4px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+  }
+
+  .blog-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(180deg, var(--gold), transparent);
+    border-radius: 4px 0 0 4px;
+  }
+
+  .blog-card:hover {
+    border-color: rgba(201,146,42,0.5);
+    transform: translateY(-2px);
+  }
+
+  .card-content { padding: 24px 28px; }
+
+  .card-date {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: #7a6040;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  .card-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+
+  .card-body {
+    font-size: 13px;
+    color: #b09060;
+    line-height: 2;
+    margin-bottom: 16px;
+  }
+
+  .card-img {
+    width: 100%;
+    max-height: 340px;
+    object-fit: cover;
+    display: block;
+    border-top: 1px solid rgba(201,146,42,0.15);
+    border-radius: 0;
+    margin: 0;
+  }
+
+  /* サイドバー */
+  .sidebar { flex: 1; min-width: 180px; }
+
+  .sidebar-block {
+    background: linear-gradient(135deg, rgba(42,26,74,0.3), rgba(26,48,32,0.5));
+    border: 1px solid rgba(201,146,42,0.25);
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .sidebar-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(180deg, var(--gold), transparent);
+    border-radius: 4px 0 0 4px;
+  }
+
+  .sidebar-block h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    color: var(--gold-light);
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(201,146,42,0.2);
+  }
+
+  .sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #b09060;
+    font-size: 13px;
+    padding: 8px 6px;
+    border-radius: 3px;
+    transition: all 0.25s;
+    margin-bottom: 4px;
+  }
+
+  .sidebar-link::before {
+    content: '▶';
+    font-size: 8px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .sidebar-link:hover {
+    color: var(--gold-light);
+    background: rgba(201,146,42,0.08);
+    padding-left: 12px;
+  }
+
+  /* フッター */
+  footer.footer-notice {
+    background: rgba(26,48,32,0.4);
+    border-top: 1px solid rgba(201,146,42,0.2);
+    padding: 24px;
+    text-align: center;
+  }
+
+  footer.footer-notice p {
+    font-size: 11px;
+    color: #6a5840;
+    line-height: 1.9;
+    max-width: 800px;
+    margin: 0 auto 8px;
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle { display: block; }
 
     .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 56px; right: 0;
+      width: 200px;
+      background: #0f2018;
+      border: 1px solid rgba(201,146,42,0.3);
+      border-radius: 0 0 8px 8px;
+      padding: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
 
-    .nav-links a {
-      color: #ffc500;
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: #ffe4f0;
-      text-shadow: 0 0 8px #fff;
-    }
-
-    /* モバイル用 */
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
-
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        background: #1f3d2b;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 220px;
-        padding: 15px;
-        border-radius: 0 0 12px 12px;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-        z-index: 1;
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-    }
-
-    /* 本文 */
-    .main-content {
-      padding: 40px;
-      text-align: center;
-    }
-
-    .main-content p strong {
-      color: #ffc500;
-    }
-
-    .slider {
-      position: relative;
-      width: 100%;
-    }
-
-    .slider-container {
-      display: flex;
-      align-items: center; /* ← 画像の縦中央にボタン */
-      gap: 10px;
-}
-
-    .prev,
-    .next {
-      font-size: 32px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #b5b5b5;
-}
-
-    .prev:hover,
-    .next:hover {
-      color: white;
-}
-
-    .slider-window {
-      overflow: hidden;
-      max-width: 1400px; /* 好きな幅 */
-      margin: 0 auto;
-}
-
-    .slider-track {
-      display: flex;
-      transition: transform 0.4s ease;
-    }
-
-    .slide-item {
-      min-width: 200px;   /* ジャンプの単行本幅っぽい */
-      margin-right: 16px;
-    }
-
-    .slide-item img {
-      width: 100%;
-      display: block;
-    }
-    
-    .slide-item {
-      width: 180px;     /* 好きな幅 */
-      height: 260px;    /* 単行本っぽい縦長 */
-      flex-shrink: 0;   /* これ超重要 */
-    }
+    .nav-links.active { display: flex; }
 
     .container {
-  display: flex;
-  max-width: 1100px;
-  margin: 20px auto;
-  gap: 20px;
-}
+      flex-direction: column;
+      padding: 0 16px 60px;
+    }
 
-.main {
-  flex: 3;
-}
-
-.card {
-  background: white;
-  margin-bottom: 20px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: 0.2s;
-  color: black
-}
-
-.card:hover {
-  transform: translateY(-3px);
-}
-
-.card img {
-  width: 100%;
-}
-
-.card-content {
-  padding: 15px;
-}
-
-.date {
-  font-size: 12px;
-  color: gray;
-}
-
-.title {
-  font-size: 18px;
-  margin: 10px 0;
-  font-weight: bold;
-}
-
-.button {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 8px 12px;
-  background: #333;
-  color: white;
-  border-radius: 5px;
-  text-decoration: none;
-}
-
-/* サイドバー */
-.sidebar {
-  flex: 1;
-}
-
-.pickup {
-  background: #fff;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.pickup h3 {
-  margin-top: 0;
-}
-
-.pickup-item {
-  margin-bottom: 10px;
-}
-
-.pickup-item a {
-  text-decoration: none;
-  color: #333;
-  font-size: 14px;
-}
-  </style>
+    .sidebar { width: 100%; }
+  }
+</style>
 </head>
 
-<script>
-    function toggleMenu() {
-      document.getElementById("navLinks").classList.toggle("active");
-    }
-</script>
-
 <body>
-  <!-- ナビゲーションバー -->
-  <div class="navbar">
-    <h1><a href="index.html"><span style="color: #d4af37;">Azaleaの創作部屋🌸</span></a></h1>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <h1><a href="index.html">✦ Azaleaの創作部屋 ✦</a></h1>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="メニューを開く">☰</button>
     <div class="nav-links" id="navLinks">
       <a href="news.html">最新情報</a>
       <a href="manga.html">漫画</a>
@@ -257,55 +323,59 @@
       <a href="manga_en.html">English</a>
     </div>
   </div>
-</body>
-</head>
+</nav>
 
-<body>
+<header class="page-header">
+  <h1>ブログ</h1>
+  <p class="subtitle">— Journal & Notes —</p>
+</header>
 
 <div class="container">
 
-  <!-- メイン -->
-  <div class="main">
+  <main class="main">
 
-    <div class="card">
+    <article class="blog-card">
       <div class="card-content">
-        <div class="date">2026年5月6日</div>
-        <div class="title">漫画は今、線画に入ってる</div>
-          <p>今は新しい漫画の線画中。前ほど線画も苦ではなくなってきた。ちゃんと背景を描けるようになりたい。画像はエリスを描いてる途中。エリス可愛い</p>
-          <img src="エリスソフトクリーム.jpg" alt="エリスファンアート">
+        <p class="card-date">2026年5月6日</p>
+        <h2 class="card-title">漫画は今、線画に入ってる</h2>
+        <p class="card-body">今は新しい漫画の線画中。前ほど線画も苦ではなくなってきた。ちゃんと背景を描けるようになりたい。画像はエリスを描いてる途中。エリス可愛い</p>
       </div>
-    </div>
-    
-    <div class="card">
+      <img class="card-img" src="エリスソフトクリーム.jpg" alt="エリスファンアート">
+    </article>
+
+    <article class="blog-card">
       <div class="card-content">
-        <div class="date">2026年4月15日</div>
-        <div class="title">見たものいろいろ</div>
-          <p>家族につまんないって言われたギャグ漫画。ボツにした</p>
-          <img src="clipstudio1.png" alt="ボツのギャグ漫画">
+        <p class="card-date">2026年4月15日</p>
+        <h2 class="card-title">見たものいろいろ</h2>
+        <p class="card-body">家族につまんないって言われたギャグ漫画。ボツにした</p>
       </div>
+      <img class="card-img" src="clipstudio1.png" alt="ボツのギャグ漫画">
+    </article>
+
+  </main>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-block">
+      <h3>ブログメニュー</h3>
+      <a class="sidebar-link" href="progress.html">進捗ノート</a>
+      <a class="sidebar-link" href="dailymanga.html">４コマまんが日記</a>
     </div>
 
-  </div>
-
-  <!-- サイド -->
-  <div class="sidebar">
-
-    <div class="pickup">
-      <h3>ブログ</h3>
-
-      <div class="pickup-item">
-        <a href="progress.html">▶ 進捗ノート</a>
-      </div>
-
-      <div class="pickup-item">
-        <a href="dailymanga.html">▶ ４コマまんが日記</a>
-      </div>
-
-    </div>
-
-  </div>
+  </aside>
 
 </div>
+
+<footer class="footer-notice">
+  <p>当サイトに掲載されている画像・文章・作品について、AI学習への利用、トレース（トレパク）、無断転載・転載、二次利用を禁止します。スクリーンショットの転載・無断引用はご遠慮ください。</p>
+  <p>Please refrain from using any images, text, or works on this website for AI training, tracing, unauthorized reproduction, redistribution, or secondary use.</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+  }
+</script>
 
 </body>
 </html>
