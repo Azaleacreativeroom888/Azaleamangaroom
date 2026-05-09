@@ -497,14 +497,13 @@
   </svg>
 
   <p class="hero-greeting">
-    こんにちは！オリジナル漫画を中心に創作している<br>
-    Azalea72（アザレアななじゅうに）です。<br>
+    こんにちは！オリジナル漫画を中心に創作しているAzalea72（アザレアななじゅうに）です。<br>
     このサイトでは私の漫画やイラスト、ブログなどを紹介しています🎨<br>
     <br>
     初めての方は⇒ <strong><a href="about.html">自己紹介</a></strong> をどうぞ。
   </p>
 
-  <div class="hero-notice">持ち込み用の漫画、制作中です！</div>
+  <div class="hero-notice">４ページ漫画、制作中です！</div>
 </section>
 
 <div class="divider">
@@ -712,6 +711,339 @@
     buildDots();
     goTo(Math.min(currentIndex, getMaxIndex()));
   });
+</script>
+
+
+<!-- アンケート小窓 -->
+<div id="survey-bubble" onclick="toggleSurvey()" aria-label="アンケートを開く">
+  <span id="bubble-icon">🌸</span>
+  <span id="bubble-badge"></span>
+</div>
+
+<div id="survey-window" aria-live="polite">
+  <div id="survey-header">
+    <span id="survey-title">✦ Azaleaへのアンケート</span>
+    <button id="survey-close" onclick="toggleSurvey()" aria-label="閉じる">✕</button>
+  </div>
+  <div id="survey-body">
+    <div id="chat-log"></div>
+    <div id="survey-input-area"></div>
+  </div>
+</div>
+
+<style>
+  #survey-bubble {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a3020, #2a4835);
+    border: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5), 0 0 16px rgba(201,146,42,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: bubblePop 0.5s cubic-bezier(0.34,1.56,0.64,1) 1.5s both;
+  }
+
+  @keyframes bubblePop {
+    from { transform: scale(0); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+
+  #survey-bubble:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.5), 0 0 22px rgba(201,146,42,0.45);
+  }
+
+  #bubble-badge {
+    position: absolute;
+    top: -3px; right: -3px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: #c9922a;
+    border: 2px solid #1a0e08;
+    display: none;
+  }
+
+  #survey-window {
+    position: fixed;
+    bottom: 96px;
+    right: 28px;
+    width: 320px;
+    max-height: 440px;
+    background: #12100e;
+    border: 1px solid rgba(201,146,42,0.45);
+    border-radius: 12px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.7), 0 0 20px rgba(201,146,42,0.15);
+    z-index: 998;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: scale(0.85) translateY(20px);
+    opacity: 0;
+    pointer-events: none;
+    transform-origin: bottom right;
+    transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s;
+  }
+
+  #survey-window.open {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  #survey-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    background: linear-gradient(135deg, #0f2018, #1a3020);
+    border-bottom: 1px solid rgba(201,146,42,0.3);
+    flex-shrink: 0;
+  }
+
+  #survey-title {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    color: var(--gold-light);
+    letter-spacing: 1.5px;
+  }
+
+  #survey-close {
+    background: none;
+    border: none;
+    color: #7a6040;
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.2s;
+    line-height: 1;
+  }
+
+  #survey-close:hover { color: var(--gold-light); }
+
+  #survey-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(201,146,42,0.2) transparent;
+  }
+
+  #chat-log {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .chat-msg {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    animation: msgIn 0.3s ease;
+  }
+
+  @keyframes msgIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .chat-avatar {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a3020, #2a4835);
+    border: 1px solid rgba(201,146,42,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  .chat-bubble {
+    background: linear-gradient(135deg, rgba(26,48,32,0.85), rgba(20,24,40,0.75));
+    border: 1px solid rgba(201,146,42,0.2);
+    border-radius: 12px 12px 12px 2px;
+    padding: 9px 12px;
+    font-size: 12.5px;
+    color: #c8b070;
+    line-height: 1.75;
+    max-width: 210px;
+  }
+
+  .chat-msg.user-msg { flex-direction: row-reverse; }
+
+  .chat-msg.user-msg .chat-bubble {
+    background: linear-gradient(135deg, rgba(42,26,74,0.65), rgba(30,20,55,0.75));
+    border-color: rgba(201,146,42,0.3);
+    border-radius: 12px 12px 2px 12px;
+    color: var(--gold-light);
+  }
+
+  #survey-input-area {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+
+  .survey-btn-row {
+    display: flex;
+    gap: 5px;
+  }
+
+  .survey-btn {
+    flex: 1;
+    padding: 9px 4px;
+    background: rgba(10,8,4,0.6);
+    border: 1px solid rgba(201,146,42,0.28);
+    border-radius: 6px;
+    color: #a89060;
+    font-size: 14px;
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+  }
+
+  .survey-btn:hover, .survey-btn.selected {
+    background: rgba(201,146,42,0.15);
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+
+  .survey-send-btn {
+    padding: 9px;
+    background: linear-gradient(135deg, rgba(42,72,53,0.85), rgba(26,48,32,0.9));
+    border: 1px solid rgba(201,146,42,0.4);
+    border-radius: 6px;
+    color: var(--gold-light);
+    font-size: 13px;
+    font-family: 'Noto Serif JP', serif;
+    cursor: pointer;
+    transition: all 0.25s;
+    letter-spacing: 1px;
+  }
+
+  .survey-send-btn:hover {
+    border-color: var(--gold);
+    box-shadow: 0 0 10px rgba(201,146,42,0.2);
+  }
+
+  .survey-send-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  @media (max-width: 400px) {
+    #survey-window { width: calc(100vw - 40px); right: 20px; }
+    #survey-bubble { right: 20px; bottom: 20px; }
+  }
+</style>
+
+<script>
+  let surveyOpen = false;
+  let selectedRating = null;
+  let surveyDone = false;
+
+  setTimeout(() => {
+    if (!surveyDone) {
+      document.getElementById('bubble-badge').style.display = 'block';
+    }
+  }, 3500);
+
+  function toggleSurvey() {
+    surveyOpen = !surveyOpen;
+    document.getElementById('survey-window').classList.toggle('open', surveyOpen);
+    document.getElementById('bubble-badge').style.display = 'none';
+    if (surveyOpen && document.getElementById('chat-log').children.length === 0) {
+      startSurvey();
+    }
+  }
+
+  function startSurvey() {
+    addBotMsg('こんにちは！🌸<br>漫画を見てくれてありがとう。<br>ひとつだけ聞かせてください！');
+    setTimeout(() => {
+      addBotMsg('Azaleaの漫画は好きですか？<br><small style="color:#7a6040">1（あまり…）〜 5（大好き！）</small>');
+      setTimeout(showRatingButtons, 500);
+    }, 800);
+  }
+
+  function addBotMsg(html) {
+    const log = document.getElementById('chat-log');
+    const wrap = document.createElement('div');
+    wrap.className = 'chat-msg';
+    wrap.innerHTML = '<div class="chat-avatar">🌸</div><div class="chat-bubble">' + html + '</div>';
+    log.appendChild(wrap);
+    log.scrollTop = log.scrollHeight;
+  }
+
+  function addUserMsg(text) {
+    const log = document.getElementById('chat-log');
+    const wrap = document.createElement('div');
+    wrap.className = 'chat-msg user-msg';
+    wrap.innerHTML = '<div class="chat-avatar">👤</div><div class="chat-bubble">' + text + '</div>';
+    log.appendChild(wrap);
+    log.scrollTop = log.scrollHeight;
+  }
+
+  function showRatingButtons() {
+    const area = document.getElementById('survey-input-area');
+    area.innerHTML = '';
+
+    const row = document.createElement('div');
+    row.className = 'survey-btn-row';
+
+    const sendBtn = document.createElement('button');
+    sendBtn.className = 'survey-send-btn';
+    sendBtn.textContent = '📮 送信する';
+    sendBtn.disabled = true;
+    sendBtn.onclick = submitRating;
+
+    [1,2,3,4,5].forEach(n => {
+      const btn = document.createElement('button');
+      btn.className = 'survey-btn';
+      btn.textContent = n;
+      btn.onclick = () => {
+        selectedRating = n;
+        row.querySelectorAll('.survey-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        sendBtn.disabled = false;
+      };
+      row.appendChild(btn);
+    });
+
+    area.appendChild(row);
+    area.appendChild(sendBtn);
+  }
+
+  async function submitRating() {
+    if (!selectedRating) return;
+    document.getElementById('survey-input-area').innerHTML = '';
+    addUserMsg('★'.repeat(selectedRating) + '&nbsp;&nbsp;' + selectedRating + ' / 5');
+    surveyDone = true;
+
+    try {
+      await fetch('https://formspree.io/f/maqvpvoz', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ rating: selectedRating, _subject: '【アンケート】漫画の評価' })
+      });
+    } catch(e) {}
+
+    const replies = ['ありがとうございます！😊', '感想、うれしいです🌸', 'これからも創作続けます。また読んでね！'];
+    let i = 0;
+    const next = () => { if (i < replies.length) { addBotMsg(replies[i++]); setTimeout(next, 650); } };
+    setTimeout(next, 400);
+  }
 </script>
 
 </body>
