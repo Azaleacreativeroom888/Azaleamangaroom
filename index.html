@@ -1,166 +1,482 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Azaleaの創作部屋</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Azaleaの創作部屋</title>
+<meta property="og:title" content="Azaleaの創作部屋🌸" />
+<meta property="og:description" content="制作した漫画をこのサイトで紹介してます" />
+<meta property="og:image" content="https://lilythlovemanga888.github.io/lilyth-s-creative/manga1-thumb.jpg" />
+<meta property="og:url" content="https://lilythlovemanga888.github.io/lilyth-s-creative/" />
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Azaleaの創作部屋" />
+<meta name="google-site-verification" content="0c3XVY1lM5VqZHuWOtfF5lbEjrFSJyUmFg2IcGc7eSo" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parchment: #f5edd6;
+    --parchment-dark: #e8d5a3;
+    --ink: #2a1a0e;
+    --ink-light: #4a3728;
+    --gold: #c9922a;
+    --gold-light: #e8c060;
+    --gold-glow: #f0d080;
+    --forest: #1a3020;
+    --forest-mid: #2a4835;
+    --forest-light: #3d6650;
+    --crimson: #7a1a2e;
+    --purple-deep: #2d1a4a;
+    --purple-mid: #4a2d7a;
+    --border-magic: #c9922a;
+  }
 
-  <!-- SNSでのシェア時に表示される情報 -->
-  <meta property="og:title" content="Azaleaの創作部屋🌸" />
-  <meta property="og:description" content="制作した漫画をこのサイトで紹介してます" />
-  <meta property="og:image" content="https://lilythlovemanga888.github.io/lilyth-s-creative/manga1-thumb.jpg" />
-  <meta property="og:url" content="https://lilythlovemanga888.github.io/lilyth-s-creative/" />
-  <meta property="og:type" content="website"/>
-  <meta property="og:site_name" content="Azaleaの創作部屋" />
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <style>
-    body {
-      margin: 0;
-      font-family: "メイリオ", sans-serif;
-      background: #2b1b12;
-      background-attachment: fixed;
-      color: #b5b5b5;
-    }
+  body {
+    font-family: 'Noto Serif JP', 'メイリオ', serif;
+    background-color: #1a0e08;
+    background-image:
+      radial-gradient(ellipse at 20% 20%, rgba(42,24,14,0.8) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, rgba(45,26,74,0.4) 0%, transparent 60%),
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(201,146,42,0.03) 40px,
+        rgba(201,146,42,0.03) 41px
+      );
+    background-attachment: fixed;
+    color: #e8d5a3;
+    min-height: 100vh;
+  }
 
-    /* ナビゲーションバー */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #1f3d2b;
-      color: #ffc500;
-      padding: 12px 20px;
-      position: relative;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-    }
+  /* ナビゲーション */
+  .navbar {
+    background: linear-gradient(135deg, #0f2018 0%, #1a3020 50%, #0f1a28 100%);
+    border-bottom: 2px solid var(--gold);
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(201,146,42,0.3), 0 0 40px rgba(201,146,42,0.1);
+  }
 
-    .navbar h1 {
-      margin: 0;
-      font-size: 22px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-    }
+  .navbar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    position: relative;
+  }
 
-    .menu-toggle {
-      font-size: 26px;
-      cursor: pointer;
-      display: none;
-    }
+  .navbar h1 a {
+    font-family: 'Cinzel', 'Noto Serif JP', serif;
+    font-size: 20px;
+    color: var(--gold-light);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px rgba(201,146,42,0.6);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 4px;
+  }
+
+  .nav-links a {
+    color: #c8b88a;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 6px 12px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    transition: all 0.3s;
+    letter-spacing: 0.5px;
+    position: relative;
+  }
+
+  .nav-links a::before {
+    content: '✦';
+    position: absolute;
+    left: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 7px;
+    opacity: 0;
+    color: var(--gold);
+    transition: opacity 0.3s;
+  }
+
+  .nav-links a:hover {
+    color: var(--gold-light);
+    border-color: rgba(201,146,42,0.4);
+    background: rgba(201,146,42,0.08);
+    padding-left: 18px;
+  }
+
+  .nav-links a:hover::before { opacity: 1; }
+
+  .menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--gold-light);
+    background: none;
+    border: none;
+  }
+
+  /* ヒーローセクション */
+  .hero {
+    text-align: center;
+    padding: 60px 24px 40px;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    display: block;
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 30px;
+  }
+
+  .hero-seal {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    animation: rotateSeal 20s linear infinite;
+  }
+
+  @keyframes rotateSeal {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .hero-greeting {
+    font-size: 14px;
+    color: #a89060;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    line-height: 2;
+    max-width: 600px;
+    margin: 0 auto 16px;
+  }
+
+  .hero-greeting strong a {
+    color: var(--gold-light);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201,146,42,0.4);
+    transition: border-color 0.3s;
+  }
+
+  .hero-greeting strong a:hover {
+    border-color: var(--gold-light);
+  }
+
+  .hero-notice {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(201,146,42,0.15), rgba(201,146,42,0.05));
+    border: 1px solid rgba(201,146,42,0.5);
+    border-radius: 4px;
+    padding: 10px 24px;
+    font-size: 13px;
+    color: var(--gold-light);
+    margin-top: 16px;
+    letter-spacing: 1px;
+  }
+
+  .hero-notice::before { content: '📜 '; }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 600px;
+    margin: 32px auto;
+    padding: 0 24px;
+  }
+
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,146,42,0.5));
+  }
+
+  .divider-line.right {
+    background: linear-gradient(90deg, rgba(201,146,42,0.5), transparent);
+  }
+
+  .divider-star {
+    color: var(--gold);
+    font-size: 16px;
+    letter-spacing: 4px;
+  }
+
+  /* 漫画スライダー */
+  .manga-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 48px;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    text-align: center;
+    font-size: 13px;
+    color: #a89060;
+    letter-spacing: 4px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+  }
+
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 10px auto 0;
+  }
+
+  .slider-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .slider-btn {
+    flex-shrink: 0;
+    width: 44px;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(42,72,53,0.8), rgba(26,48,32,0.9));
+    border: 1px solid rgba(201,146,42,0.4);
+    border-radius: 4px;
+    color: var(--gold-light);
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    user-select: none;
+  }
+
+  .slider-btn:hover {
+    background: linear-gradient(135deg, rgba(60,100,70,0.9), rgba(42,72,53,0.9));
+    border-color: var(--gold);
+    box-shadow: 0 0 12px rgba(201,146,42,0.3);
+  }
+
+  .slider-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .slider-window {
+    overflow: hidden;
+    flex: 1;
+  }
+
+  .slider-track {
+    display: flex;
+    gap: 12px;
+    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .slide-item {
+    flex-shrink: 0;
+    width: 160px;
+  }
+
+  .slide-item a {
+    display: block;
+    text-decoration: none;
+  }
+
+  .slide-frame {
+    border: 2px solid rgba(201,146,42,0.35);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+    background: #1a0e08;
+    transition: all 0.3s;
+    aspect-ratio: 3/4;
+  }
+
+  .slide-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 2px;
+    border: 1px solid rgba(201,146,42,0.1);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .slide-item:hover .slide-frame {
+    border-color: var(--gold);
+    box-shadow: 0 0 16px rgba(201,146,42,0.35), 0 4px 20px rgba(0,0,0,0.5);
+    transform: translateY(-3px);
+  }
+
+  .slide-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+  }
+
+  .slide-item:hover .slide-frame img {
+    transform: scale(1.04);
+  }
+
+  .slide-number {
+    text-align: center;
+    font-size: 11px;
+    color: #7a6040;
+    margin-top: 6px;
+    letter-spacing: 2px;
+    font-family: 'Cinzel', serif;
+  }
+
+  /* ページリンク */
+  .page-links {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 24px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .page-link-card {
+    display: block;
+    text-decoration: none;
+    background: linear-gradient(135deg, rgba(26,48,32,0.6), rgba(15,26,40,0.4));
+    border: 1px solid rgba(201,146,42,0.25);
+    border-radius: 4px;
+    padding: 14px 16px;
+    transition: all 0.3s;
+    color: #c8b88a;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+
+  .page-link-card:hover {
+    border-color: rgba(201,146,42,0.6);
+    background: linear-gradient(135deg, rgba(42,72,53,0.7), rgba(30,40,60,0.5));
+    color: var(--gold-light);
+    transform: translateX(4px);
+  }
+
+  .page-link-card .link-icon {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+
+  .page-link-card .link-label {
+    display: block;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 2px;
+  }
+
+  .page-link-card .link-desc {
+    display: block;
+    font-size: 11px;
+    color: #7a6040;
+    line-height: 1.5;
+  }
+
+  /* カウンターエリア */
+  .counter-area {
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  /* フッター */
+  .footer-notice {
+    background: rgba(26,48,32,0.4);
+    border-top: 1px solid rgba(201,146,42,0.2);
+    padding: 24px;
+    text-align: center;
+  }
+
+  .footer-notice p {
+    font-size: 11px;
+    color: #6a5840;
+    line-height: 1.9;
+    max-width: 800px;
+    margin: 0 auto 8px;
+  }
+
+  /* ドット */
+  .slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 16px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(201,146,42,0.25);
+    cursor: pointer;
+    transition: background 0.3s;
+    border: none;
+    padding: 0;
+  }
+
+  .dot.active {
+    background: rgba(201,146,42,0.9);
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle { display: block; }
 
     .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 56px;
+      right: 0;
+      width: 200px;
+      background: #0f2018;
+      border: 1px solid rgba(201,146,42,0.3);
+      border-radius: 0 0 8px 8px;
+      padding: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
 
-    .nav-links a {
-      color: #ffc500;
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s;
+    .nav-links.active { display: flex; }
+
+    .slide-item { width: 130px; }
+
+    .page-links {
+      grid-template-columns: 1fr;
     }
 
-    .nav-links a:hover {
-      color: #ffe4f0;
-      text-shadow: 0 0 8px #fff;
-    }
-
-    /* モバイル用 */
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
-
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        background: #1f3d2b;
-        position: absolute;
-        top: 60px;
-        right: 0;
-        width: 220px;
-        padding: 15px;
-        border-radius: 0 0 12px 12px;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-        z-index: 1;
-      }
-
-      .nav-links.active {
-        display: flex;
-      }
-    }
-
-    /* 本文 */
-    .main-content {
-      padding: 40px;
-      text-align: center;
-    }
-
-    .main-content p strong {
-      color: #ffc500;
-    }
-
-    .slider {
-      position: relative;
-      width: 100%;
-    }
-
-    .slider-container {
-      display: flex;
-      align-items: center; /* ← 画像の縦中央にボタン */
-      gap: 10px;
-}
-
-    .prev,
-    .next {
-      font-size: 32px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #b5b5b5;
-}
-
-    .prev:hover,
-    .next:hover {
-      color: white;
-}
-
-    .slider-window {
-      overflow: hidden;
-      max-width: 1400px; /* 好きな幅 */
-      margin: 0 auto;
-}
-
-    .slider-track {
-      display: flex;
-      transition: transform 0.4s ease;
-    }
-
-    .slide-item {
-      min-width: 200px;   /* ジャンプの単行本幅っぽい */
-      margin-right: 16px;
-    }
-
-    .slide-item img {
-      width: 100%;
-      display: block;
-    }
-    
-    .slide-item {
-      width: 180px;     /* 好きな幅 */
-      height: 260px;    /* 単行本っぽい縦長 */
-      flex-shrink: 0;   /* これ超重要 */
-    }
-  </style>
+    .hero { padding: 40px 16px 30px; }
+  }
+</style>
 </head>
 
-<meta name="google-site-verification" content="0c3XVY1lM5VqZHuWOtfF5lbEjrFSJyUmFg2IcGc7eSo" />
-  
 <body>
 
-  <!-- ナビゲーションバー -->
-  <div class="navbar">
-    <h1><a href="index.html"><span style="color: #d4af37;">Azaleaの創作部屋🌸</span></a></h1>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+<nav class="navbar">
+  <div class="navbar-inner">
+    <h1><a href="index.html">✦ Azaleaの創作部屋 ✦</a></h1>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="メニューを開く">☰</button>
     <div class="nav-links" id="navLinks">
       <a href="news.html">最新情報</a>
       <a href="manga.html">漫画</a>
@@ -170,129 +486,231 @@
       <a href="manga_en.html">English</a>
     </div>
   </div>
+</nav>
 
-  <!-- メイン本文 -->
-  <div class="main-content">
-    <p>こんにちは！オリジナル漫画を中心に創作してるAzalea72（アザレアななじゅうに）です。このサイトでは私の漫画やイラスト、ブログなどを紹介しています🎨</p>
-    <p>最新のお知らせ: <strong>４ページ漫画描いてます！</strong></p>
+<section class="hero">
+  <svg class="hero-seal" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="40" cy="40" r="36" fill="none" stroke="rgba(201,146,42,0.4)" stroke-width="1"/>
+    <circle cx="40" cy="40" r="30" fill="rgba(201,146,42,0.06)" stroke="rgba(201,146,42,0.3)" stroke-width="0.5"/>
+    <polygon points="40,12 44,28 60,28 47,37 52,53 40,44 28,53 33,37 20,28 36,28" fill="none" stroke="rgba(201,146,42,0.6)" stroke-width="1"/>
+    <circle cx="40" cy="40" r="5" fill="rgba(201,146,42,0.3)" stroke="rgba(201,146,42,0.7)" stroke-width="0.5"/>
+  </svg>
 
-    <p><strong>初めて来た人はこちら</strong>⇒<a href="about.html"><span style="color: #d4af37;">自己紹介</span></a>
+  <p class="hero-greeting">
+    こんにちは！オリジナル漫画を中心に創作しているAzalea72（アザレアななじゅうに）です。<br>
+    このサイトでは私の漫画やイラスト、ブログなどを紹介しています🎨<br>
+    <br>
+    初めての方は⇒ <strong><a href="about.html">自己紹介</a></strong> をどうぞ。
+  </p>
 
-  <h3>画像をクリックしてオリジナル漫画を読む⇓</h3>
-    <!-- イラスト表示 -->
-  <div class="slider-container">
-  <button class="prev">‹</button>
+  <div class="hero-notice">４ページ漫画、制作中です！</div>
+</section>
 
-  <div class="slider-window">
-    <div class="slider-track">
-
-      <div class="slide-item">
-        <a href="manga11-1.html">
-          <img src="manga11-page1.jpg">
-        </a>
-      </div>
-      
-      <div class="slide-item">
-        <a href="manga4-1.html">
-          <img src="manga4-thumb.jpg">
-        </a>
-      </div>
-
-      <div class="slide-item">
-        <a href="manga7-1.html">
-          <img src="manga7-page1.jpg">
-        </a>
-      </div>
-      
-      <div class="slide-item">
-        <a href="manga1-1.html">
-          <img src="manga1-thumb.jpg">
-        </a>
-      </div>
-
-      <div class="slide-item">
-        <a href="manga2-1.html">
-          <img src="illust12.jpg">
-        </a>
-      </div>
-
-      <div class="slide-item">
-        <a href="manga9-1.html">
-          <img src="manga9-page1.jpg">
-        </a>
-      </div>
-
-      <div class="slide-item">
-        <a href="manga3-1.html">
-          <img src="manga3-thumb.jpg">
-        </a>
-      </div>
-
-      <div class="slide-item">
-        <a href="manga8-1.html">
-          <img src="manga8-page1.jpg">
-        </a>
-      </div>
-
-      <div class="slide-item">
-        <a href="manga5-1.html">
-          <img src="manga5-page1.jpg">
-        </a>
-      </div>
-
-      <div class="slide-item">
-        <a href="manga6-1.html">
-          <img src="manga6-page1.jpg">
-        </a>
-      </div>
-
-    </div>
-  </div>
-
-      
-  <button class="next">›</button>
-      
+<div class="divider">
+  <div class="divider-line"></div>
+  <span class="divider-star">✦✦✦</span>
+  <div class="divider-line right"></div>
 </div>
 
-<div>
-  <p>最近の漫画に関する最新情報⇒「<a href="news.html"><span style="color: #d4af37;">最新情報</span></a>」</p>
-  <p>最新の漫画を読む⇒「<a href="manga.html"><span style="color: #d4af37;">漫画</span></a>」</p>
-  <p>日々の気づきなどをブログに乗せてます⇒「<a href="blog.html"><span style="color: #d4af37;">ブログ</span></a>」</p>
-  <p>作者の自己紹介⇒「<a href="about.html"><span style="color: #d4af37;">自己紹介</span></a>」</p>
-  <p>連絡はリンクから⇒「<a href="contact.html"><span style="color: #d4af37;">リンク</span></a>」</p>
-  <p>英語に翻訳した漫画（English Version）を読む　※翻訳するのに時間かかってます⇒「<a href="manga_english.html"><span style="color: #d4af37;">English</span></a>」</p>
-</div>
+<main class="manga-section">
+  <p class="section-title">— 画像をクリックして漫画を読む —</p>
 
-      <!-- FC2カウンター ここから -->
-      <script language="javascript" type="text/javascript" src="//counter1.fc2.com/counter.php?id=40461671&main=1"></script>
-      <noscript><img src="//counter1.fc2.com/counter_img.php?id=40461671&main=1" /></noscript>
-      <!-- FC2カウンター ここまで -->
+  <div class="slider-wrapper">
+    <button class="slider-btn" id="prevBtn" onclick="moveSlider(-1)" aria-label="前へ">‹</button>
+
+    <div class="slider-window" role="region" aria-label="漫画一覧">
+      <div class="slider-track" id="sliderTrack">
+
+        <div class="slide-item">
+          <a href="manga11-1.html">
+            <div class="slide-frame"><img src="manga11-page1.jpg" alt="漫画 No.11"></div>
+          </a>
+          <p class="slide-number">No. 11</p>
+        </div>
+
+        <div class="slide-item">
+          <a href="manga4-1.html">
+            <div class="slide-frame"><img src="manga4-thumb.jpg" alt="漫画 No.04"></div>
+          </a>
+          <p class="slide-number">No. 04</p>
+        </div>
+
+        <div class="slide-item">
+          <a href="manga7-1.html">
+            <div class="slide-frame"><img src="manga7-page1.jpg" alt="漫画 No.07"></div>
+          </a>
+          <p class="slide-number">No. 07</p>
+        </div>
+
+        <div class="slide-item">
+          <a href="manga1-1.html">
+            <div class="slide-frame"><img src="manga1-thumb.jpg" alt="漫画 No.01"></div>
+          </a>
+          <p class="slide-number">No. 01</p>
+        </div>
+
+        <div class="slide-item">
+          <a href="manga2-1.html">
+            <div class="slide-frame"><img src="illust12.jpg" alt="漫画 No.02"></div>
+          </a>
+          <p class="slide-number">No. 02</p>
+        </div>
+
+        <div class="slide-item">
+          <a href="manga9-1.html">
+            <div class="slide-frame"><img src="manga9-page1.jpg" alt="漫画 No.09"></div>
+          </a>
+          <p class="slide-number">No. 09</p>
+        </div>
+
+        <div class="slide-item">
+          <a href="manga3-1.html">
+            <div class="slide-frame"><img src="manga3-thumb.jpg" alt="漫画 No.03"></div>
+          </a>
+          <p class="slide-number">No. 03</p>
+        </div>
+
+        <div class="slide-item">
+          <a href="manga8-1.html">
+            <div class="slide-frame"><img src="manga8-page1.jpg" alt="漫画 No.08"></div>
+          </a>
+          <p class="slide-number">No. 08</p>
+        </div>
+
+        <div class="slide-item">
+          <a href="manga5-1.html">
+            <div class="slide-frame"><img src="manga5-page1.jpg" alt="漫画 No.05"></div>
+          </a>
+          <p class="slide-number">No. 05</p>
+        </div>
+
+        <div class="slide-item">
+          <a href="manga6-1.html">
+            <div class="slide-frame"><img src="manga6-page1.jpg" alt="漫画 No.06"></div>
+          </a>
+          <p class="slide-number">No. 06</p>
+        </div>
+
+      </div>
     </div>
+
+    <button class="slider-btn" id="nextBtn" onclick="moveSlider(1)" aria-label="次へ">›</button>
   </div>
 
-  <h6>ご案内：当サイトに掲載されている画像・文章・作品について、AI学習への利用、トレース（トレパク）、無断転載・転載、二次利用を禁止します。当サイト内の作品・文章について、スクリーンショットの転載は禁止および無断引用はご遠慮ください。</h6>
-  <h6>information:Please refrain from using any images, text, or works on this website for AI training, tracing, unauthorized reproduction, redistribution, or secondary use. Screenshots and unauthorized quotations of the content on this website are not allowed.</h6>
-  
-  <script>
-    function toggleMenu() {
-      document.getElementById("navLinks").classList.toggle("active");
+  <div class="slider-dots" id="dots" role="tablist" aria-label="ページ選択"></div>
+</main>
+
+<div class="divider">
+  <div class="divider-line"></div>
+  <span class="divider-star">✦</span>
+  <div class="divider-line right"></div>
+</div>
+
+<nav class="page-links" aria-label="ページリンク">
+  <a class="page-link-card" href="news.html">
+    <span class="link-icon">📰</span>
+    <span class="link-label">最新情報</span>
+    <span class="link-desc">漫画に関する最新のお知らせ</span>
+  </a>
+  <a class="page-link-card" href="manga.html">
+    <span class="link-icon">📖</span>
+    <span class="link-label">漫画</span>
+    <span class="link-desc">最新の漫画を読む</span>
+  </a>
+  <a class="page-link-card" href="blog.html">
+    <span class="link-icon">✒️</span>
+    <span class="link-label">ブログ</span>
+    <span class="link-desc">日々の気づきや思いを綴っています</span>
+  </a>
+  <a class="page-link-card" href="about.html">
+    <span class="link-icon">🌸</span>
+    <span class="link-label">自己紹介</span>
+    <span class="link-desc">作者Azalea72について</span>
+  </a>
+  <a class="page-link-card" href="contact.html">
+    <span class="link-icon">🔗</span>
+    <span class="link-label">リンク</span>
+    <span class="link-desc">各種SNS・連絡先</span>
+  </a>
+  <a class="page-link-card" href="manga_english.html">
+    <span class="link-icon">🌏</span>
+    <span class="link-label">English</span>
+    <span class="link-desc">English translated manga (in progress)</span>
+  </a>
+</nav>
+
+<div class="counter-area">
+  <script language="javascript" type="text/javascript" src="//counter1.fc2.com/counter.php?id=40461671&main=1"></script>
+  <noscript><img src="//counter1.fc2.com/counter_img.php?id=40461671&main=1" alt="アクセスカウンター" /></noscript>
+</div>
+
+<footer class="footer-notice">
+  <p>ご案内：当サイトに掲載されている画像・文章・作品について、AI学習への利用、トレース（トレパク）、無断転載・転載、二次利用を禁止します。当サイト内の作品・文章について、スクリーンショットの転載は禁止および無断引用はご遠慮ください。</p>
+  <p>information: Please refrain from using any images, text, or works on this website for AI training, tracing, unauthorized reproduction, redistribution, or secondary use. Screenshots and unauthorized quotations of the content on this website are not allowed.</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+  }
+
+  const ITEM_WIDTH = 172;
+  let currentIndex = 0;
+  const items = document.querySelectorAll('.slide-item');
+  const totalItems = items.length;
+  const track = document.getElementById('sliderTrack');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const dotsEl = document.getElementById('dots');
+
+  function getVisible() {
+    return Math.max(1, Math.floor(document.querySelector('.slider-window').offsetWidth / ITEM_WIDTH));
+  }
+
+  function getMaxIndex() {
+    return Math.max(0, totalItems - getVisible());
+  }
+
+  function buildDots() {
+    dotsEl.innerHTML = '';
+    const pages = Math.ceil(totalItems / getVisible());
+    for (let i = 0; i < pages; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'dot';
+      dot.setAttribute('role', 'tab');
+      dot.setAttribute('aria-label', (i + 1) + 'ページ目');
+      dot.onclick = () => goTo(i * getVisible());
+      dotsEl.appendChild(dot);
     }
-  </script>
+    updateDots();
+  }
 
-  <script>
-let index = 0;
-const track = document.querySelector('.slider-track');
-const itemWidth = 216; // 200 + margin
+  function updateDots() {
+    const page = Math.floor(currentIndex / Math.max(1, getVisible()));
+    dotsEl.querySelectorAll('.dot').forEach((d, i) => {
+      d.classList.toggle('active', i === page);
+    });
+  }
 
-document.querySelector('.next').onclick = () => {
-  index++;
-  track.style.transform = `translateX(${-itemWidth * index}px)`;
-};
+  function goTo(idx) {
+    currentIndex = Math.max(0, Math.min(idx, getMaxIndex()));
+    track.style.transform = 'translateX(' + (-(currentIndex * ITEM_WIDTH)) + 'px)';
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex >= getMaxIndex();
+    updateDots();
+  }
 
-document.querySelector('.prev').onclick = () => {
-  index = Math.max(0, index - 1);
-  track.style.transform = `translateX(${-itemWidth * index}px)`;
-};
+  function moveSlider(dir) {
+    goTo(currentIndex + dir * getVisible());
+  }
+
+  buildDots();
+  goTo(0);
+
+  window.addEventListener('resize', () => {
+    buildDots();
+    goTo(Math.min(currentIndex, getMaxIndex()));
+  });
 </script>
 
 </body>
