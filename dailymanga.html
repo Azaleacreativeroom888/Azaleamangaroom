@@ -1,52 +1,361 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>４コマ日記</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background-color: #f9f9f9;
-      padding: 20px;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>４コマ漫画日記 - Azaleaの創作部屋</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9922a;
+    --gold-light: #e8c060;
+    --ink-bg: #1a0e08;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Serif JP', 'メイリオ', serif;
+    background-color: var(--ink-bg);
+    background-image:
+      radial-gradient(ellipse at 20% 20%, rgba(42,24,14,0.8) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, rgba(45,26,74,0.4) 0%, transparent 60%),
+      repeating-linear-gradient(
+        45deg, transparent, transparent 40px,
+        rgba(201,146,42,0.03) 40px, rgba(201,146,42,0.03) 41px
+      );
+    background-attachment: fixed;
+    color: #e8d5a3;
+    min-height: 100vh;
+  }
+
+  /* ナビ */
+  .navbar {
+    background: linear-gradient(135deg, #0f2018 0%, #1a3020 50%, #0f1a28 100%);
+    border-bottom: 2px solid var(--gold);
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(201,146,42,0.3);
+  }
+
+  .navbar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    position: relative;
+  }
+
+  .navbar h1 a {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    color: var(--gold-light);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px rgba(201,146,42,0.6);
+  }
+
+  .nav-links { display: flex; gap: 4px; }
+
+  .nav-links a {
+    color: #c8b88a;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 6px 12px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    transition: all 0.3s;
+    letter-spacing: 0.5px;
+    position: relative;
+  }
+
+  .nav-links a::before {
+    content: '✦';
+    position: absolute;
+    left: 4px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 7px;
+    opacity: 0;
+    color: var(--gold);
+    transition: opacity 0.3s;
+  }
+
+  .nav-links a:hover {
+    color: var(--gold-light);
+    border-color: rgba(201,146,42,0.4);
+    background: rgba(201,146,42,0.08);
+    padding-left: 18px;
+  }
+
+  .nav-links a:hover::before { opacity: 1; }
+
+  .menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--gold-light);
+    background: none;
+    border: none;
+  }
+
+  /* ページヘッダー */
+  .page-header {
+    text-align: center;
+    padding: 52px 24px 36px;
+  }
+
+  .page-header::before {
+    content: '';
+    display: block;
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 28px;
+  }
+
+  .page-header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 26px;
+    color: var(--gold-light);
+    letter-spacing: 4px;
+    text-shadow: 0 0 16px rgba(201,146,42,0.4);
+    margin-bottom: 8px;
+  }
+
+  .page-header .subtitle {
+    font-size: 12px;
+    color: #7a6040;
+    letter-spacing: 3px;
+  }
+
+  .page-header .lead {
+    font-size: 13px;
+    color: #a89060;
+    margin-top: 14px;
+    line-height: 1.8;
+  }
+
+  /* メイン */
+  .main-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* タイムライン */
+  .timeline {
+    position: relative;
+    padding-left: 24px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 8px; bottom: 8px;
+    width: 1px;
+    background: linear-gradient(180deg, var(--gold), rgba(201,146,42,0.1));
+  }
+
+  /* エントリーカード */
+  .entry {
+    position: relative;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, rgba(26,48,32,0.55), rgba(15,20,35,0.45));
+    border: 1px solid rgba(201,146,42,0.2);
+    border-radius: 4px;
+    padding: 22px 26px;
+    transition: border-color 0.3s, transform 0.25s;
+  }
+
+  .entry::before {
+    content: '✦';
+    position: absolute;
+    left: -31px;
+    top: 22px;
+    font-size: 10px;
+    color: var(--gold);
+    background: var(--ink-bg);
+    padding: 2px 0;
+  }
+
+  .entry:hover {
+    border-color: rgba(201,146,42,0.5);
+    transform: translateX(4px);
+  }
+
+  .entry.latest {
+    border-color: rgba(201,146,42,0.4);
+    background: linear-gradient(135deg, rgba(42,26,74,0.35), rgba(26,48,32,0.55));
+  }
+
+  .entry.latest::after {
+    content: '最新';
+    position: absolute;
+    top: -1px; right: 16px;
+    background: var(--gold);
+    color: #2a1a0e;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 2px 10px;
+    border-radius: 0 0 4px 4px;
+  }
+
+  .entry-date {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: #7a6040;
+    letter-spacing: 2px;
+    margin-bottom: 14px;
+  }
+
+  /* 漫画画像（縦長・大きめに表示） */
+  .entry-img {
+    width: 100%;
+    max-width: 480px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 3px;
+    border: 1px solid rgba(201,146,42,0.2);
+    background: rgba(0,0,0,0.3);
+  }
+
+  /* 締めの一言 */
+  .footer-note {
+    font-size: 13px;
+    color: #7a6040;
+    text-align: center;
+    margin-top: 28px;
+    letter-spacing: 1px;
+    padding: 14px;
+    border-top: 1px solid rgba(201,146,42,0.15);
+  }
+
+  /* 戻るリンク */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: #7a6040;
+    font-size: 13px;
+    margin-top: 28px;
+    padding: 8px 16px;
+    border: 1px solid rgba(201,146,42,0.2);
+    border-radius: 3px;
+    transition: all 0.3s;
+    letter-spacing: 1px;
+  }
+
+  .back-link:hover {
+    color: var(--gold-light);
+    border-color: rgba(201,146,42,0.5);
+    background: rgba(201,146,42,0.06);
+  }
+
+  /* フッター */
+  footer.footer-notice {
+    background: rgba(26,48,32,0.4);
+    border-top: 1px solid rgba(201,146,42,0.2);
+    padding: 24px;
+    text-align: center;
+  }
+
+  footer.footer-notice p {
+    font-size: 11px;
+    color: #6a5840;
+    line-height: 1.9;
+    max-width: 800px;
+    margin: 0 auto 8px;
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle { display: block; }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 56px; right: 0;
+      width: 200px;
+      background: #0f2018;
+      border: 1px solid rgba(201,146,42,0.3);
+      border-radius: 0 0 8px 8px;
+      padding: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
-    .container {
-      max-width: 900px;
-      margin: auto;
-    }
-    .entry {
-      background: #fff;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-left: 5px solid #88c;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-    .entry img {
-      max-width: 100%;
-      border-radius: 4px;
-      margin-top: 10px;
-    }
-    h1 {
-      color: #446;
-    }
-  </style>
+
+    .nav-links.active { display: flex; }
+
+    .main-wrap { padding: 0 16px 60px; }
+    .timeline { padding-left: 18px; }
+    .entry::before { left: -25px; }
+    .entry { padding: 18px 16px; }
+    .entry-img { max-width: 100%; }
+  }
+</style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>🛠 ４コマ漫画</h1>
-    <p>ここでは、私が作っている作品の進捗やメモを記録しています。</p>
 
-    <div class="entry">
-      <h2>🗓 2026年4月22日：４ページ漫画</h2>
-      <img src="4komamanga1.jpg" alt="４コマ漫画">
+<nav class="navbar">
+  <div class="navbar-inner">
+    <h1><a href="index.html">✦ Azaleaの創作部屋 ✦</a></h1>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="メニューを開く">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="news.html">最新情報</a>
+      <a href="manga.html">漫画</a>
+      <a href="blog.html">ブログ</a>
+      <a href="about.html">自己紹介</a>
+      <a href="contact.html">リンク</a>
+      <a href="manga_en.html">English</a>
     </div>
-
-    <div class="entry">
-      <h2>🗓 2026年4月22日：４ページ漫画</h2>
-      <img src="4komamanga2.jpg" alt="４コマ漫画">
-    </div>
-
-    <p>また進捗があればどんどん追加していきます！</p>
   </div>
+</nav>
+
+<header class="page-header">
+  <h1>４コマ漫画日記</h1>
+  <p class="subtitle">— 4-Koma Diary —</p>
+  <p class="lead">日々の出来事を４コマ漫画にしています。</p>
+</header>
+
+<main class="main-wrap">
+  <div class="timeline">
+
+    <div class="entry latest">
+      <p class="entry-date">2026 / 04 / 22</p>
+      <img class="entry-img" src="4komamanga2.jpg" alt="４コマ漫画">
+    </div>
+
+    <div class="entry">
+      <p class="entry-date">2026 / 04 / 22</p>
+      <img class="entry-img" src="4komamanga1.jpg" alt="４コマ漫画">
+    </div>
+
+  </div>
+
+  <p class="footer-note">✦ また描いたらどんどん追加していきます！ ✦</p>
+
+  <a class="back-link" href="blog.html">← ブログトップに戻る</a>
+
+</main>
+
+<footer class="footer-notice">
+  <p>当サイトに掲載されている画像・文章・作品について、AI学習への利用、トレース（トレパク）、無断転載・転載、二次利用を禁止します。スクリーンショットの転載・無断引用はご遠慮ください。</p>
+  <p>Please refrain from using any images, text, or works on this website for AI training, tracing, unauthorized reproduction, redistribution, or secondary use.</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+  }
+</script>
+
 </body>
 </html>
