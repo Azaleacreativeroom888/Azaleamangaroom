@@ -31,7 +31,6 @@
     min-height: 100vh;
   }
 
-  /* ナビ */
   .navbar {
     background: linear-gradient(135deg, #0f2018 0%, #1a3020 50%, #0f1a28 100%);
     border-bottom: 2px solid var(--gold);
@@ -104,7 +103,6 @@
     border: none;
   }
 
-  /* ページヘッダー */
   .page-header {
     text-align: center;
     padding: 52px 24px 36px;
@@ -134,7 +132,6 @@
     letter-spacing: 3px;
   }
 
-  /* サブリンク */
   .sub-links {
     display: flex;
     justify-content: center;
@@ -164,7 +161,6 @@
     background: linear-gradient(135deg, rgba(60,100,70,0.7), rgba(42,72,53,0.8));
   }
 
-  /* 漫画グリッド */
   .manga-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -174,7 +170,6 @@
     padding: 0 24px 80px;
   }
 
-  /* 漫画カード */
   .manga-card {
     background: linear-gradient(160deg, rgba(26,48,32,0.55), rgba(15,18,35,0.5));
     border: 1px solid rgba(201,146,42,0.2);
@@ -191,7 +186,6 @@
     box-shadow: 0 8px 24px rgba(0,0,0,0.4), 0 0 16px rgba(201,146,42,0.1);
   }
 
-  /* サムネイル */
   .manga-thumb {
     display: block;
     width: 100%;
@@ -212,15 +206,11 @@
     transition: transform 0.4s;
   }
 
-  .manga-card:hover .manga-thumb img {
-    transform: scale(1.05);
-  }
+  .manga-card:hover .manga-thumb img { transform: scale(1.05); }
 
-  /* ジャンルバッジ */
   .manga-thumb .genre-badge {
     position: absolute;
-    bottom: 8px;
-    left: 8px;
+    bottom: 8px; left: 8px;
     background: rgba(201,146,42,0.85);
     color: #2a1a0e;
     font-size: 10px;
@@ -230,9 +220,8 @@
     border-radius: 2px;
   }
 
-  /* カード本文 */
   .manga-info {
-    padding: 14px 14px 16px;
+    padding: 14px 14px 10px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -254,7 +243,6 @@
     line-height: 1.5;
   }
 
-  /* 読むリンク */
   .manga-links {
     margin-top: 8px;
     display: flex;
@@ -276,11 +264,7 @@
     letter-spacing: 0.5px;
   }
 
-  .read-link::before {
-    content: '▶';
-    font-size: 8px;
-    color: var(--gold);
-  }
+  .read-link::before { content: '▶'; font-size: 8px; color: var(--gold); }
 
   .read-link:hover {
     color: var(--gold-light);
@@ -288,6 +272,58 @@
     background: rgba(201,146,42,0.07);
     padding-left: 12px;
   }
+
+  /* Good! ボタン */
+  .good-area {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px 14px;
+    border-top: 1px solid rgba(201,146,42,0.08);
+  }
+
+  .good-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: 1px solid rgba(201,146,42,0.3);
+    border-radius: 20px;
+    color: #7a6040;
+    font-size: 12px;
+    font-family: 'Noto Serif JP', serif;
+    padding: 5px 14px;
+    cursor: pointer;
+    transition: all 0.25s;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+
+  .good-btn .heart { font-size: 13px; transition: transform 0.2s; }
+
+  .good-btn:hover {
+    border-color: rgba(201,146,42,0.7);
+    color: var(--gold-light);
+    background: rgba(201,146,42,0.08);
+  }
+
+  .good-btn:hover .heart { transform: scale(1.35); }
+
+  .good-btn.voted {
+    border-color: var(--gold);
+    color: var(--gold-light);
+    background: rgba(201,146,42,0.12);
+    cursor: default;
+  }
+
+  .good-msg {
+    font-size: 11px;
+    color: #7a6040;
+    letter-spacing: 0.5px;
+    transition: color 0.3s;
+  }
+
+  .good-msg.sent { color: var(--gold); }
 
   /* 区切り */
   .divider {
@@ -310,7 +346,6 @@
 
   .divider-star { color: var(--gold); font-size: 14px; }
 
-  /* フッター */
   footer.footer-notice {
     background: rgba(26,48,32,0.4);
     border-top: 1px solid rgba(201,146,42,0.2);
@@ -400,6 +435,12 @@
         <a class="read-link" href="manga11-1.html">読み切りを読む</a>
       </div>
     </div>
+    <div class="good-area">
+      <button class="good-btn" onclick="sendGood(this, '河童')">
+        <span class="heart">🌸</span> Good!
+      </button>
+      <span class="good-msg"></span>
+    </div>
   </div>
 
   <div class="manga-card">
@@ -413,6 +454,12 @@
       <div class="manga-links">
         <a class="read-link" href="manga4-1.html">読み切りを読む</a>
       </div>
+    </div>
+    <div class="good-area">
+      <button class="good-btn" onclick="sendGood(this, '最後のアイドル')">
+        <span class="heart">🌸</span> Good!
+      </button>
+      <span class="good-msg"></span>
     </div>
   </div>
 
@@ -428,6 +475,12 @@
         <a class="read-link" href="manga7-1.html">読み切りを読む</a>
       </div>
     </div>
+    <div class="good-area">
+      <button class="good-btn" onclick="sendGood(this, 'バスの運転手')">
+        <span class="heart">🌸</span> Good!
+      </button>
+      <span class="good-msg"></span>
+    </div>
   </div>
 
   <div class="manga-card">
@@ -442,6 +495,12 @@
         <a class="read-link" href="manga1-1.html">第1話を読む</a>
         <a class="read-link" href="manga1-2.html">第2話を読む</a>
       </div>
+    </div>
+    <div class="good-area">
+      <button class="good-btn" onclick="sendGood(this, '激弱勇者')">
+        <span class="heart">🌸</span> Good!
+      </button>
+      <span class="good-msg"></span>
     </div>
   </div>
 
@@ -459,6 +518,12 @@
         <a class="read-link" href="manga2-3.html">第3話を読む</a>
       </div>
     </div>
+    <div class="good-area">
+      <button class="good-btn" onclick="sendGood(this, '比奈のスイーツスタンド')">
+        <span class="heart">🌸</span> Good!
+      </button>
+      <span class="good-msg"></span>
+    </div>
   </div>
 
   <div class="manga-card">
@@ -472,6 +537,12 @@
       <div class="manga-links">
         <a class="read-link" href="manga10-1.html">読み切りを読む</a>
       </div>
+    </div>
+    <div class="good-area">
+      <button class="good-btn" onclick="sendGood(this, '２つの世界と１つの影')">
+        <span class="heart">🌸</span> Good!
+      </button>
+      <span class="good-msg"></span>
     </div>
   </div>
 
@@ -487,6 +558,12 @@
         <a class="read-link" href="manga9-1.html">読み切りを読む</a>
       </div>
     </div>
+    <div class="good-area">
+      <button class="good-btn" onclick="sendGood(this, '清掃員アイドル')">
+        <span class="heart">🌸</span> Good!
+      </button>
+      <span class="good-msg"></span>
+    </div>
   </div>
 
   <div class="manga-card">
@@ -500,6 +577,12 @@
       <div class="manga-links">
         <a class="read-link" href="manga3-1.html">読み切りを読む</a>
       </div>
+    </div>
+    <div class="good-area">
+      <button class="good-btn" onclick="sendGood(this, '2.5次元舞台')">
+        <span class="heart">🌸</span> Good!
+      </button>
+      <span class="good-msg"></span>
     </div>
   </div>
 
@@ -515,6 +598,12 @@
         <a class="read-link" href="manga8-1.html">読み切りを読む</a>
       </div>
     </div>
+    <div class="good-area">
+      <button class="good-btn" onclick="sendGood(this, 'エロい先輩')">
+        <span class="heart">🌸</span> Good!
+      </button>
+      <span class="good-msg"></span>
+    </div>
   </div>
 
   <div class="manga-card">
@@ -528,6 +617,12 @@
       <div class="manga-links">
         <a class="read-link" href="manga5-1.html">読み切りを読む</a>
       </div>
+    </div>
+    <div class="good-area">
+      <button class="good-btn" onclick="sendGood(this, '中国拳法お婆ちゃん')">
+        <span class="heart">🌸</span> Good!
+      </button>
+      <span class="good-msg"></span>
     </div>
   </div>
 
@@ -543,6 +638,12 @@
         <a class="read-link" href="manga6-1.html">読み切りを読む</a>
       </div>
     </div>
+    <div class="good-area">
+      <button class="good-btn" onclick="sendGood(this, 'ハートの小瓶')">
+        <span class="heart">🌸</span> Good!
+      </button>
+      <span class="good-msg"></span>
+    </div>
   </div>
 
 </main>
@@ -555,6 +656,33 @@
 <script>
   function toggleMenu() {
     document.getElementById('navLinks').classList.toggle('active');
+  }
+
+  async function sendGood(btn, title) {
+    if (btn.classList.contains('voted')) return;
+    const msg = btn.parentElement.querySelector('.good-msg');
+    btn.disabled = true;
+    msg.textContent = '送信中…';
+
+    try {
+      const res = await fetch('https://formspree.io/f/maqvpvoz', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ message: '「' + title + '」にGood!が押されました' })
+      });
+      if (res.ok) {
+        btn.classList.add('voted');
+        btn.querySelector('.heart').textContent = '💛';
+        msg.textContent = 'ありがとう！';
+        msg.classList.add('sent');
+      } else {
+        msg.textContent = 'エラー';
+        btn.disabled = false;
+      }
+    } catch {
+      msg.textContent = 'エラー';
+      btn.disabled = false;
+    }
   }
 </script>
 
