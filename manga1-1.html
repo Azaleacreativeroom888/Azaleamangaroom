@@ -400,16 +400,16 @@
       img.alt = 'ページ ' + (s.indices[0] + 1);
       wrap.appendChild(img);
     } else {
-      const rightImg = document.createElement('img');
-      rightImg.src = pages[s.indices[0]];
-      rightImg.alt = 'ページ ' + (s.indices[0] + 1);
-
       const leftImg = document.createElement('img');
       leftImg.src = pages[s.indices[1]];
       leftImg.alt = 'ページ ' + (s.indices[1] + 1);
 
-      wrap.appendChild(rightImg);
+      const rightImg = document.createElement('img');
+      rightImg.src = pages[s.indices[0]];
+      rightImg.alt = 'ページ ' + (s.indices[0] + 1);
+
       wrap.appendChild(leftImg);
+      wrap.appendChild(rightImg);
     }
 
     const firstNum = s.indices[0] + 1;
