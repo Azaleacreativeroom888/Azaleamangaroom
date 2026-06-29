@@ -19,6 +19,17 @@
   body {
     font-family: 'Noto Serif JP', 'メイリオ', serif;
     background-color: var(--ink-bg);
+    /* background-attachment: fixed を外して疑似要素で代替 */
+    color: #e8d5a3;
+    min-height: 100vh;
+  }
+
+  /* 固定背景を疑似要素で再現（GPUレイヤー化でスムーズに） */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
     background-image:
       radial-gradient(ellipse at 20% 20%, rgba(42,24,14,0.8) 0%, transparent 60%),
       radial-gradient(ellipse at 80% 80%, rgba(45,26,74,0.4) 0%, transparent 60%),
@@ -26,9 +37,8 @@
         45deg, transparent, transparent 40px,
         rgba(201,146,42,0.03) 40px, rgba(201,146,42,0.03) 41px
       );
-    background-attachment: fixed;
-    color: #e8d5a3;
-    min-height: 100vh;
+    background-color: var(--ink-bg);
+    will-change: transform;
   }
 
   .navbar {
@@ -204,6 +214,8 @@
     border-radius: 0;
     box-shadow: none;
     transition: transform 0.4s;
+    /* 画像レンダリングをGPUに任せてスクロールを軽く */
+    will-change: transform;
   }
 
   .manga-card:hover .manga-thumb img { transform: scale(1.05); }
@@ -273,7 +285,6 @@
     padding-left: 12px;
   }
 
-  /* Good! ボタン */
   .good-area {
     display: flex;
     align-items: center;
@@ -325,7 +336,6 @@
 
   .good-msg.sent { color: var(--gold); }
 
-  /* 区切り */
   .divider {
     display: flex;
     align-items: center;
@@ -425,7 +435,7 @@
 
   <div class="manga-card">
     <a class="manga-thumb" href="manga11-1.html">
-      <img src="manga11-page1.jpg" alt="河童">
+      <img src="manga11-page1.jpg" alt="河童" loading="lazy">
       <span class="genre-badge">ブラックコメディ</span>
     </a>
     <div class="manga-info">
@@ -445,7 +455,7 @@
 
   <div class="manga-card">
     <a class="manga-thumb" href="manga4-1.html">
-      <img src="manga4-thumb.jpg" alt="最後のアイドル">
+      <img src="manga4-thumb.jpg" alt="最後のアイドル" loading="lazy">
       <span class="genre-badge">SF</span>
     </a>
     <div class="manga-info">
@@ -465,7 +475,7 @@
 
   <div class="manga-card">
     <a class="manga-thumb" href="manga7-1.html">
-      <img src="manga7-page1.jpg" alt="バスの運転手">
+      <img src="manga7-page1.jpg" alt="バスの運転手" loading="lazy">
       <span class="genre-badge">日常</span>
     </a>
     <div class="manga-info">
@@ -485,7 +495,7 @@
 
   <div class="manga-card">
     <a class="manga-thumb" href="manga1-1.html">
-      <img src="manga1-thumb.jpg" alt="激弱勇者">
+      <img src="manga1-thumb.jpg" alt="激弱勇者" loading="lazy">
       <span class="genre-badge">ファンタジー</span>
     </a>
     <div class="manga-info">
@@ -506,7 +516,7 @@
 
   <div class="manga-card">
     <a class="manga-thumb" href="manga2-1.html">
-      <img src="illust12.jpg" alt="比奈のスイーツスタンド">
+      <img src="illust12.jpg" alt="比奈のスイーツスタンド" loading="lazy">
       <span class="genre-badge">日常</span>
     </a>
     <div class="manga-info">
@@ -528,7 +538,7 @@
 
   <div class="manga-card">
     <a class="manga-thumb" href="manga10-1.html">
-      <img src="manga10-page1.jpg" alt="２つの世界と１つの影">
+      <img src="manga10-page1.jpg" alt="２つの世界と１つの影" loading="lazy">
       <span class="genre-badge">SF</span>
     </a>
     <div class="manga-info">
@@ -548,7 +558,7 @@
 
   <div class="manga-card">
     <a class="manga-thumb" href="manga9-1.html">
-      <img src="manga9-page1.jpg" alt="清掃員アイドル">
+      <img src="manga9-page1.jpg" alt="清掃員アイドル" loading="lazy">
       <span class="genre-badge">仕事</span>
     </a>
     <div class="manga-info">
@@ -568,7 +578,7 @@
 
   <div class="manga-card">
     <a class="manga-thumb" href="manga3-1.html">
-      <img src="manga3-thumb.jpg" alt="2.5次元舞台">
+      <img src="manga3-thumb.jpg" alt="2.5次元舞台" loading="lazy">
       <span class="genre-badge">青春</span>
     </a>
     <div class="manga-info">
@@ -588,7 +598,7 @@
 
   <div class="manga-card">
     <a class="manga-thumb" href="manga8-1.html">
-      <img src="manga8-page1.jpg" alt="エロい先輩">
+      <img src="manga8-page1.jpg" alt="エロい先輩" loading="lazy">
       <span class="genre-badge">恋愛</span>
     </a>
     <div class="manga-info">
@@ -608,7 +618,7 @@
 
   <div class="manga-card">
     <a class="manga-thumb" href="manga5-1.html">
-      <img src="manga5-page1.jpg" alt="中国拳法お婆ちゃん">
+      <img src="manga5-page1.jpg" alt="中国拳法お婆ちゃん" loading="lazy">
       <span class="genre-badge">アクション</span>
     </a>
     <div class="manga-info">
@@ -628,7 +638,7 @@
 
   <div class="manga-card">
     <a class="manga-thumb" href="manga6-1.html">
-      <img src="manga6-page1.jpg" alt="ハートの小瓶">
+      <img src="manga6-page1.jpg" alt="ハートの小瓶" loading="lazy">
       <span class="genre-badge">恋愛</span>
     </a>
     <div class="manga-info">
