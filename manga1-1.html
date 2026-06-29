@@ -82,6 +82,7 @@
     max-width: 100vw;
   }
 
+  /* PC：見開き（各画像が最大50vw） */
   .spread img {
     max-height: 100vh;
     max-width: 50vw;
@@ -91,8 +92,25 @@
     -webkit-user-drag: none;
   }
 
+  /* 単独ページは100vw */
   .spread.solo img {
     max-width: 100vw;
+  }
+
+  /* スマホ：ペアのとき右側（若いページ番号）だけ表示、左側を非表示 */
+  /* DOMの並びは [leftImg(3p), rightImg(2p)] なので first-childが左=3p、last-childが右=2p */
+  /* スマホでは右ページ（last-child）だけ見せる */
+  @media (max-width: 768px) {
+    .spread.pair img {
+      max-width: 100vw;
+    }
+    .spread.pair img:first-child {
+      display: none;   /* 左ページ（番号大きい方）を隠す */
+    }
+    .spread.pair img:last-child {
+      display: block;  /* 右ページ（番号小さい方）を表示 */
+      max-width: 100vw;
+    }
   }
 
   .tap-zone {
@@ -163,7 +181,6 @@
     background: rgba(201,146,42,0.15);
     border-radius: 2px;
     overflow: hidden;
-    position: relative;
     direction: rtl;
   }
 
@@ -240,6 +257,7 @@
     cursor: pointer;
   }
 
+  /* 最終ページ */
   .end-card {
     position: fixed;
     inset: 0;
@@ -249,7 +267,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 18px;
+    gap: 16px;
     text-align: center;
     padding: 24px;
   }
@@ -268,10 +286,70 @@
     color: #a89060;
   }
 
+  /* Good!ボタン */
+  .end-good-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin: 4px 0 8px;
+  }
+
+  .end-good-label {
+    font-size: 12px;
+    color: #7a6040;
+    letter-spacing: 1px;
+  }
+
+  .good-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: 1px solid rgba(201,146,42,0.35);
+    border-radius: 24px;
+    color: #a89060;
+    font-size: 15px;
+    font-family: 'Noto Serif JP', serif;
+    padding: 8px 24px;
+    cursor: pointer;
+    transition: all 0.25s;
+    letter-spacing: 1px;
+    user-select: none;
+  }
+
+  .good-btn .heart { font-size: 18px; transition: transform 0.2s; }
+
+  .good-btn:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+    background: rgba(201,146,42,0.1);
+  }
+
+  .good-btn:hover .heart { transform: scale(1.3); }
+
+  .good-btn.voted {
+    border-color: var(--gold);
+    color: var(--gold-light);
+    background: rgba(201,146,42,0.14);
+    cursor: default;
+  }
+
+  .good-msg {
+    font-size: 12px;
+    color: #7a6040;
+    min-height: 18px;
+    transition: color 0.3s;
+  }
+
+  .good-msg.sent { color: var(--gold-light); }
+
   .end-links {
     display: flex;
     gap: 12px;
-    margin-top: 8px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .end-btn {
@@ -290,12 +368,6 @@
     border-color: var(--gold);
     background: linear-gradient(135deg, rgba(60,100,70,0.75), rgba(42,72,53,0.85));
   }
-
-  @media (max-width: 768px) {
-    .spread img { max-width: 100vw; }
-    .spread.pair img { max-width: 100vw; }
-    .spread.pair img:first-child { display: none; }
-  }
 </style>
 </head>
 
@@ -308,7 +380,6 @@
 </div>
 
 <div class="reader-stage" id="stage">
-
   <div class="spread" id="spreadWrap"></div>
 
   <div class="tap-zone right" onclick="prevPage()" aria-label="前のページへ">
@@ -346,6 +417,15 @@
 <div class="end-card" id="endCard">
   <p class="end-title">― 第1話 終わり ―</p>
   <p class="end-sub">読んでくれてありがとうございます！</p>
+
+  <div class="end-good-area">
+    <p class="end-good-label">よかったらいいねしてね 🌸</p>
+    <button class="good-btn" id="goodBtn" onclick="sendGood()">
+      <span class="heart">🤍</span> Good!
+    </button>
+    <p class="good-msg" id="goodMsg"></p>
+  </div>
+
   <div class="end-links">
     <a class="end-btn" href="manga1-2.html">第2話へ ›</a>
     <a class="end-btn" href="manga.html">一覧に戻る</a>
@@ -358,16 +438,16 @@
     'manga1-page2.jpg',
     'manga1-page3.jpg',
     'manga1-page4.jpg'
+    /* ページを追加するときはここにファイル名を足すだけ！ */
   ];
 
   const total = pages.length;
+  const isMobile = () => window.innerWidth <= 768;
 
   function buildSpreads() {
     const spreads = [];
     if (total === 0) return spreads;
-
     spreads.push({ type: 'solo', indices: [0] });
-
     let i = 1;
     while (i < total) {
       if (i + 1 < total) {
@@ -400,6 +480,10 @@
       img.alt = 'ページ ' + (s.indices[0] + 1);
       wrap.appendChild(img);
     } else {
+      /* DOM順: [leftImg=若い番号+1, rightImg=若い番号]
+         スマホCSSで first-child(leftImg)を隠し、last-child(rightImg)だけ見せる
+         次のタップで leftImg(若い番号+1)を表示したいので、
+         スマホのときだけ2回に分けてめくる */
       const leftImg = document.createElement('img');
       leftImg.src = pages[s.indices[1]];
       leftImg.alt = 'ページ ' + (s.indices[1] + 1);
@@ -414,16 +498,42 @@
 
     const firstNum = s.indices[0] + 1;
     const lastNum = s.indices[s.indices.length - 1] + 1;
-    counter.textContent = (firstNum === lastNum)
-      ? (firstNum + ' / ' + total)
-      : (firstNum + '-' + lastNum + ' / ' + total);
 
-    fill.style.width = ((lastNum / total) * 100) + '%';
+    if (s.type === 'pair' && isMobile()) {
+      /* スマホでペアのとき：右ページだけ見えているのでページ番号も右側だけ表示 */
+      counter.textContent = firstNum + ' / ' + total;
+      fill.style.width = ((firstNum / total) * 100) + '%';
+    } else {
+      counter.textContent = (firstNum === lastNum)
+        ? (firstNum + ' / ' + total)
+        : (firstNum + '-' + lastNum + ' / ' + total);
+      fill.style.width = ((lastNum / total) * 100) + '%';
+    }
 
     pages.forEach((p) => { const pre = new Image(); pre.src = p; });
   }
 
+  /* スマホのペア表示中か */
+  let showingRightHalf = false;
+
   function nextPage() {
+    const s = spreads[spreadIndex];
+
+    /* スマホでペア表示中、まだ右側（若い番号）しか見せていない場合 */
+    if (isMobile() && s.type === 'pair' && !showingRightHalf) {
+      showingRightHalf = true;
+      /* 左ページ（次のページ）を表示に切り替える */
+      const imgs = wrap.querySelectorAll('img');
+      imgs[1].style.display = 'none'; /* rightImg を隠す */
+      imgs[0].style.display = 'block'; /* leftImg を表示 */
+      imgs[0].style.maxWidth = '100vw';
+      /* カウンター更新 */
+      counter.textContent = (s.indices[1] + 1) + ' / ' + total;
+      fill.style.width = (((s.indices[1] + 1) / total) * 100) + '%';
+      return;
+    }
+
+    showingRightHalf = false;
     if (spreadIndex < spreads.length - 1) {
       spreadIndex++;
       render();
@@ -434,6 +544,15 @@
 
   function prevPage() {
     endCard.classList.remove('show');
+
+    /* スマホでペアの左ページを見ているなら右ページに戻る */
+    if (isMobile() && showingRightHalf) {
+      showingRightHalf = false;
+      render();
+      return;
+    }
+
+    showingRightHalf = false;
     if (spreadIndex > 0) {
       spreadIndex--;
       render();
@@ -449,6 +568,35 @@
 
   function closeHint() {
     document.getElementById('hintOverlay').classList.add('gone');
+  }
+
+  /* Good!ボタン */
+  async function sendGood() {
+    const btn = document.getElementById('goodBtn');
+    const msg = document.getElementById('goodMsg');
+    if (btn.classList.contains('voted')) return;
+    btn.disabled = true;
+    msg.textContent = '送信中…';
+
+    try {
+      const res = await fetch('https://formspree.io/f/maqvpvoz', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ message: '「激弱勇者 第1話」にGood!が押されました' })
+      });
+      if (res.ok) {
+        btn.classList.add('voted');
+        btn.querySelector('.heart').textContent = '💛';
+        msg.textContent = 'ありがとう！うれしいです🌸';
+        msg.classList.add('sent');
+      } else {
+        msg.textContent = 'エラーが発生しました';
+        btn.disabled = false;
+      }
+    } catch {
+      msg.textContent = 'エラーが発生しました';
+      btn.disabled = false;
+    }
   }
 
   document.addEventListener('keydown', (e) => {
