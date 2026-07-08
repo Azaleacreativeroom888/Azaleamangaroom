@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://azaleacreativeroom888.github.io/Azaleamangaroom/sitemap.xml
