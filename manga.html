@@ -107,7 +107,6 @@
     border: none;
   }
 
-  /* ページヘッダー */
   .page-header {
     text-align: center;
     padding: 52px 24px 36px;
@@ -166,7 +165,6 @@
     background: linear-gradient(135deg, rgba(60,100,70,0.7), rgba(42,72,53,0.8));
   }
 
-  /* セクション見出し */
   .section-heading {
     max-width: 1060px;
     margin: 0 auto 20px;
@@ -191,7 +189,6 @@
     background: linear-gradient(90deg, rgba(201,146,42,0.35), transparent);
   }
 
-  /* ★ シリーズグリッド ★ */
   .series-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -287,7 +284,6 @@
 
   .series-goto::after { content: ' ›'; }
 
-  /* 区切り */
   .divider {
     display: flex;
     align-items: center;
@@ -308,14 +304,13 @@
 
   .divider-star { color: var(--gold); font-size: 14px; }
 
-  /* 読み切りグリッド */
   .manga-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 24px;
     max-width: 1060px;
     margin: 0 auto;
-    padding: 0 24px 80px;
+    padding: 0 24px 60px;
   }
 
   .manga-card {
@@ -470,6 +465,206 @@
 
   .good-msg.sent { color: var(--gold); }
 
+  /* ★ 読者投票ランキング ★ */
+  .vote-section {
+    max-width: 700px;
+    margin: 0 auto 80px;
+    padding: 0 24px;
+  }
+
+  .vote-card {
+    background: linear-gradient(135deg, rgba(42,26,74,0.35), rgba(26,48,32,0.55));
+    border: 1px solid rgba(201,146,42,0.3);
+    border-radius: 4px;
+    padding: 28px 28px 24px;
+    position: relative;
+  }
+
+  .vote-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    border-radius: 4px 4px 0 0;
+  }
+
+  .vote-heading {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    color: var(--gold-light);
+    letter-spacing: 3px;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+
+  .vote-sub {
+    font-size: 11px;
+    color: #7a6040;
+    text-align: center;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+  }
+
+  /* 投票フォーム */
+  .vote-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .vote-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(10,8,4,0.5);
+    border: 1px solid rgba(201,146,42,0.18);
+    border-radius: 3px;
+    padding: 9px 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 12px;
+    color: #a89060;
+    letter-spacing: 0.5px;
+    user-select: none;
+  }
+
+  .vote-option:hover {
+    border-color: rgba(201,146,42,0.5);
+    background: rgba(201,146,42,0.08);
+    color: var(--gold-light);
+  }
+
+  .vote-option.selected {
+    border-color: var(--gold);
+    background: rgba(201,146,42,0.15);
+    color: var(--gold-light);
+  }
+
+  .vote-option input[type="radio"] { display: none; }
+
+  .vote-submit {
+    display: block;
+    width: 100%;
+    padding: 11px;
+    background: linear-gradient(135deg, rgba(42,72,53,0.8), rgba(26,48,32,0.9));
+    border: 1px solid rgba(201,146,42,0.4);
+    border-radius: 3px;
+    color: var(--gold-light);
+    font-family: 'Noto Serif JP', serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: 28px;
+  }
+
+  .vote-submit:hover {
+    border-color: var(--gold);
+    background: linear-gradient(135deg, rgba(60,100,70,0.85), rgba(42,72,53,0.9));
+    box-shadow: 0 0 14px rgba(201,146,42,0.2);
+  }
+
+  .vote-submit:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .vote-status {
+    text-align: center;
+    font-size: 12px;
+    color: #7a6040;
+    margin-bottom: 20px;
+    min-height: 18px;
+    letter-spacing: 1px;
+  }
+
+  .vote-status.done { color: var(--gold-light); }
+
+  /* ランキング */
+  .ranking-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: #7a6040;
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .ranking-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(201,146,42,0.3), transparent);
+  }
+
+  .ranking-list { display: flex; flex-direction: column; gap: 10px; }
+
+  .rank-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .rank-num {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 600;
+    min-width: 28px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .rank-num.gold   { color: #f0c040; }
+  .rank-num.silver { color: #b0b8c0; }
+  .rank-num.bronze { color: #c0845a; }
+  .rank-num.other  { color: #5a4830; }
+
+  .rank-info { flex: 1; min-width: 0; }
+
+  .rank-name {
+    font-size: 12px;
+    color: #c8b070;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .rank-bar-wrap {
+    height: 5px;
+    background: rgba(201,146,42,0.1);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .rank-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    border-radius: 3px;
+    transition: width 0.6s ease;
+  }
+
+  .rank-votes {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: #7a6040;
+    min-width: 36px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .rank-loading {
+    text-align: center;
+    font-size: 12px;
+    color: #5a4830;
+    padding: 20px 0;
+    letter-spacing: 1px;
+  }
+
   footer.footer-notice {
     background: rgba(26,48,32,0.4);
     border-top: 1px solid rgba(201,146,42,0.2);
@@ -487,7 +682,6 @@
 
   @media (max-width: 768px) {
     .menu-toggle { display: block; }
-
     .nav-links {
       display: none;
       flex-direction: column;
@@ -500,16 +694,14 @@
       padding: 12px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
-
     .nav-links.active { display: flex; }
-
     .series-grid { grid-template-columns: 1fr; }
-
     .manga-grid {
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       gap: 16px;
       padding: 0 16px 60px;
     }
+    .vote-form { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -541,13 +733,11 @@
   <a class="sub-link" href="illustration.html">🖼 イラストを見る</a>
 </div>
 
-<!-- ★ シリーズ ★ -->
 <div class="section-heading">
   <h2>SERIES — 連載作品</h2>
 </div>
 
 <div class="series-grid">
-
   <a class="series-card" href="manga-ikayowa.html">
     <div class="series-thumb">
       <img src="manga1-thumb.jpg" alt="激弱勇者" loading="lazy">
@@ -571,7 +761,6 @@
       <p class="series-goto">話数一覧を見る</p>
     </div>
   </a>
-
 </div>
 
 <div class="divider">
@@ -580,7 +769,6 @@
   <div class="divider-line right"></div>
 </div>
 
-<!-- ★ 読み切り ★ -->
 <div class="section-heading">
   <h2>ONE-SHOT — 読み切り</h2>
 </div>
@@ -600,7 +788,7 @@
       </div>
     </div>
     <div class="good-area">
-      <button class="good-btn" onclick="sendGood(this, '河童')">
+      <button class="good-btn" onclick="sendGood(this, '手を繋ぎたい')">
         <span class="heart">🌸</span> Good!
       </button>
       <span class="good-msg"></span>
@@ -789,10 +977,155 @@
 
 </main>
 
+<!-- ★ 読者投票ランキング ★ -->
+<div class="divider">
+  <div class="divider-line"></div>
+  <span class="divider-star">✦</span>
+  <div class="divider-line right"></div>
+</div>
+
+<div class="section-heading">
+  <h2>VOTE — 読者投票</h2>
+</div>
+
+<div class="vote-section">
+  <div class="vote-card">
+    <h3 class="vote-heading">✦ 好きな漫画に投票してね ✦</h3>
+    <p class="vote-sub">1日1票・みんなの投票結果がリアルタイムで見られます</p>
+
+    <div class="vote-form" id="voteForm">
+      <label class="vote-option"><input type="radio" name="vote" value="手を繋ぎたい">『手を繋ぎたい』</label>
+      <label class="vote-option"><input type="radio" name="vote" value="河童">『河童』</label>
+      <label class="vote-option"><input type="radio" name="vote" value="激弱勇者">『激弱勇者』</label>
+      <label class="vote-option"><input type="radio" name="vote" value="比奈のスイーツスタンド">『比奈のスイーツスタンド』</label>
+      <label class="vote-option"><input type="radio" name="vote" value="最後のアイドル">『最後のアイドル』</label>
+      <label class="vote-option"><input type="radio" name="vote" value="バスの運転手">『バスの運転手』</label>
+      <label class="vote-option"><input type="radio" name="vote" value="清掃員アイドル">『清掃員アイドル』</label>
+      <label class="vote-option"><input type="radio" name="vote" value="2.5次元舞台">『2.5次元舞台』</label>
+      <label class="vote-option"><input type="radio" name="vote" value="エロい先輩">『エロい先輩』</label>
+      <label class="vote-option"><input type="radio" name="vote" value="中国拳法お婆ちゃん">『中国拳法お婆ちゃん』</label>
+      <label class="vote-option"><input type="radio" name="vote" value="ハートの小瓶">『ハートの小瓶』</label>
+      <label class="vote-option"><input type="radio" name="vote" value="２つの世界と１つの影">『２つの世界と１つの影』</label>
+    </div>
+
+    <button class="vote-submit" id="voteSubmit" onclick="submitVote()" disabled>投票する</button>
+    <p class="vote-status" id="voteStatus"></p>
+
+    <p class="ranking-title">RANKING — 現在の順位</p>
+    <div class="ranking-list" id="rankingList">
+      <p class="rank-loading">読み込み中…</p>
+    </div>
+  </div>
+</div>
+
 <footer class="footer-notice">
   <p>当サイトに掲載されている画像・文章・作品について、AI学習への利用、トレース（トレパク）、無断転載・転載、二次利用を禁止します。スクリーンショットの転載・無断引用はご遠慮ください。</p>
   <p>Please refrain from using any images, text, or works on this website for AI training, tracing, unauthorized reproduction, redistribution, or secondary use.</p>
 </footer>
+
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, runTransaction, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBU43sKg8bLLYyj7-Gv4wHyZDqZ-P6b3Ek",
+    authDomain: "azalea-manga-vote.firebaseapp.com",
+    databaseURL: "https://azalea-manga-vote-default-rtdb.firebaseio.com",
+    projectId: "azalea-manga-vote",
+    storageBucket: "azalea-manga-vote.firebasestorage.app",
+    messagingSenderId: "658679903074",
+    appId: "1:658679903074:web:f9d9e425866e79d62e323b"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  /* 1日1票チェック（localStorage） */
+  const VOTE_KEY = 'azalea_vote_date';
+  const today = new Date().toISOString().slice(0, 10);
+  const alreadyVoted = localStorage.getItem(VOTE_KEY) === today;
+
+  const submitBtn = document.getElementById('voteSubmit');
+  const statusEl = document.getElementById('voteStatus');
+  const voteForm = document.getElementById('voteForm');
+
+  /* 選択状態のスタイル切替 */
+  voteForm.querySelectorAll('.vote-option').forEach(label => {
+    label.querySelector('input').addEventListener('change', () => {
+      voteForm.querySelectorAll('.vote-option').forEach(l => l.classList.remove('selected'));
+      label.classList.add('selected');
+      if (!alreadyVoted) submitBtn.disabled = false;
+    });
+  });
+
+  if (alreadyVoted) {
+    submitBtn.disabled = true;
+    submitBtn.textContent = '本日の投票済み';
+    statusEl.textContent = '明日またきてね🌸';
+    statusEl.classList.add('done');
+    voteForm.style.pointerEvents = 'none';
+    voteForm.style.opacity = '0.5';
+  }
+
+  /* 投票処理 */
+  window.submitVote = async function () {
+    const selected = document.querySelector('input[name="vote"]:checked');
+    if (!selected) return;
+    const title = selected.value;
+
+    submitBtn.disabled = true;
+    statusEl.textContent = '送信中…';
+
+    try {
+      const voteRef = ref(db, 'votes/' + title);
+      await runTransaction(voteRef, (current) => (current || 0) + 1);
+
+      localStorage.setItem(VOTE_KEY, today);
+      submitBtn.textContent = '投票済み ✦';
+      statusEl.textContent = '「' + title + '」に投票しました！ありがとうございます🌸';
+      statusEl.classList.add('done');
+      voteForm.style.pointerEvents = 'none';
+      voteForm.style.opacity = '0.5';
+    } catch (e) {
+      statusEl.textContent = 'エラーが発生しました。もう一度お試しください。';
+      submitBtn.disabled = false;
+    }
+  };
+
+  /* リアルタイムでランキングを表示 */
+  const rankingEl = document.getElementById('rankingList');
+  const votesRef = ref(db, 'votes');
+
+  onValue(votesRef, (snapshot) => {
+    const data = snapshot.val() || {};
+    const sorted = Object.entries(data)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 5);
+
+    const maxVotes = sorted.length > 0 ? sorted[0][1] : 1;
+    const medals = ['gold', 'silver', 'bronze', 'other', 'other'];
+    const labels = ['🥇', '🥈', '🥉', '4位', '5位'];
+
+    if (sorted.length === 0) {
+      rankingEl.innerHTML = '<p class="rank-loading">まだ投票がありません。最初の1票を入れてね！</p>';
+      return;
+    }
+
+    rankingEl.innerHTML = sorted.map(([title, votes], i) => `
+      <div class="rank-item">
+        <span class="rank-num ${medals[i]}">${labels[i]}</span>
+        <div class="rank-info">
+          <p class="rank-name">『${title}』</p>
+          <div class="rank-bar-wrap">
+            <div class="rank-bar" style="width:${Math.round((votes / maxVotes) * 100)}%"></div>
+          </div>
+        </div>
+        <span class="rank-votes">${votes}票</span>
+      </div>
+    `).join('');
+  });
+</script>
 
 <script>
   function toggleMenu() {
