@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ブログ - Azalea72の創作部屋</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9922a;
+    --gold-light: #e8c060;
+    --forest: #1a3020;
+    --ink-bg: #1a0e08;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Serif JP', 'メイリオ', serif;
+    background-color: var(--ink-bg);
+    background-image:
+      radial-gradient(ellipse at 20% 20%, rgba(42,24,14,0.8) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, rgba(45,26,74,0.4) 0%, transparent 60%),
+      repeating-linear-gradient(
+        45deg, transparent, transparent 40px,
+        rgba(201,146,42,0.03) 40px, rgba(201,146,42,0.03) 41px
+      );
+    background-attachment: fixed;
+    color: #e8d5a3;
+    min-height: 100vh;
+  }
+
+  /* ナビ */
+  .navbar {
+    background: linear-gradient(135deg, #0f2018 0%, #1a3020 50%, #0f1a28 100%);
+    border-bottom: 2px solid var(--gold);
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(201,146,42,0.3);
+  }
+
+  .navbar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    position: relative;
+  }
+
+  .navbar h1 a {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    color: var(--gold-light);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px rgba(201,146,42,0.6);
+  }
+
+  .nav-links { display: flex; gap: 4px; }
+
+  .nav-links a {
+    color: #c8b88a;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 6px 12px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    transition: all 0.3s;
+    letter-spacing: 0.5px;
+    position: relative;
+  }
+
+  .nav-links a::before {
+    content: '✦';
+    position: absolute;
+    left: 4px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 7px;
+    opacity: 0;
+    color: var(--gold);
+    transition: opacity 0.3s;
+  }
+
+  .nav-links a:hover {
+    color: var(--gold-light);
+    border-color: rgba(201,146,42,0.4);
+    background: rgba(201,146,42,0.08);
+    padding-left: 18px;
+  }
+
+  .nav-links a:hover::before { opacity: 1; }
+
+  .menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--gold-light);
+    background: none;
+    border: none;
+  }
+
+  /* ページヘッダー */
+  .page-header {
+    text-align: center;
+    padding: 52px 24px 36px;
+  }
+
+  .page-header::before {
+    content: '';
+    display: block;
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 28px;
+  }
+
+  .page-header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 26px;
+    color: var(--gold-light);
+    letter-spacing: 4px;
+    text-shadow: 0 0 16px rgba(201,146,42,0.4);
+    margin-bottom: 8px;
+  }
+
+  .page-header .subtitle {
+    font-size: 12px;
+    color: #7a6040;
+    letter-spacing: 3px;
+  }
+
+  /* メインレイアウト */
+  .container {
+    display: flex;
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    gap: 28px;
+    align-items: flex-start;
+  }
+
+  /* ブログカード */
+  .main { flex: 3; }
+
+  .blog-card {
+    background: linear-gradient(135deg, rgba(26,48,32,0.55), rgba(15,20,35,0.45));
+    border: 1px solid rgba(201,146,42,0.22);
+    border-radius: 4px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative;
+  }
+
+  .blog-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(180deg, var(--gold), transparent);
+    border-radius: 4px 0 0 4px;
+  }
+
+  .blog-card:hover {
+    border-color: rgba(201,146,42,0.5);
+    transform: translateY(-2px);
+  }
+
+  .card-content { padding: 24px 28px; }
+
+  .card-date {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: #7a6040;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+
+  .card-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--gold-light);
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+
+  .card-body {
+    font-size: 13px;
+    color: #b09060;
+    line-height: 2;
+    margin-bottom: 16px;
+  }
+
+  .card-img {
+    width: 100%;
+    max-height: 340px;
+    object-fit: cover;
+    display: block;
+    border-top: 1px solid rgba(201,146,42,0.15);
+    border-radius: 0;
+    margin: 0;
+  }
+
+  /* サイドバー */
+  .sidebar { flex: 1; min-width: 180px; }
+
+  .sidebar-block {
+    background: linear-gradient(135deg, rgba(42,26,74,0.3), rgba(26,48,32,0.5));
+    border: 1px solid rgba(201,146,42,0.25);
+    border-radius: 4px;
+    padding: 20px;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .sidebar-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: linear-gradient(180deg, var(--gold), transparent);
+    border-radius: 4px 0 0 4px;
+  }
+
+  .sidebar-block h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    color: var(--gold-light);
+    letter-spacing: 3px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(201,146,42,0.2);
+  }
+
+  .sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: #b09060;
+    font-size: 13px;
+    padding: 8px 6px;
+    border-radius: 3px;
+    transition: all 0.25s;
+    margin-bottom: 4px;
+  }
+
+  .sidebar-link::before {
+    content: '▶';
+    font-size: 8px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .sidebar-link:hover {
+    color: var(--gold-light);
+    background: rgba(201,146,42,0.08);
+    padding-left: 12px;
+  }
+
+  /* フッター */
+  footer.footer-notice {
+    background: rgba(26,48,32,0.4);
+    border-top: 1px solid rgba(201,146,42,0.2);
+    padding: 24px;
+    text-align: center;
+  }
+
+  footer.footer-notice p {
+    font-size: 11px;
+    color: #6a5840;
+    line-height: 1.9;
+    max-width: 800px;
+    margin: 0 auto 8px;
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle { display: block; }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 56px; right: 0;
+      width: 200px;
+      background: #0f2018;
+      border: 1px solid rgba(201,146,42,0.3);
+      border-radius: 0 0 8px 8px;
+      padding: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    .nav-links.active { display: flex; }
+
+    .container {
+      flex-direction: column;
+      padding: 0 16px 60px;
+    }
+
+    .sidebar { width: 100%; }
+  }
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <h1><a href="index.html">✦ Azalea72の創作部屋 ✦</a></h1>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="メニューを開く">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="news.html">最新情報</a>
+      <a href="manga.html">漫画</a>
+      <a href="blog.html">ブログ</a>
+      <a href="about.html">自己紹介</a>
+      <a href="contact.html">リンク</a>
+      <a href="https://azaleacreativeroom888.github.io/fan-english/">English</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-header">
+  <h1>企画①　MANGA甲子園レポ</h1>
+  <p class="subtitle">— Journal & Notes —</p>
+  <p class="subtitle">MANGA甲子園を観た個人的な感想を述べて行こうと思います！</p>
+</header>
+
+<div class="container">
+
+  <main class="main">
+
+    <article class="blog-card">
+      <div class="card-content">
+        <p class="card-date">2026年7月13日</p>
+        <h2 class="card-title">MANGA甲子園 第１話 感想</h2>
+        <p class="card-body">MCも豪華だけど、声優も豪華。<br>
+        高橋ひかるってMCの方がいるんだけど肌白いしめっちゃ綺麗。<br>
+        新人賞を受賞してる人が二人もいるんだね。<br>
+        漫画家って性格が濃い人が多いから共同生活とか大変そうだな………。<br>
+        １週間で５ページって思ったよりも大変だと思う。私なんか１か月かかるし………。（まじで速筆になりたい。）<br>
+        三好真太郎（以下、三好くん）はビッグマウスだけど、読み切り掲載してるからこの中では一番進んでる(?)のかな。<br>
+        るらりーな（以下、るらちゃん）は可愛いけど個性強い（笑）<br>
+        まじで山本拓未（以下、山本くん）と三好くんは一番進んでるよ。新人賞取ってるってデカい。<br>
+        蒼乃ちよ（以下、ちよちゃん）と中川一希（以下、中川くん）は大学行ってるんだね。<br>
+        カン・ユンジン（以下、カンくん）は日本語ペラペラだし、バラエティーあるメンバー集めた感じする。<br>
+        ちょっと……控えめな人が多い中で三好くんとるらちゃんが共同生活できるのか不安だな………。<br>
+        編集者に見てもらう場面で三好くんが一番褒められてて、自信家だけどストーリーも面白いから実力もあるんだな。<br>
+        評価してる編集者の人みたことある。<br>
+        この時点ではこの参加者たちの漫画の面白さがあんまり分かんないかも………。よくあるストーリーすぎて………。<br>
+        最後にはそれぞれの漫画が面白くなることを期待して観ようと思う。<br>
+        山本くんは「手書きに拘る」みたいなキャッチフレーズついてるけど、仕上げはデジタルっぽい。トーンは金かかるからね。<br>
+        結果は山本くん一位。個性あったから一位取ったのはわかる。<br>
+        三好くんの鼻がへし折られたの面白い。でも、やっぱり褒められるんだな。</p>
+      </div>
+    </article>
+
+    <article class="blog-card">
+      <div class="card-content">
+        <p class="card-date">2026年7月14日</p>
+        <h2 class="card-title">MANGA甲子園 第２話 感想</h2>
+        <p class="card-body">推しは今のところるらちゃんかな。</p>
+        </p>
+      </div>
+    </article>
+
+  </main>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-block">
+      <h3>ブログメニュー</h3>
+      <a class="sidebar-link" href="progress.html">進捗ノート</a>
+      <a class="sidebar-link" href="dailymanga.html">４コマまんが日記</a>
+      <a class="sidebar-link" href="blog2026.html">ひとことブログ2026年</a>
+      <a class="sidebar-link" href="report1.html">企画①MANGA甲子園レポ</a>
+    </div>
+
+  </aside>
+
+</div>
+
+<footer class="footer-notice">
+  <p>当サイトに掲載されている画像・文章・作品について、AI学習への利用、トレース（トレパク）、無断転載・転載、二次利用を禁止します。スクリーンショットの転載・無断引用はご遠慮ください。</p>
+  <p>Please refrain from using any images, text, or works on this website for AI training, tracing, unauthorized reproduction, redistribution, or secondary use.</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+  }
+</script>
+
+</body>
+</html>
