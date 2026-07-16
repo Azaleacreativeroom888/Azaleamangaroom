@@ -1027,8 +1027,10 @@
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getDatabase, ref, runTransaction, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+  import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
   const firebaseConfig = {
+    apiKey: "AIzaSyBU43sKg8bLLYyj7-Gv4wHyZDqZ-P6b3Ek",
     authDomain: "azalea-manga-vote.firebaseapp.com",
     databaseURL: "https://azalea-manga-vote-default-rtdb.firebaseio.com",
     projectId: "azalea-manga-vote",
@@ -1039,6 +1041,9 @@
 
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
+  const auth = getAuth(app);
+  await signInAnonymously(auth).catch(() => {});
+
 
   /* 1日1票チェック（localStorage） */
   const VOTE_KEY = 'azalea_vote_date';
