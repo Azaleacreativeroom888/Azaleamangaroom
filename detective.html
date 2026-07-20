@@ -1,305 +1,445 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>「探偵」を読む</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      background-color: #e6e6fa;
-      padding: 20px;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>探偵 - Azalea72の創作部屋</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9922a;
+    --gold-light: #e8c060;
+    --ink-bg: #1a0e08;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Serif JP', 'メイリオ', serif;
+    background-color: var(--ink-bg);
+    color: #e8d5a3;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      radial-gradient(ellipse at 20% 20%, rgba(42,24,14,0.8) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, rgba(45,26,74,0.4) 0%, transparent 60%),
+      repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(201,146,42,0.03) 40px, rgba(201,146,42,0.03) 41px);
+    background-color: var(--ink-bg);
+  }
+
+  /* ナビ */
+  .navbar {
+    background: linear-gradient(135deg, #0f2018 0%, #1a3020 50%, #0f1a28 100%);
+    border-bottom: 2px solid var(--gold);
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(201,146,42,0.3);
+  }
+
+  .navbar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    position: relative;
+  }
+
+  .navbar h1 a {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    color: var(--gold-light);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px rgba(201,146,42,0.6);
+  }
+
+  .nav-links { display: flex; gap: 4px; }
+
+  .nav-links a {
+    color: #c8b88a;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 6px 12px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    transition: all 0.3s;
+    letter-spacing: 0.5px;
+    position: relative;
+  }
+
+  .nav-links a::before {
+    content: '✦';
+    position: absolute;
+    left: 4px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 7px;
+    opacity: 0;
+    color: var(--gold);
+    transition: opacity 0.3s;
+  }
+
+  .nav-links a:hover {
+    color: var(--gold-light);
+    border-color: rgba(201,146,42,0.4);
+    background: rgba(201,146,42,0.08);
+    padding-left: 18px;
+  }
+
+  .nav-links a:hover::before { opacity: 1; }
+
+  .menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--gold-light);
+    background: none;
+    border: none;
+  }
+
+  /* ページヘッダー */
+  .page-header {
+    text-align: center;
+    padding: 52px 24px 36px;
+  }
+
+  .page-header::before {
+    content: '';
+    display: block;
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 28px;
+  }
+
+  .page-header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 30px;
+    color: var(--gold-light);
+    letter-spacing: 6px;
+    text-shadow: 0 0 16px rgba(201,146,42,0.4);
+    margin-bottom: 10px;
+  }
+
+  .page-header .subtitle {
+    font-size: 12px;
+    color: #7a6040;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+  }
+
+  .page-header .meta {
+    font-size: 12px;
+    color: #7a6040;
+    letter-spacing: 1px;
+  }
+
+  /* 本文エリア */
+  .story-wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* 本文カード：明るめの背景で読みやすく */
+  .story-card {
+    background: rgba(240, 225, 195, 0.93);
+    border: 1px solid rgba(201,146,42,0.4);
+    border-radius: 6px;
+    padding: 40px 44px;
+    position: relative;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.5);
+  }
+
+  .story-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    border-radius: 6px 6px 0 0;
+  }
+
+  /* 本文テキスト */
+  .story-text {
+    font-size: 15px;
+    color: #2a1a0e;
+    line-height: 2.2;
+    letter-spacing: 0.3px;
+  }
+
+  .story-text p {
+    margin-bottom: 1.4em;
+    text-indent: 1em;
+  }
+
+  .story-text p:last-child { margin-bottom: 0; }
+
+  /* 心の声（括弧書き）は少し色を変える */
+  .monologue {
+    color: #5a3a1a;
+    font-style: italic;
+  }
+
+  /* 区切り */
+  .story-end {
+    text-align: center;
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(201,146,42,0.3);
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    color: #7a5030;
+    letter-spacing: 4px;
+  }
+
+  /* 戻るリンク */
+  .back-area {
+    text-align: center;
+    margin-top: 32px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: #7a6040;
+    font-size: 13px;
+    padding: 8px 16px;
+    border: 1px solid rgba(201,146,42,0.2);
+    border-radius: 3px;
+    transition: all 0.3s;
+    letter-spacing: 1px;
+  }
+
+  .back-link:hover {
+    color: var(--gold-light);
+    border-color: rgba(201,146,42,0.5);
+    background: rgba(201,146,42,0.06);
+  }
+
+  /* フッター */
+  footer.footer-notice {
+    background: rgba(26,48,32,0.4);
+    border-top: 1px solid rgba(201,146,42,0.2);
+    padding: 24px;
+    text-align: center;
+  }
+
+  footer.footer-notice p {
+    font-size: 11px;
+    color: #6a5840;
+    line-height: 1.9;
+    max-width: 800px;
+    margin: 0 auto 8px;
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle { display: block; }
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 56px; right: 0;
+      width: 200px;
+      background: #0f2018;
+      border: 1px solid rgba(201,146,42,0.3);
+      border-radius: 0 0 8px 8px;
+      padding: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
-    .content {
-      max-width: 800px;
-      margin: auto;
-    }
-    .talk-box {
-      background: #fff;
-      border-left: 5px solid #f69;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.05);
-    }
-    h1 {
-      border-bottom: 2px solid #f69;
-      padding-bottom: 0.3em;
-    }
-  </style>
+    .nav-links.active { display: flex; }
+    .story-wrap { padding: 0 16px 60px; }
+    .story-card { padding: 28px 22px; }
+    .story-text { font-size: 14px; line-height: 2.1; }
+  }
+</style>
 </head>
+
 <body>
-  <div class="content">
-    <h1>探偵</h1>
-    <p>2000文字の小説「探偵」です。ブラックコメディです。</p>
 
-    <div class="talk-box">
-      <h2>探偵</h2>
-      ある劇場で殺人事件が起こった。<br>
-
-
-
-      ヒロインの女優が舞台上で倒れた。まだ公演は５分しか始まってないのに。<br>
-
-
-
-      「この中に犯人がいる」探偵が指をさして言った。<br>
-
-
-
-       「ここには５人の俳優がいる。この女優が殺された時、ここにいたのは君たちだけだ。犯人はこの中にいるだろう。俺は天才探偵……その名を速水雄介と言う。お前らも聞いたことあると思うが」探偵がつらつら自慢話をしている。<br>
-
-
-
-        この舞台を見つめる観客の視線が痛い。<br>
-
-
-
-「あの……あなたは誰ですか？」気が弱そうな女優が言った。<br>
-
-
-
-「通りすがりの探偵です」<br>
-
-
-
-（どう見ても観客だろ）俳優の中の一人である田中宗次郎は思った。<br>
-
-
-
-「さっき勝手に壇上に上がってきたよね？　なんか怪しい人よ」気が強そうな女優が、気が弱そうな女優に向かってコソコソ話している。
-
-
-
-犯人と疑われた役者の５人は顔を見合わせて気まずそうにしている。<br>
-
-
-
-（そう。この女優を殺したのはこの俺だ）田中宗次郎はヒロインの女優を殺したのは自分だとそう確信している。なぜなら本番前に殺された女優に嫌がらせをしたのだ。宗次郎は彼女を稽古が始まったときから嫌っていた。<br>
-
-
-
-（殺される前にこいつが俺になにをしてきたか。ここにいる全員に伝えて、俺は自首つもりだ。こいつが俺にしてきた仕打ちの数々をネットに上げれば評判はガタ落ちだろう）<br>
-
-
-
-探偵が話し始めた。「そこで俺が怪しんでいるのは、田中宗次郎。君だ。ここの劇団は主人公がヒロインにスウィーツの贈り物をする慣習がある。そこでヒロインのこの女優の楽屋に行って二人きりになったときに、持って行ったチョコレートケーキに毒を持って殺したんだ」<br>
-
-
-
-（そう俺は毒物を盛ったのだ）<br>
-
-
-
-「探偵の言う通り。実は俺が……」<br>
-
-
-
-「私がやりました」気が強いことで有名な女優の吉田成美が言った。<br>
-
-
-
-（えぇ！！！！　別のヤツが名乗り出た！）<br>
-
-
-
-「ほう、では、なぜ君は彼女を殺したのかな？　吉田成美さん」<br>
-
-
-
-吉田成美は顎を上げて言った。「私は彼女にヒロイン役を取られたのよ。ただ顔がロリ顔って理由で。悔しかったわ」<br>
-
-
-
-「それだけですか？」<br>
-
-
-
-「そうよ！　あのロリクソアバズレスーパーハイパークソビチクソ」<br>
-
-
-
-（長い呼び名だな）<br>
-
-
-
-「だから、リハーサル前に楽屋からでてきたところで、具合が悪いって言ってたから、留めにメリケンサックであいつの整形顔を殴ってやったのよ。自慢のロリ顔にね！！」<br>
-
-
-
-（メリケンサック！）<br>
-
-
-
-「それは重要な証言だ。それで死んだ可能性が高い」<br>
-
-
-
-（メリケンサックで死なないだろ）田中宗次郎が思った。（そろそろ俺がやったと言おう）<br>
-
-
-
-「俺が……」宗次郎が言いかけた。<br>
-
-
-
-「俺がやった。こいつじゃない……」坊主頭の真面目そうな中丸信二が言った。<br>
-
-
-
-（え、お前？？？？？？？）<br>
-
-
-
-「ほう、俳優もやりながらマネージャーもやっている中丸信二さん。あなたが殺したのかな？」<br>
-
-
-
-「チッ。あいつ、チョコレートケーキ貰って一口頂戴って言ったのにくれなかったんだ。有名な菓子だったから食べたかったのに……」中丸信二の目が鋭くなった。<br>
-
-
-
-（くだらね！　しかも、それを食べてたらお前が毒を食べてたことになるぞ）<br>
-
-
-
-「それが動機ですね」探偵は顎に手を当てた。<br>
-
-
-
-「ああ。だからあいつの腹をバターナイフで刺してやったんだ」<br>
-
-
-
-（バターナイフ！？　ちっさ！　致命傷にならないだろ）宗次郎の顔が引きつった。<br>
-
-
-
-「それは致命傷になりますね。あなたが真犯人だ」探偵は勢いよく中丸信二を指さした。<br>
-
-
-
-（そんなわけないだろ！　そろそろ俺が言うぞ！！　言うからな！）宗次郎の額に汗が垂れる。<br>
-
-
-
-「実は俺が……」<br>
-
-
-
-「私がやりました」気が弱そうで眼鏡をかけている鈴木さなが言った。<br>
-
-
-
-（また！？　ちょっと黙ってろよ！！！）<br>
-
-
-
-「なにか動機がありますかな？　鈴木さなさん」<br>
-
-
-
-「だって、ヒロインで才能もあって、ちくびもピンクなんて、許せない！　お腹を抱えて廊下を歩いていたところに殺鼠剤を背中にかけてやったんです！　今思えばお腹を抱えてたのはお腹を刺されていたからかも。ふん、いい気味」<br>
-
-
-
-（嫌がらせとかする性格だったのか……なんかショック。しかも殺鼠剤を飲ませたわけじゃないのかよ！）<br>
-
-
-
-「それで彼女は死んだのか……真犯人がそろそろ分かってきたな……」探偵は真剣な顔をしているがどこか笑っている気もした。<br>
-
-
-
-（……結局みんな嫌がらせをしてたんじゃないか。もしかして最後の一人も……）宗次郎がちらっと横を見た。<br>
-
-
-
-「俺を忘れるなよ！　俺が殺したんだ！！！　こいつは俺の出っ歯を笑ったんだ。だから舞台から突き落としてやったんだ」<br>
-
-
-
-（でもここの舞台って床から150センチメートルしかないけど）<br>
-
-
-
-「それは酷い……五十嵐昭！　あなたが致命傷をあたえたのか！」探偵がワクワクしているように見えた。<br>
-
-
-
-「お前ら本当に酷いな！　そんなんで殺せるわけないだろ！」宗次郎がヒステリックに怒りだした。「探偵だって言うのになんの推理もしないし！」<br>
-
-
-
-「お前だって下剤をチョコレートケーキに入れたろ。俺観てたからな」五十嵐昭が言った。<br>
-
-
-
-「サイテー。私たちのこと酷いとか言ってたのに自分だってやってるじゃん」吉田成美が言った。<br>
-
-
-
-「こいつどうせ、主人公役で舞い上がってて、ヒロインに思わせぶりな態度取られて下剤盛ったんだぜ。多分」中丸信二が言った。<br>
-
-
-
-「下剤なんかで死ぬわけないじゃんね」鈴木さなが言った。<br>
-
-
-
-（バラされた！！　ここで恨み節を言ってやる！　そしてネットにすべて晒してやる！）宗次郎が携帯を出しかけた。<br>
-
-
-
-「お前ら黙ってろよ！！！！　見てみろ！　こいつは俺に思わせぶりなメールを……」宗次郎が叫ぶ。観客が息をのんだ。<br>
-
-
-
-「お前ら動くな」バンと音がすると劇場の入り口のドアから警察が入ってきた。「速水雄介。お前を連行する。五時二十分。速水雄介逮捕ォ」太った女性の警官が言った。観客がドキドキしながらこの状況を見守っていた。女性警官は舞台に上がった。<br>
-
-
-
-「「「え！？」」」一同に声を発した。<br>
-
-
-
-「な、なんでですか？」<br>
-
-
-
-「それは俺が……」速水雄介が話をしようとすると警官に遮られた。女性警官が速水雄介に手錠をかける。<br>
-
-
-
-「速水雄介はこの女優のストーカーで有名だった。告白したらしいが、フラれたらしい。一般人とは付き合わないと。この女優からも被害の電話がいくつか届いている」<br>
-
-
-
-「この人たちもこの女優を殺害しようとしてたってさっき告白しましたよ」<br>
-
-
-
-「そうなのか？」警察が５人の俳優に聞いた。<br>
-
-
-
-
-
-
-
-
-「「「いえ、私たちはやってません」」」５人は顔を見合わせて犯行を否定した。<br>
-
-
-
-
-
-
-
-
-
-　この舞台は口コミで最高の評価を得られた。どうやら観客はこの逮捕劇を演技だと思っていたようだ。<br>
+<nav class="navbar">
+  <div class="navbar-inner">
+    <h1><a href="index.html">✦ Azalea72の創作部屋 ✦</a></h1>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="メニューを開く">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="news.html">最新情報</a>
+      <a href="manga.html">漫画</a>
+      <a href="blog.html">ブログ</a>
+      <a href="about.html">自己紹介</a>
+      <a href="contact.html">リンク</a>
+      <a href="https://azaleacreativeroom888.github.io/fan-english/">English</a>
     </div>
+  </div>
+</nav>
 
- </body>
- </html>
+<header class="page-header">
+  <h1>探偵</h1>
+  <p class="subtitle">— Short Story —</p>
+  <p class="meta">ブラックコメディ &nbsp;｜&nbsp; 約2600文字 &nbsp;｜&nbsp; Azalea72</p>
+</header>
+
+<div class="story-wrap">
+  <div class="story-card">
+    <div class="story-text">
+
+      <p>ある劇場で殺人事件が起こった。ヒロインの女優が舞台上で倒れた。まだ公演は５分しか始まってないのに。</p>
+
+      <p>「この中に犯人がいる」探偵が指をさして言った。</p>
+
+      <p>「ここには５人の俳優がいる。この女優が殺された時、ここにいたのは君たちだけだ。犯人はこの中にいるだろう。俺は天才探偵……その名を速水雄介と言う。お前らも聞いたことあると思うが」探偵がつらつら自慢話をしている。</p>
+
+      <p>この舞台を見つめる観客の視線が痛い。</p>
+
+      <p>「あの……あなたは誰ですか？」気が弱そうな女優が言った。</p>
+
+      <p>「通りすがりの探偵です」</p>
+
+      <p class="monologue">（どう見ても観客だろ）俳優の中の一人である田中宗次郎は思った。</p>
+
+      <p>「さっき勝手に壇上に上がってきたよね？　なんか怪しい人よ」気が強そうな女優が、気が弱そうな女優に向かってコソコソ話している。</p>
+
+      <p>犯人と疑われた役者の５人は顔を見合わせて気まずそうにしている。</p>
+
+      <p class="monologue">（そう。この女優を殺したのはこの俺だ）田中宗次郎はヒロインの女優を殺したのは自分だとそう確信している。なぜなら本番前に殺された女優に嫌がらせをしたのだ。宗次郎は彼女を稽古が始まったときから嫌っていた。</p>
+
+      <p class="monologue">（殺される前にこいつが俺になにをしてきたか。ここにいる全員に伝えて、俺は自首するつもりだ。こいつが俺にしてきた仕打ちの数々をネットに上げれば評判はガタ落ちだろう）</p>
+
+      <p>探偵が話し始めた。「そこで俺が怪しんでいるのは、田中宗次郎。君だ。ここの劇団は主人公がヒロインにスウィーツの贈り物をする慣習がある。そこでヒロインのこの女優の楽屋に行って二人きりになったときに、持って行ったチョコレートケーキに毒を持って殺したんだ」</p>
+
+      <p class="monologue">（そう俺は毒物を盛ったのだ）</p>
+
+      <p>「探偵の言う通り。実は俺が……」</p>
+
+      <p>「私がやりました」気が強いことで有名な女優の吉田成美が言った。</p>
+
+      <p class="monologue">（えぇ！！！！　別のヤツが名乗り出た！）</p>
+
+      <p>「ほう、では、なぜ君は彼女を殺したのかな？　吉田成美さん」</p>
+
+      <p>吉田成美は顎を上げて言った。「私は彼女にヒロイン役を取られたのよ。ただ顔がロリ顔って理由で。悔しかったわ」</p>
+
+      <p>「それだけですか？」</p>
+
+      <p>「そうよ！　あのロリクソアバズレスーパーハイパークソビチクソ」</p>
+
+      <p class="monologue">（長い呼び名だな）</p>
+
+      <p>「だから、リハーサル前に楽屋からでてきたところで、具合が悪いって言ってたから、留めにメリケンサックであいつの整形顔を殴ってやったのよ。自慢のロリ顔にね！！」</p>
+
+      <p class="monologue">（メリケンサック！）</p>
+
+      <p>「それは重要な証言だ。それで死んだ可能性が高い」</p>
+
+      <p class="monologue">（メリケンサックで死なないだろ）田中宗次郎が思った。（そろそろ俺がやったと言おう）</p>
+
+      <p>「俺が……」宗次郎が言いかけた。</p>
+
+      <p>「俺がやった。こいつじゃない……」坊主頭の真面目そうな中丸信二が言った。</p>
+
+      <p class="monologue">（え、お前？？？？？？？）</p>
+
+      <p>「ほう、俳優もやりながらマネージャーもやっている中丸信二さん。あなたが殺したのかな？」</p>
+
+      <p>「チッ。あいつ、チョコレートケーキ貰って一口頂戴って言ったのにくれなかったんだ。有名な菓子だったから食べたかったのに……」中丸信二の目が鋭くなった。</p>
+
+      <p class="monologue">（くだらね！　しかも、それを食べてたらお前が毒を食べてたことになるぞ）</p>
+
+      <p>「それが動機ですね」探偵は顎に手を当てた。</p>
+
+      <p>「ああ。だからあいつの腹をバターナイフで刺してやったんだ」</p>
+
+      <p class="monologue">（バターナイフ！？　ちっさ！　致命傷にならないだろ）宗次郎の顔が引きつった。</p>
+
+      <p>「それは致命傷になりますね。あなたが真犯人だ」探偵は勢いよく中丸信二を指さした。</p>
+
+      <p class="monologue">（そんなわけないだろ！　そろそろ俺が言うぞ！！　言うからな！）宗次郎の額に汗が垂れる。</p>
+
+      <p>「実は俺が……」</p>
+
+      <p>「私がやりました」気が弱そうで眼鏡をかけている鈴木さなが言った。</p>
+
+      <p class="monologue">（また！？　ちょっと黙ってろよ！！！）</p>
+
+      <p>「なにか動機がありますかな？　鈴木さなさん」</p>
+
+      <p>「だって、ヒロインで才能もあって、ちくびもピンクなんて、許せない！　お腹を抱えて廊下を歩いていたところに殺鼠剤を背中にかけてやったんです！　今思えばお腹を抱えてたのはお腹を刺されていたからかも。ふん、いい気味」</p>
+
+      <p class="monologue">（嫌がらせとかする性格だったのか……なんかショック。しかも殺鼠剤を飲ませたわけじゃないのかよ！）</p>
+
+      <p>「それで彼女は死んだのか……真犯人がそろそろ分かってきたな……」探偵は真剣な顔をしているがどこか笑っている気もした。</p>
+
+      <p class="monologue">（……結局みんな嫌がらせをしてたんじゃないか。もしかして最後の一人も……）宗次郎がちらっと横を見た。</p>
+
+      <p>「俺を忘れるなよ！　俺が殺したんだ！！！　こいつは俺の出っ歯を笑ったんだ。だから舞台から突き落としてやったんだ」</p>
+
+      <p class="monologue">（でもここの舞台って床から150センチメートルしかないけど）</p>
+
+      <p>「それは酷い……五十嵐昭！　あなたが致命傷をあたえたのか！」探偵がワクワクしているように見えた。</p>
+
+      <p>「お前ら本当に酷いな！　そんなんで殺せるわけないだろ！」宗次郎がヒステリックに怒りだした。「探偵だって言うのになんの推理もしないし！」</p>
+
+      <p>「お前だって下剤をチョコレートケーキに入れたろ。俺観てたからな」五十嵐昭が言った。</p>
+
+      <p>「サイテー。私たちのこと酷いとか言ってたのに自分だってやってるじゃん」吉田成美が言った。</p>
+
+      <p>「こいつどうせ、主人公役で舞い上がってて、ヒロインに思わせぶりな態度取られて下剤盛ったんだぜ。多分」中丸信二が言った。</p>
+
+      <p>「下剤なんかで死ぬわけないじゃんね」鈴木さなが言った。</p>
+
+      <p class="monologue">（バラされた！！　ここで恨み節を言ってやる！　そしてネットにすべて晒してやる！）宗次郎が携帯を出しかけた。</p>
+
+      <p>「お前ら黙ってろよ！！！！　見てみろ！　こいつは俺に思わせぶりなメールを……」宗次郎が叫ぶ。観客が息をのんだ。</p>
+
+      <p>「お前ら動くな」バンと音がすると劇場の入り口のドアから警察が入ってきた。「速水雄介。お前を連行する。五時二十分。速水雄介逮捕ォ」太った女性の警官が言った。観客がドキドキしながらこの状況を見守っていた。女性警官は舞台に上がった。</p>
+
+      <p>「「「え！？」」」一同に声を発した。</p>
+
+      <p>「な、なんでですか？」</p>
+
+      <p>「それは俺が……」速水雄介が話をしようとすると警官に遮られた。女性警官が速水雄介に手錠をかける。</p>
+
+      <p>「速水雄介はこの女優のストーカーで有名だった。告白したらしいが、フラれたらしい。一般人とは付き合わないと。この女優からも被害の電話がいくつか届いている」</p>
+
+      <p>「この人たちもこの女優を殺害しようとしてたってさっき告白しましたよ」</p>
+
+      <p>「そうなのか？」警察が５人の俳優に聞いた。</p>
+
+      <p>「「「いえ、私たちはやってません」」」５人は顔を見合わせて犯行を否定した。</p>
+
+      <p>この舞台は口コミで最高の評価を得られた。どうやら観客はこの逮捕劇を演技だと思っていたようだ。</p>
+
+      <div class="story-end">✦ 了 ✦</div>
+    </div>
+  </div>
+
+  <div class="back-area">
+    <a class="back-link" href="book.html">← 小説一覧に戻る</a>
+  </div>
+</div>
+
+<footer class="footer-notice">
+  <p>当サイトに掲載されている画像・文章・作品について、AI学習への利用、トレース（トレパク）、無断転載・転載、二次利用を禁止します。スクリーンショットの転載・無断引用はご遠慮ください。</p>
+  <p>Please refrain from using any images, text, or works on this website for AI training, tracing, unauthorized reproduction, redistribution, or secondary use.</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+  }
+</script>
+
+</body>
+</html>
