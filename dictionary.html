@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>漫画用語辞書 - Azalea72の創作部屋</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9922a;
+    --gold-light: #e8c060;
+    --ink-bg: #1a0e08;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Serif JP', 'メイリオ', serif;
+    background-color: var(--ink-bg);
+    color: #e8d5a3;
+    min-height: 100vh;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image:
+      radial-gradient(ellipse at 20% 20%, rgba(42,24,14,0.8) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, rgba(45,26,74,0.4) 0%, transparent 60%),
+      repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(201,146,42,0.03) 40px, rgba(201,146,42,0.03) 41px);
+    background-color: var(--ink-bg);
+  }
+
+  /* ナビ */
+  .navbar {
+    background: linear-gradient(135deg, #0f2018 0%, #1a3020 50%, #0f1a28 100%);
+    border-bottom: 2px solid var(--gold);
+    padding: 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(201,146,42,0.3);
+  }
+
+  .navbar-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    position: relative;
+  }
+
+  .navbar h1 a {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    color: var(--gold-light);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px rgba(201,146,42,0.6);
+  }
+
+  .nav-links { display: flex; gap: 4px; }
+
+  .nav-links a {
+    color: #c8b88a;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 6px 12px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    transition: all 0.3s;
+    letter-spacing: 0.5px;
+    position: relative;
+  }
+
+  .nav-links a::before {
+    content: '✦';
+    position: absolute;
+    left: 4px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 7px;
+    opacity: 0;
+    color: var(--gold);
+    transition: opacity 0.3s;
+  }
+
+  .nav-links a:hover {
+    color: var(--gold-light);
+    border-color: rgba(201,146,42,0.4);
+    background: rgba(201,146,42,0.08);
+    padding-left: 18px;
+  }
+
+  .nav-links a:hover::before { opacity: 1; }
+
+  .menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--gold-light);
+    background: none;
+    border: none;
+  }
+
+  /* ページヘッダー */
+  .page-header {
+    text-align: center;
+    padding: 52px 24px 36px;
+  }
+
+  .page-header::before {
+    content: '';
+    display: block;
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 28px;
+  }
+
+  .page-header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 26px;
+    color: var(--gold-light);
+    letter-spacing: 4px;
+    text-shadow: 0 0 16px rgba(201,146,42,0.4);
+    margin-bottom: 8px;
+  }
+
+  .page-header .subtitle {
+    font-size: 12px;
+    color: #7a6040;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+  }
+
+  .page-header .lead {
+    font-size: 13px;
+    color: #a89060;
+    line-height: 1.8;
+  }
+
+  /* メイン */
+  .main-wrap {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* 検索ボックス */
+  .search-wrap {
+    position: relative;
+    margin-bottom: 28px;
+  }
+
+  .search-input {
+    width: 100%;
+    background: rgba(10,8,4,0.7);
+    border: 1px solid rgba(201,146,42,0.3);
+    border-radius: 4px;
+    color: #e8d5a3;
+    font-family: 'Noto Serif JP', serif;
+    font-size: 15px;
+    padding: 13px 48px 13px 18px;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    letter-spacing: 1px;
+  }
+
+  .search-input::placeholder { color: #4a3828; }
+
+  .search-input:focus {
+    border-color: rgba(201,146,42,0.6);
+    box-shadow: 0 0 14px rgba(201,146,42,0.12);
+  }
+
+  .search-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #7a6040;
+    pointer-events: none;
+  }
+
+  .result-count {
+    font-size: 11px;
+    color: #5a4030;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    min-height: 16px;
+  }
+
+  /* 単語リスト */
+  .word-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .word-card {
+    background: linear-gradient(135deg, rgba(26,48,32,0.55), rgba(15,20,35,0.45));
+    border: 1px solid rgba(201,146,42,0.18);
+    border-radius: 4px;
+    padding: 16px 20px;
+    position: relative;
+    transition: border-color 0.25s;
+    cursor: pointer;
+  }
+
+  .word-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--gold), transparent);
+    border-radius: 4px 0 0 4px;
+  }
+
+  .word-card:hover { border-color: rgba(201,146,42,0.45); }
+
+  .word-card.open { border-color: rgba(201,146,42,0.45); }
+
+  .word-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .word-en {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 1px;
+  }
+
+  .word-ja {
+    font-size: 13px;
+    color: #a89060;
+    letter-spacing: 0.5px;
+  }
+
+
+  .word-detail {
+    display: none;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(201,146,42,0.12);
+    font-size: 13px;
+    color: #b09060;
+    line-height: 1.9;
+  }
+
+  .word-card.open .word-detail { display: block; }
+
+  .word-example {
+    margin-top: 8px;
+    font-size: 12px;
+    color: #7a6040;
+    font-style: italic;
+    line-height: 1.8;
+  }
+
+  .word-example span {
+    display: block;
+    color: #5a4030;
+    font-style: normal;
+    font-size: 11px;
+  }
+
+  /* 結果なし */
+  .no-result {
+    text-align: center;
+    padding: 40px 0;
+    font-size: 13px;
+    color: #5a4030;
+    letter-spacing: 1px;
+    display: none;
+  }
+
+  /* 戻るリンク */
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: #7a6040;
+    font-size: 13px;
+    margin-top: 36px;
+    padding: 8px 16px;
+    border: 1px solid rgba(201,146,42,0.2);
+    border-radius: 3px;
+    transition: all 0.3s;
+    letter-spacing: 1px;
+  }
+
+  .back-link:hover {
+    color: var(--gold-light);
+    border-color: rgba(201,146,42,0.5);
+    background: rgba(201,146,42,0.06);
+  }
+
+  footer.footer-notice {
+    background: rgba(26,48,32,0.4);
+    border-top: 1px solid rgba(201,146,42,0.2);
+    padding: 24px;
+    text-align: center;
+  }
+
+  footer.footer-notice p {
+    font-size: 11px;
+    color: #6a5840;
+    line-height: 1.9;
+    max-width: 800px;
+    margin: 0 auto 8px;
+  }
+
+  @media (max-width: 768px) {
+    .menu-toggle { display: block; }
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 56px; right: 0;
+      width: 200px;
+      background: #0f2018;
+      border: 1px solid rgba(201,146,42,0.3);
+      border-radius: 0 0 8px 8px;
+      padding: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+    .nav-links.active { display: flex; }
+    .main-wrap { padding: 0 16px 60px; }
+  }
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <h1><a href="index.html">✦ Azalea72の創作部屋 ✦</a></h1>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="メニューを開く">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="news.html">最新情報</a>
+      <a href="manga.html">漫画</a>
+      <a href="blog.html">ブログ</a>
+      <a href="about.html">自己紹介</a>
+      <a href="contact.html">リンク</a>
+      <a href="https://azaleacreativeroom888.github.io/fan-english/">English</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-header">
+  <h1>漫画用語辞書</h1>
+  <p class="subtitle">— Manga Dictionary —</p>
+  <p class="lead">漫画に出てくる英語・日本語の用語集です。<br>クリックすると詳しい説明が見られます。</p>
+</header>
+
+<div class="main-wrap">
+
+  <!-- 検索 -->
+  <div class="search-wrap">
+    <input class="search-input" type="text" id="searchInput" placeholder="単語を入力して検索…" oninput="filterWords()" autocomplete="off">
+    <span class="search-icon">🔍</span>
+  </div>
+
+  <p class="result-count" id="resultCount"></p>
+
+  <div class="word-list" id="wordList"></div>
+  <p class="no-result" id="noResult">「<span id="noResultWord"></span>」は見つかりませんでした。</p>
+
+  <a class="back-link" href="manga.html">← 漫画一覧に戻る</a>
+
+</div>
+
+<footer class="footer-notice">
+  <p>当サイトに掲載されている画像・文章・作品について、AI学習への利用、トレース（トレパク）、無断転載・転載、二次利用を禁止します。</p>
+  <p>Please refrain from using any images, text, or works on this website for AI training, tracing, unauthorized reproduction, redistribution, or secondary use.</p>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('active');
+  }
+
+  /* =============================================
+     ★ 単語データ ★
+     追加するときはこの配列にオブジェクトを足すだけ！
+
+     {
+       en: "英語",           // 英語（なければ空文字 ""）
+       ja: "日本語",         // 日本語（なければ空文字 ""）
+       type: "en-ja",        // "en-ja"（英→日）/ "ja-en"（日→英）/ "term"（漫画用語）
+       meaning: "意味・説明",
+       example: "例文（英語）",      // 省略可
+       exampleJa: "例文（日本語）"   // 省略可
+     }
+  ============================================= */
+  const words = [
+
+    // ---- 英語 → 日本語 ----
+    {
+      en: "protagonist",
+      ja: "主人公",
+      type: "en-ja",
+      meaning: "物語の中心となるキャラクター。主人公。",
+      example: "The protagonist of this manga is a weak hero.",
+      exampleJa: "この漫画の主人公は弱い勇者です。"
+    },
+    {
+      en: "antagonist",
+      ja: "悪役 / 敵役",
+      type: "en-ja",
+      meaning: "主人公と対立するキャラクター。ライバルや敵。",
+      example: "The antagonist tries to defeat the protagonist.",
+      exampleJa: "悪役は主人公を倒そうとします。"
+    },
+    {
+      en: "plot twist",
+      ja: "どんでん返し",
+      type: "en-ja",
+      meaning: "物語の予想外の展開。読者が驚くような急な方向転換。",
+      example: "The plot twist at the end was shocking.",
+      exampleJa: "最後のどんでん返しは衝撃的でした。"
+    },
+    {
+      en: "cliffhanger",
+      ja: "引き",
+      type: "en-ja",
+      meaning: "次回を読みたくなるような、緊張感のある話の終わり方。",
+      example: "The chapter ended on a cliffhanger.",
+      exampleJa: "その話は引きで終わりました。"
+    },
+    {
+      en: "foreshadowing",
+      ja: "伏線",
+      type: "en-ja",
+      meaning: "後の展開を予告する描写や演出。",
+      example: "That scene was foreshadowing for the finale.",
+      exampleJa: "あのシーンはクライマックスへの伏線でした。"
+    },
+    {
+      en: "one-shot",
+      ja: "読み切り",
+      type: "en-ja",
+      meaning: "1話で完結する漫画。シリーズになっていない単発作品。",
+      example: "This is a one-shot manga.",
+      exampleJa: "これは読み切り漫画です。"
+    },
+    {
+      en: "serialization",
+      ja: "連載",
+      type: "en-ja",
+      meaning: "定期的に続きが掲載される形式の漫画。",
+      example: "The manga started serialization last year.",
+      exampleJa: "その漫画は去年から連載が始まりました。"
+    },
+    {
+      en: "panel",
+      ja: "コマ",
+      type: "en-ja",
+      meaning: "漫画の1つ1つの枠。絵が描かれた区画のこと。",
+      example: "This page has six panels.",
+      exampleJa: "このページには6つのコマがあります。"
+    },
+    {
+      en: "speech bubble",
+      ja: "吹き出し",
+      type: "en-ja",
+      meaning: "キャラクターのセリフを表す丸や楕円形の枠。",
+      example: "The speech bubble shows what the character is saying.",
+      exampleJa: "吹き出しにキャラクターのセリフが書かれています。"
+    },
+    {
+      en: "sound effect",
+      ja: "擬音語 / 効果音",
+      type: "en-ja",
+      meaning: "漫画で音を文字で表現したもの。「ドーン」「ザーザー」など。",
+      example: "Japanese manga uses a lot of sound effects.",
+      exampleJa: "日本の漫画は擬音語をよく使います。"
+    },
+    {
+      en: "chapter",
+      ja: "話 / 第〇話",
+      type: "en-ja",
+      meaning: "漫画の1回分のエピソード。",
+      example: "Chapter 1 introduces the main characters.",
+      exampleJa: "第1話では主要キャラクターが紹介されます。"
+    },
+    {
+      en: "volume",
+      ja: "単行本 / 巻",
+      type: "en-ja",
+      meaning: "複数の話をまとめた本。「1巻」「2巻」のように数える。",
+      example: "I bought the first volume of this manga.",
+      exampleJa: "この漫画の1巻を買いました。"
+    },
+    {
+      en: "splash page",
+      ja: "見開きページ",
+      type: "en-ja",
+      meaning: "2ページにまたがる大きな1枚絵のページ。",
+      example: "The battle scene was drawn as a splash page.",
+      exampleJa: "戦闘シーンは見開きページで描かれていました。"
+    },
+
+    // ---- 日本語 → 英語 ----
+    {
+      en: "manga",
+      ja: "漫画",
+      type: "ja-en",
+      meaning: "日本式のコミック・グラフィックノベル。右から左に読む縦組みが基本。",
+      example: "Manga is read from right to left.",
+      exampleJa: "漫画は右から左へ読みます。"
+    },
+    {
+      en: "chibi",
+      ja: "ちびキャラ / デフォルメ",
+      type: "ja-en",
+      meaning: "キャラクターを小さくかわいくデフォルメした描き方。",
+      example: "The artist drew a chibi version of the character.",
+      exampleJa: "作者はキャラクターのちびバージョンを描きました。"
+    },
+    {
+      en: "shonen",
+      ja: "少年漫画",
+      type: "ja-en",
+      meaning: "主に少年向けの漫画。バトル・友情・成長がテーマになることが多い。",
+      example: "This is a classic shonen manga.",
+      exampleJa: "これは定番の少年漫画です。"
+    },
+    {
+      en: "shojo",
+      ja: "少女漫画",
+      type: "ja-en",
+      meaning: "主に少女向けの漫画。恋愛・感情・人間関係がテーマになることが多い。",
+      example: "Shojo manga often focuses on romance.",
+      exampleJa: "少女漫画はロマンスを中心に描くことが多いです。"
+    },
+    {
+      en: "isekai",
+      ja: "異世界",
+      type: "ja-en",
+      meaning: "主人公が別の世界に転移・転生するジャンル。",
+      example: "Isekai stories are very popular in manga.",
+      exampleJa: "異世界ものは漫画でとても人気があります。"
+    },
+    {
+      en: "tsundere",
+      ja: "ツンデレ",
+      type: "ja-en",
+      meaning: "普段はぶっきらぼうだが、実は優しい・好意がある性格のキャラクター。",
+      example: "She is a classic tsundere character.",
+      exampleJa: "彼女は典型的なツンデレキャラです。"
+    },
+
+    // ---- 漫画用語 ----
+    {
+      en: "storyboard",
+      ja: "ネーム",
+      type: "term",
+      meaning: "漫画を描く前に作るラフな下書き。コマ割り・セリフ・構図を決める工程。英語では「storyboard」または「rough draft」とも言う。",
+      example: "She finished the storyboard for chapter 3.",
+      exampleJa: "彼女は3話のネームを完成させました。"
+    },
+    {
+      en: "inking",
+      ja: "ペン入れ / 線画",
+      type: "term",
+      meaning: "鉛筆の下書きの上にペンで線を引く工程。デジタルでは「線画」とも呼ばれる。",
+      example: "Inking takes a lot of practice.",
+      exampleJa: "ペン入れにはたくさんの練習が必要です。"
+    },
+    {
+      en: "screentone",
+      ja: "スクリーントーン / トーン",
+      type: "term",
+      meaning: "漫画の影や模様に使うドット柄のシート。デジタルでも同じ効果を使う。",
+      example: "She added screentone to the background.",
+      exampleJa: "彼女は背景にスクリーントーンを貼りました。"
+    },
+    {
+      en: "submission / pitch",
+      ja: "持ち込み",
+      type: "term",
+      meaning: "漫画家志望者が出版社に直接作品を持参して評価してもらうこと。",
+      example: "She is preparing for her manga submission.",
+      exampleJa: "彼女は漫画の持ち込みを準備しています。"
+    },
+    {
+      en: "chapter cover",
+      ja: "扉絵",
+      type: "term",
+      meaning: "各話の冒頭に描かれるカラーや白黒の見出し絵。",
+      example: "The chapter cover features the main character.",
+      exampleJa: "扉絵には主人公が描かれています。"
+    },
+    {
+      en: "honorific",
+      ja: "敬称（さん・くん・ちゃんなど）",
+      type: "term",
+      meaning: "日本語で名前の後につける敬称。英語に翻訳するとき扱いが難しい表現のひとつ。",
+      example: "Japanese honorifics are often kept in manga translations.",
+      exampleJa: "漫画の翻訳では日本語の敬称がそのまま使われることが多いです。"
+    },
+
+  ];
+
+  /* =============================================
+     以下は動作のコードです。基本的に編集不要。
+  ============================================= */
+
+  function filterWords() {
+    currentQuery = document.getElementById('searchInput').value.trim().toLowerCase();
+
+    const filtered = words.filter(w => {
+      return !currentQuery ||
+        w.en.toLowerCase().includes(currentQuery) ||
+        w.ja.includes(currentQuery) ||
+        w.meaning.includes(currentQuery);
+    });
+
+    renderWords(filtered);
+  }
+
+  function renderWords(list) {
+    const container = document.getElementById('wordList');
+    const noResult = document.getElementById('noResult');
+    const countEl = document.getElementById('resultCount');
+
+    if (list.length === 0) {
+      container.innerHTML = '';
+      noResult.style.display = 'block';
+      document.getElementById('noResultWord').textContent = currentQuery;
+      countEl.textContent = '';
+      return;
+    }
+
+    noResult.style.display = 'none';
+    countEl.textContent = list.length + '件';
+
+    container.innerHTML = list.map((w, i) => {
+      const example = w.example
+        ? `<p class="word-example">${w.example}<span>${w.exampleJa || ''}</span></p>`
+        : '';
+      return `
+        <div class="word-card" onclick="toggleCard(this)">
+          <div class="word-header">
+            <span class="word-en">${w.en}</span>
+            ${w.ja ? `<span class="word-ja">${w.ja}</span>` : ''}
+
+          </div>
+          <div class="word-detail">
+            ${w.meaning}
+            ${example}
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function toggleCard(el) {
+    el.classList.toggle('open');
+  }
+
+  /* 初期表示 */
+  filterWords();
+</script>
+
+</body>
+</html>
