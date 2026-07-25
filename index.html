@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Azalea72の創作部屋 | オリジナル漫画・イラスト</title>
+<title>Azaleaの創作部屋 | オリジナル漫画・イラスト</title>
 <link rel="icon" href="witch-cover.jpg" type="image/jpeg">
 <link rel="apple-touch-icon" href="witch-cover.jpg">
 <meta name="description" content="漫画家志望のAzalea72（アザレアななじゅうに）の創作サイト。オリジナル漫画・イラストを公開中。持ち込み用漫画制作中。">
@@ -147,7 +147,7 @@
 
   /* ★ キャラクターヘッダーバナー（スマホ専用・縦長表示） ★ */
   .hero-banner {
-    display: none; /* PCでは非表示 */
+    display: block;
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -155,14 +155,24 @@
     border-bottom: 2px solid rgba(201,146,42,0.3);
   }
 
-  .hero-banner img {
+  .hero-banner img.banner-pc {
     width: 100%;
-    height: auto;
-    max-height: none;
-    object-fit: contain;
+    max-height: 460px;
+    object-fit: cover;
     object-position: center top;
     display: block;
   }
+  .hero-banner img.banner-sp {
+    display: none;
+  }
+
+
+
+
+
+
+
+
 
   /* 下部に金のグラデーションフェード */
   .hero-banner::after {
@@ -465,7 +475,8 @@
 
     .nav-links.active { display: flex; }
 
-    .hero-banner { display: block; }
+    .hero-banner img.banner-pc { display: none; }
+    .hero-banner img.banner-sp { display: block; }
     .hero-banner img { max-height: none; }
     .slide-item { width: 130px; }
     .page-links { grid-template-columns: 1fr; }
@@ -493,7 +504,8 @@
 
 <!-- ★ キャラクターヘッダーバナー ★ -->
 <div class="hero-banner">
-  <img src="witch-cover.jpg" alt="Azalea72のキャラクターイラスト" loading="eager">
+  <img class="banner-pc" src="websitewitchcover.jpg" alt="Azalea72のキャラクターイラスト" loading="eager">
+  <img class="banner-sp" src="witch-cover.jpg" alt="Azalea72のキャラクターイラスト" loading="eager">
   <div class="hero-banner-caption">
     <span>Azalea72's Creative Room</span>
   </div>
@@ -536,13 +548,6 @@
 
       <div class="slider-window" role="region" aria-label="漫画スライダー">
         <div class="slider-track" id="sliderTrack">
-
-          <div class="slide-item">
-            <a href="manga12-1.html" title="オリジナル漫画 No.11">
-              <div class="slide-frame"><img src="汗かき女子と鬘男子_001.jpg" alt="オリジナル漫画 No.12" loading="lazy" width="160" height="213"></div>
-            </a>
-            <p class="slide-number">No. 12</p>
-          </div>
 
           <div class="slide-item">
             <a href="manga11-1.html" title="オリジナル漫画 No.11">
