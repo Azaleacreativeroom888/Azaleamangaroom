@@ -159,7 +159,7 @@
     width: 100%;
     max-height: 460px;
     object-fit: cover;
-    object-position: center top;
+    object-position: center center;
     display: block;
   }
   .hero-banner img.banner-sp {
@@ -476,7 +476,7 @@
     .nav-links.active { display: flex; }
 
     .hero-banner img.banner-pc { display: none; }
-    .hero-banner img.banner-sp { display: block; }
+    .hero-banner img.banner-sp { display: block; width: 100%; height: auto; max-width: 100%; object-fit: contain; }
     .hero-banner img { max-height: none; }
     .slide-item { width: 130px; }
     .page-links { grid-template-columns: 1fr; }
@@ -548,13 +548,6 @@
 
       <div class="slider-window" role="region" aria-label="漫画スライダー">
         <div class="slider-track" id="sliderTrack">
-
-          <div class="slide-item">
-            <a href="manga12-1.html" title="オリジナル漫画 No.11">
-              <div class="slide-frame"><img src="汗かき女子と鬘男子_001.jpg" alt="オリジナル漫画 No.11" loading="lazy" width="160" height="213"></div>
-            </a>
-            <p class="slide-number">No. 12</p>
-          </div>
 
           <div class="slide-item">
             <a href="manga11-1.html" title="オリジナル漫画 No.11">
