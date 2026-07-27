@@ -11,8 +11,6 @@
 <meta name="author" content="Azalea72">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://azaleacreativeroom888.github.io/Azaleamangaroom/">
-
-<!-- OGP -->
 <meta property="og:title" content="Azalea72の創作部屋🌸" />
 <meta property="og:description" content="漫画家志望のAzalea72のオリジナル漫画・イラスト創作サイト。持ち込み用漫画制作中！" />
 <meta property="og:image" content="https://azaleacreativeroom888.github.io/Azaleamangaroom/witch-cover.jpg" />
@@ -20,14 +18,10 @@
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="Azaleaの創作部屋" />
 <meta property="og:locale" content="ja_JP" />
-
-<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Azalea72の創作部屋🌸">
 <meta name="twitter:description" content="漫画家志望のAzalea72のオリジナル漫画・イラスト創作サイト。持ち込み用漫画制作中！">
 <meta name="twitter:image" content="https://azaleacreativeroom888.github.io/Azaleamangaroom/witch-cover.jpg">
-
-<!-- 構造化データ -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -35,15 +29,10 @@
   "name": "Azalea72の創作部屋",
   "url": "https://azaleacreativeroom888.github.io/Azaleamangaroom/",
   "description": "漫画家志望のAzalea72（アザレアななじゅうに）のオリジナル漫画・イラスト創作サイト",
-  "author": {
-    "@type": "Person",
-    "name": "Azalea72",
-    "alternateName": "アザレアななじゅうに"
-  },
+  "author": { "@type": "Person", "name": "Azalea72", "alternateName": "アザレアななじゅうに" },
   "inLanguage": "ja"
 }
 </script>
-
 <meta name="google-site-verification" content="0c3XVY1lM5VqZHuWOtfF5lbEjrFSJyUmFg2IcGc7eSo" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,10 +52,7 @@
     background-image:
       radial-gradient(ellipse at 20% 20%, rgba(42,24,14,0.8) 0%, transparent 60%),
       radial-gradient(ellipse at 80% 80%, rgba(45,26,74,0.4) 0%, transparent 60%),
-      repeating-linear-gradient(
-        45deg, transparent, transparent 40px,
-        rgba(201,146,42,0.03) 40px, rgba(201,146,42,0.03) 41px
-      );
+      repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(201,146,42,0.03) 40px, rgba(201,146,42,0.03) 41px);
     background-attachment: fixed;
     color: #e8d5a3;
     min-height: 100vh;
@@ -145,69 +131,111 @@
     border: none;
   }
 
-  /* ★ キャラクターヘッダーバナー（スマホ専用・縦長表示） ★ */
+  /* ★ ヘッダーバナー ★ */
   .hero-banner {
-    display: block;
-    width: 100%;
     position: relative;
+    width: 100%;
     overflow: hidden;
     background: #0f0a06;
     border-bottom: 2px solid rgba(201,146,42,0.3);
   }
 
-  .hero-banner img.banner-pc {
+  /* PC画像 */
+  .hero-banner .banner-pc {
+    display: block;
     width: 100%;
-    max-height: 460px;
+    max-height: 500px;
     object-fit: cover;
     object-position: center center;
-    display: block;
   }
-  .hero-banner img.banner-sp {
+
+  /* SP画像 */
+  .hero-banner .banner-sp {
     display: none;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center top;
   }
 
-
-
-
-
-
-
-
-
-  /* 下部に金のグラデーションフェード */
+  /* 下部グラデーション */
   .hero-banner::after {
     content: '';
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    height: 90px;
+    height: 140px;
     background: linear-gradient(to bottom, transparent, #1a0e08);
     pointer-events: none;
-  }
-
-  /* バナー上にサイト名を重ねる（オプション） */
-  .hero-banner-caption {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
     z-index: 1;
-    white-space: nowrap;
   }
 
-  .hero-banner-caption span {
-    font-family: 'Cinzel', serif;
-    font-size: 12px;
-    color: rgba(232,192,96,0.7);
-    letter-spacing: 4px;
-    text-shadow: 0 0 12px rgba(0,0,0,0.8);
-    text-transform: uppercase;
+  /* ★ オーバーレイテキスト ★ */
+  .banner-overlay {
+    position: absolute;
+    bottom: 28px;
+    left: 0; right: 0;
+    z-index: 2;
+    text-align: center;
+    padding: 0 24px;
   }
 
-  /* ヒーローセクション */
+  .banner-overlay-text {
+    display: inline-block;
+    font-size: 15px;
+    line-height: 2.1;
+    letter-spacing: 1px;
+
+    /* ★ 黄金グラデーション文字 ★ */
+    background: linear-gradient(
+      90deg,
+      #8a6010 0%,
+      #c9922a 20%,
+      #f0d060 40%,
+      #ffe890 50%,
+      #f0d060 60%,
+      #c9922a 80%,
+      #8a6010 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    /* ★ キラキラ流れるアニメーション ★ */
+    animation: goldShine 3s linear infinite;
+
+    /* テキストシャドウは -webkit-text-fill-color:transparent と併用できないので
+       drop-shadow filterで代用 */
+    filter: drop-shadow(0 0 8px rgba(240,200,80,0.55));
+  }
+
+  @keyframes goldShine {
+    0%   { background-position: 200% center; }
+    100% { background-position: -200% center; }
+  }
+
+  /* ★ 星のキラキラ（疑似要素で追加） ★ */
+  .banner-overlay-text::before {
+    content: '✦ ';
+    animation: twinkle 1.8s ease-in-out infinite;
+    display: inline-block;
+  }
+
+  .banner-overlay-text::after {
+    content: ' ✦';
+    animation: twinkle 1.8s ease-in-out infinite 0.9s;
+    display: inline-block;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50%       { opacity: 1;   transform: scale(1.2); }
+  }
+
+  /* ヒーローセクション（バナー下のテキストエリア） */
   .hero {
     text-align: center;
-    padding: 48px 24px 36px;
+    padding: 40px 24px 28px;
     position: relative;
   }
 
@@ -221,8 +249,7 @@
   }
 
   .hero-seal {
-    width: 72px;
-    height: 72px;
+    width: 72px; height: 72px;
     margin: 0 auto 18px;
     animation: rotateSeal 20s linear infinite;
   }
@@ -233,7 +260,7 @@
   }
 
   .hero-greeting {
-    font-size: 14px;
+    font-size: 13px;
     color: #a89060;
     letter-spacing: 1px;
     line-height: 2;
@@ -304,8 +331,7 @@
   .section-title::after {
     content: '';
     display: block;
-    width: 60px;
-    height: 1px;
+    width: 60px; height: 1px;
     background: var(--gold);
     margin: 10px auto 0;
   }
@@ -321,9 +347,7 @@
     color: var(--gold-light);
     font-size: 22px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     transition: all 0.3s;
     user-select: none;
   }
@@ -339,8 +363,7 @@
   .slider-window { overflow: hidden; flex: 1; }
 
   .slider-track {
-    display: flex;
-    gap: 12px;
+    display: flex; gap: 12px;
     transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
@@ -349,22 +372,17 @@
 
   .slide-frame {
     border: 2px solid rgba(201,146,42,0.35);
-    border-radius: 3px;
-    overflow: hidden;
-    position: relative;
-    background: #1a0e08;
-    transition: all 0.3s;
-    aspect-ratio: 3/4;
+    border-radius: 3px; overflow: hidden;
+    position: relative; background: #1a0e08;
+    transition: all 0.3s; aspect-ratio: 3/4;
   }
 
   .slide-frame::before {
     content: '';
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     border-radius: 2px;
     border: 1px solid rgba(201,146,42,0.1);
-    z-index: 1;
-    pointer-events: none;
+    z-index: 1; pointer-events: none;
   }
 
   .slide-item:hover .slide-frame {
@@ -382,12 +400,9 @@
   .slide-item:hover .slide-frame img { transform: scale(1.04); }
 
   .slide-number {
-    text-align: center;
-    font-size: 11px;
-    color: #7a6040;
-    margin-top: 6px;
-    letter-spacing: 2px;
-    font-family: 'Cinzel', serif;
+    text-align: center; font-size: 11px;
+    color: #7a6040; margin-top: 6px;
+    letter-spacing: 2px; font-family: 'Cinzel', serif;
   }
 
   /* ページリンク */
@@ -401,57 +416,44 @@
   }
 
   .page-link-card {
-    display: block;
-    text-decoration: none;
+    display: block; text-decoration: none;
     background: linear-gradient(135deg, rgba(26,48,32,0.6), rgba(15,26,40,0.4));
     border: 1px solid rgba(201,146,42,0.25);
-    border-radius: 4px;
-    padding: 14px 16px;
-    transition: all 0.3s;
-    color: #c8b88a;
-    font-size: 13px;
-    letter-spacing: 0.5px;
+    border-radius: 4px; padding: 14px 16px;
+    transition: all 0.3s; color: #c8b88a;
+    font-size: 13px; letter-spacing: 0.5px;
   }
 
   .page-link-card:hover {
     border-color: rgba(201,146,42,0.6);
     background: linear-gradient(135deg, rgba(42,72,53,0.7), rgba(30,40,60,0.5));
-    color: var(--gold-light);
-    transform: translateX(4px);
+    color: var(--gold-light); transform: translateX(4px);
   }
 
   .page-link-card .link-icon { display: block; font-size: 18px; margin-bottom: 4px; }
   .page-link-card .link-label { display: block; font-weight: 600; color: var(--gold-light); margin-bottom: 2px; }
   .page-link-card .link-desc { display: block; font-size: 11px; color: #7a6040; line-height: 1.5; }
 
-  /* カウンター */
   .counter-area { text-align: center; padding: 20px; margin-bottom: 20px; }
 
-  /* フッター */
   .footer-notice {
     background: rgba(26,48,32,0.4);
     border-top: 1px solid rgba(201,146,42,0.2);
-    padding: 24px;
-    text-align: center;
+    padding: 24px; text-align: center;
   }
 
   .footer-notice p {
-    font-size: 11px;
-    color: #6a5840;
-    line-height: 1.9;
-    max-width: 800px;
+    font-size: 11px; color: #6a5840;
+    line-height: 1.9; max-width: 800px;
     margin: 0 auto 8px;
   }
 
-  /* ドット */
   .slider-dots { display: flex; justify-content: center; gap: 6px; margin-top: 16px; }
 
   .dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
+    width: 8px; height: 8px; border-radius: 50%;
     background: rgba(201,146,42,0.25);
-    cursor: pointer;
-    transition: background 0.3s;
+    cursor: pointer; transition: background 0.3s;
     border: none; padding: 0;
   }
 
@@ -459,28 +461,27 @@
 
   @media (max-width: 768px) {
     .menu-toggle { display: block; }
-
     .nav-links {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 56px; right: 0;
-      width: 200px;
-      background: #0f2018;
+      display: none; flex-direction: column;
+      position: absolute; top: 56px; right: 0;
+      width: 200px; background: #0f2018;
       border: 1px solid rgba(201,146,42,0.3);
-      border-radius: 0 0 8px 8px;
-      padding: 12px;
+      border-radius: 0 0 8px 8px; padding: 12px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
-
     .nav-links.active { display: flex; }
 
-    .hero-banner img.banner-pc { display: none; }
-    .hero-banner img.banner-sp { display: block; width: 100%; height: auto; max-width: 100%; object-fit: contain; }
-    .hero-banner img { max-height: none; }
+    /* スマホ：PC画像非表示、SP画像表示 */
+    .hero-banner .banner-pc { display: none; }
+    .hero-banner .banner-sp { display: block; }
+
+    /* スマホではオーバーレイを小さく */
+    .banner-overlay-text { font-size: 11px; line-height: 1.9; }
+    .banner-overlay { bottom: 16px; }
+
     .slide-item { width: 130px; }
     .page-links { grid-template-columns: 1fr; }
-    .hero { padding: 36px 16px 28px; }
+    .hero { padding: 28px 16px 20px; }
   }
 </style>
 </head>
@@ -502,12 +503,20 @@
   </div>
 </nav>
 
-<!-- ★ キャラクターヘッダーバナー ★ -->
+<!-- ヘッダーバナー -->
 <div class="hero-banner">
   <img class="banner-pc" src="websitewitchcover.jpg" alt="Azalea72のキャラクターイラスト" loading="eager">
   <img class="banner-sp" src="witch-cover.jpg" alt="Azalea72のキャラクターイラスト" loading="eager">
-  <div class="hero-banner-caption">
-    <span>Azalea72's Creative Room</span>
+
+  <!-- ★ オーバーレイテキスト ★ -->
+  <div class="banner-overlay">
+    <span class="banner-overlay-text">
+      こんにちは！オリジナル漫画を中心に創作している<br>
+      Azalea72（アザレアななじゅうに）です。<br>
+      このサイトでは私の漫画やイラスト、ブログなどを紹介しています🎨<br>
+      漫画には一切のAIを使用していません。<br>
+      いろいろな人に見てほしいと思いこのウェブサイトを制作しました。
+    </span>
   </div>
 </div>
 
@@ -521,13 +530,7 @@
     </svg>
 
     <p class="hero-greeting">
-      こんにちは！オリジナル漫画を中心に創作している<br>
-      Azalea72（アザレアななじゅうに）です。<br>
-      このサイトでは私の漫画やイラスト、ブログなどを紹介しています🎨<br>
-      漫画には一切のAIを使用していません。<br>
-      いろいろな人に見てほしいと思いこのウェブサイトを制作しました。<br>
-      このサイトはオリジナル作品のみで、二次創作はリンクからpixivをご覧ください。
-      <br>
+      このサイトはオリジナル作品のみで、二次創作はリンクからpixivをご覧ください。<br>
       初めての方は⇒ <strong><a href="about.html">自己紹介</a></strong> をどうぞ。
     </p>
 
@@ -550,72 +553,43 @@
         <div class="slider-track" id="sliderTrack">
 
           <div class="slide-item">
-            <a href="manga11-1.html" title="オリジナル漫画 No.11">
-              <div class="slide-frame"><img src="manga11-page1.jpg" alt="オリジナル漫画 No.11" loading="lazy" width="160" height="213"></div>
-            </a>
+            <a href="manga11-1.html"><div class="slide-frame"><img src="manga11-page1.jpg" alt="No.11" loading="lazy" width="160" height="213"></div></a>
             <p class="slide-number">No. 11</p>
           </div>
-
           <div class="slide-item">
-            <a href="manga4-1.html" title="オリジナル漫画 No.04">
-              <div class="slide-frame"><img src="manga4-thumb.jpg" alt="オリジナル漫画 No.04" loading="lazy" width="160" height="213"></div>
-            </a>
+            <a href="manga4-1.html"><div class="slide-frame"><img src="manga4-thumb.jpg" alt="No.04" loading="lazy" width="160" height="213"></div></a>
             <p class="slide-number">No. 04</p>
           </div>
-
           <div class="slide-item">
-            <a href="manga7-1.html" title="オリジナル漫画 No.07">
-              <div class="slide-frame"><img src="manga7-page1.jpg" alt="オリジナル漫画 No.07" loading="lazy" width="160" height="213"></div>
-            </a>
+            <a href="manga7-1.html"><div class="slide-frame"><img src="manga7-page1.jpg" alt="No.07" loading="lazy" width="160" height="213"></div></a>
             <p class="slide-number">No. 07</p>
           </div>
-
           <div class="slide-item">
-            <a href="manga1-1.html" title="オリジナル漫画 No.01">
-              <div class="slide-frame"><img src="manga1-thumb.jpg" alt="オリジナル漫画 No.01" loading="lazy" width="160" height="213"></div>
-            </a>
+            <a href="manga1-1.html"><div class="slide-frame"><img src="manga1-thumb.jpg" alt="No.01" loading="lazy" width="160" height="213"></div></a>
             <p class="slide-number">No. 01</p>
           </div>
-
           <div class="slide-item">
-            <a href="manga2-1.html" title="オリジナル漫画 No.02">
-              <div class="slide-frame"><img src="illust12.jpg" alt="オリジナル漫画 No.02" loading="lazy" width="160" height="213"></div>
-            </a>
+            <a href="manga2-1.html"><div class="slide-frame"><img src="illust12.jpg" alt="No.02" loading="lazy" width="160" height="213"></div></a>
             <p class="slide-number">No. 02</p>
           </div>
-
           <div class="slide-item">
-            <a href="manga9-1.html" title="オリジナル漫画 No.09">
-              <div class="slide-frame"><img src="manga9-page1.jpg" alt="オリジナル漫画 No.09" loading="lazy" width="160" height="213"></div>
-            </a>
+            <a href="manga9-1.html"><div class="slide-frame"><img src="manga9-page1.jpg" alt="No.09" loading="lazy" width="160" height="213"></div></a>
             <p class="slide-number">No. 09</p>
           </div>
-
           <div class="slide-item">
-            <a href="manga3-1.html" title="オリジナル漫画 No.03">
-              <div class="slide-frame"><img src="manga3-thumb.jpg" alt="オリジナル漫画 No.03" loading="lazy" width="160" height="213"></div>
-            </a>
+            <a href="manga3-1.html"><div class="slide-frame"><img src="manga3-thumb.jpg" alt="No.03" loading="lazy" width="160" height="213"></div></a>
             <p class="slide-number">No. 03</p>
           </div>
-
           <div class="slide-item">
-            <a href="manga8-1.html" title="オリジナル漫画 No.08">
-              <div class="slide-frame"><img src="manga8-page1.jpg" alt="オリジナル漫画 No.08" loading="lazy" width="160" height="213"></div>
-            </a>
+            <a href="manga8-1.html"><div class="slide-frame"><img src="manga8-page1.jpg" alt="No.08" loading="lazy" width="160" height="213"></div></a>
             <p class="slide-number">No. 08</p>
           </div>
-
           <div class="slide-item">
-            <a href="manga5-1.html" title="オリジナル漫画 No.05">
-              <div class="slide-frame"><img src="manga5-page1.jpg" alt="オリジナル漫画 No.05" loading="lazy" width="160" height="213"></div>
-            </a>
+            <a href="manga5-1.html"><div class="slide-frame"><img src="manga5-page1.jpg" alt="No.05" loading="lazy" width="160" height="213"></div></a>
             <p class="slide-number">No. 05</p>
           </div>
-
           <div class="slide-item">
-            <a href="manga6-1.html" title="オリジナル漫画 No.06">
-              <div class="slide-frame"><img src="manga6-page1.jpg" alt="オリジナル漫画 No.06" loading="lazy" width="160" height="213"></div>
-            </a>
+            <a href="manga6-1.html"><div class="slide-frame"><img src="manga6-page1.jpg" alt="No.06" loading="lazy" width="160" height="213"></div></a>
             <p class="slide-number">No. 06</p>
           </div>
 
@@ -698,189 +672,70 @@
 
 <style>
   #survey-bubble {
-    position: fixed;
-    bottom: 28px; right: 28px;
-    width: 56px; height: 56px;
-    border-radius: 50%;
+    position: fixed; bottom: 28px; right: 28px;
+    width: 56px; height: 56px; border-radius: 50%;
     background: linear-gradient(135deg, #1a3020, #2a4835);
     border: 2px solid var(--gold);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 999;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; cursor: pointer; z-index: 999;
     box-shadow: 0 4px 20px rgba(0,0,0,0.5), 0 0 16px rgba(201,146,42,0.3);
     transition: transform 0.2s, box-shadow 0.2s;
     animation: bubblePop 0.5s cubic-bezier(0.34,1.56,0.64,1) 1.5s both;
   }
-
   @keyframes bubblePop {
     from { transform: scale(0); opacity: 0; }
     to   { transform: scale(1); opacity: 1; }
   }
-
   #survey-bubble:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 24px rgba(0,0,0,0.5), 0 0 22px rgba(201,146,42,0.45);
   }
-
   #bubble-badge {
-    position: absolute;
-    top: -3px; right: -3px;
-    width: 16px; height: 16px;
-    border-radius: 50%;
-    background: #c9922a;
-    border: 2px solid #1a0e08;
-    display: none;
+    position: absolute; top: -3px; right: -3px;
+    width: 16px; height: 16px; border-radius: 50%;
+    background: #c9922a; border: 2px solid #1a0e08; display: none;
   }
-
   #survey-window {
-    position: fixed;
-    bottom: 96px; right: 28px;
-    width: 320px;
-    max-height: 440px;
-    background: #12100e;
-    border: 1px solid rgba(201,146,42,0.45);
+    position: fixed; bottom: 96px; right: 28px;
+    width: 320px; max-height: 440px;
+    background: #12100e; border: 1px solid rgba(201,146,42,0.45);
     border-radius: 12px;
     box-shadow: 0 8px 40px rgba(0,0,0,0.7), 0 0 20px rgba(201,146,42,0.15);
-    z-index: 998;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    transform: scale(0.85) translateY(20px);
-    opacity: 0;
-    pointer-events: none;
+    z-index: 998; display: flex; flex-direction: column; overflow: hidden;
+    transform: scale(0.85) translateY(20px); opacity: 0; pointer-events: none;
     transform-origin: bottom right;
     transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s;
   }
-
-  #survey-window.open {
-    transform: scale(1) translateY(0);
-    opacity: 1;
-    pointer-events: all;
-  }
-
+  #survey-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
   #survey-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex; justify-content: space-between; align-items: center;
     padding: 14px 16px;
     background: linear-gradient(135deg, #0f2018, #1a3020);
-    border-bottom: 1px solid rgba(201,146,42,0.3);
-    flex-shrink: 0;
+    border-bottom: 1px solid rgba(201,146,42,0.3); flex-shrink: 0;
   }
-
-  #survey-title {
-    font-family: 'Cinzel', serif;
-    font-size: 12px;
-    color: var(--gold-light);
-    letter-spacing: 1.5px;
-  }
-
-  #survey-close {
-    background: none; border: none;
-    color: #7a6040; font-size: 14px;
-    cursor: pointer; transition: color 0.2s; line-height: 1;
-  }
-
+  #survey-title { font-family: 'Cinzel', serif; font-size: 12px; color: var(--gold-light); letter-spacing: 1.5px; }
+  #survey-close { background: none; border: none; color: #7a6040; font-size: 14px; cursor: pointer; transition: color 0.2s; line-height: 1; }
   #survey-close:hover { color: var(--gold-light); }
-
-  #survey-body {
-    flex: 1; overflow-y: auto;
-    padding: 14px;
-    display: flex; flex-direction: column; gap: 10px;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(201,146,42,0.2) transparent;
-  }
-
+  #survey-body { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px; scrollbar-width: thin; scrollbar-color: rgba(201,146,42,0.2) transparent; }
   #chat-log { display: flex; flex-direction: column; gap: 10px; }
-
-  .chat-msg {
-    display: flex; gap: 8px; align-items: flex-end;
-    animation: msgIn 0.3s ease;
-  }
-
-  @keyframes msgIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .chat-avatar {
-    width: 28px; height: 28px; border-radius: 50%;
-    background: linear-gradient(135deg, #1a3020, #2a4835);
-    border: 1px solid rgba(201,146,42,0.35);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px; flex-shrink: 0;
-  }
-
-  .chat-bubble {
-    background: linear-gradient(135deg, rgba(26,48,32,0.85), rgba(20,24,40,0.75));
-    border: 1px solid rgba(201,146,42,0.2);
-    border-radius: 12px 12px 12px 2px;
-    padding: 9px 12px;
-    font-size: 12.5px; color: #c8b070;
-    line-height: 1.75; max-width: 210px;
-  }
-
+  .chat-msg { display: flex; gap: 8px; align-items: flex-end; animation: msgIn 0.3s ease; }
+  @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .chat-avatar { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #1a3020, #2a4835); border: 1px solid rgba(201,146,42,0.35); display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+  .chat-bubble { background: linear-gradient(135deg, rgba(26,48,32,0.85), rgba(20,24,40,0.75)); border: 1px solid rgba(201,146,42,0.2); border-radius: 12px 12px 12px 2px; padding: 9px 12px; font-size: 12.5px; color: #c8b070; line-height: 1.75; max-width: 210px; }
   .chat-msg.user-msg { flex-direction: row-reverse; }
-
-  .chat-msg.user-msg .chat-bubble {
-    background: linear-gradient(135deg, rgba(42,26,74,0.65), rgba(30,20,55,0.75));
-    border-color: rgba(201,146,42,0.3);
-    border-radius: 12px 12px 2px 12px;
-    color: var(--gold-light);
-  }
-
-  #survey-input-area {
-    display: flex; flex-direction: column; gap: 7px;
-    margin-top: 4px; flex-shrink: 0;
-  }
-
+  .chat-msg.user-msg .chat-bubble { background: linear-gradient(135deg, rgba(42,26,74,0.65), rgba(30,20,55,0.75)); border-color: rgba(201,146,42,0.3); border-radius: 12px 12px 2px 12px; color: var(--gold-light); }
+  #survey-input-area { display: flex; flex-direction: column; gap: 7px; margin-top: 4px; flex-shrink: 0; }
   .survey-btn-row { display: flex; gap: 5px; }
-
-  .survey-btn {
-    flex: 1; padding: 9px 4px;
-    background: rgba(10,8,4,0.6);
-    border: 1px solid rgba(201,146,42,0.28);
-    border-radius: 6px;
-    color: #a89060;
-    font-size: 14px; font-family: 'Cinzel', serif; font-weight: 600;
-    cursor: pointer; transition: all 0.2s; text-align: center;
-  }
-
-  .survey-btn:hover, .survey-btn.selected {
-    background: rgba(201,146,42,0.15);
-    border-color: var(--gold); color: var(--gold-light);
-  }
-
-  .survey-send-btn {
-    padding: 9px;
-    background: linear-gradient(135deg, rgba(42,72,53,0.85), rgba(26,48,32,0.9));
-    border: 1px solid rgba(201,146,42,0.4);
-    border-radius: 6px;
-    color: var(--gold-light);
-    font-size: 13px; font-family: 'Noto Serif JP', serif;
-    cursor: pointer; transition: all 0.25s; letter-spacing: 1px;
-  }
-
-  .survey-send-btn:hover {
-    border-color: var(--gold);
-    box-shadow: 0 0 10px rgba(201,146,42,0.2);
-  }
-
+  .survey-btn { flex: 1; padding: 9px 4px; background: rgba(10,8,4,0.6); border: 1px solid rgba(201,146,42,0.28); border-radius: 6px; color: #a89060; font-size: 14px; font-family: 'Cinzel', serif; font-weight: 600; cursor: pointer; transition: all 0.2s; text-align: center; }
+  .survey-btn:hover, .survey-btn.selected { background: rgba(201,146,42,0.15); border-color: var(--gold); color: var(--gold-light); }
+  .survey-send-btn { padding: 9px; background: linear-gradient(135deg, rgba(42,72,53,0.85), rgba(26,48,32,0.9)); border: 1px solid rgba(201,146,42,0.4); border-radius: 6px; color: var(--gold-light); font-size: 13px; font-family: 'Noto Serif JP', serif; cursor: pointer; transition: all 0.25s; letter-spacing: 1px; }
+  .survey-send-btn:hover { border-color: var(--gold); box-shadow: 0 0 10px rgba(201,146,42,0.2); }
   .survey-send-btn:disabled { opacity: 0.35; cursor: not-allowed; }
-
-  @media (max-width: 400px) {
-    #survey-window { width: calc(100vw - 40px); right: 20px; }
-    #survey-bubble { right: 20px; bottom: 20px; }
-  }
+  @media (max-width: 400px) { #survey-window { width: calc(100vw - 40px); right: 20px; } #survey-bubble { right: 20px; bottom: 20px; } }
 </style>
 
 <script>
-  function toggleMenu() {
-    document.getElementById('navLinks').classList.toggle('active');
-  }
+  function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
 
   const ITEM_WIDTH = 172;
   let currentIndex = 0;
@@ -891,13 +746,8 @@
   const nextBtn = document.getElementById('nextBtn');
   const dotsEl = document.getElementById('dots');
 
-  function getVisible() {
-    return Math.max(1, Math.floor(document.querySelector('.slider-window').offsetWidth / ITEM_WIDTH));
-  }
-
-  function getMaxIndex() {
-    return Math.max(0, totalItems - getVisible());
-  }
+  function getVisible() { return Math.max(1, Math.floor(document.querySelector('.slider-window').offsetWidth / ITEM_WIDTH)); }
+  function getMaxIndex() { return Math.max(0, totalItems - getVisible()); }
 
   function buildDots() {
     dotsEl.innerHTML = '';
@@ -915,9 +765,7 @@
 
   function updateDots() {
     const page = Math.floor(currentIndex / Math.max(1, getVisible()));
-    dotsEl.querySelectorAll('.dot').forEach((d, i) => {
-      d.classList.toggle('active', i === page);
-    });
+    dotsEl.querySelectorAll('.dot').forEach((d, i) => { d.classList.toggle('active', i === page); });
   }
 
   function goTo(idx) {
@@ -928,34 +776,20 @@
     updateDots();
   }
 
-  function moveSlider(dir) {
-    goTo(currentIndex + dir * getVisible());
-  }
+  function moveSlider(dir) { goTo(currentIndex + dir * getVisible()); }
 
-  buildDots();
-  goTo(0);
-
-  window.addEventListener('resize', () => {
-    buildDots();
-    goTo(Math.min(currentIndex, getMaxIndex()));
-  });
+  buildDots(); goTo(0);
+  window.addEventListener('resize', () => { buildDots(); goTo(Math.min(currentIndex, getMaxIndex())); });
 
   // アンケート
-  let surveyOpen = false;
-  let selectedRating = null;
-  let surveyDone = false;
-
-  setTimeout(() => {
-    if (!surveyDone) document.getElementById('bubble-badge').style.display = 'block';
-  }, 3500);
+  let surveyOpen = false, selectedRating = null, surveyDone = false;
+  setTimeout(() => { if (!surveyDone) document.getElementById('bubble-badge').style.display = 'block'; }, 3500);
 
   function toggleSurvey() {
     surveyOpen = !surveyOpen;
     document.getElementById('survey-window').classList.toggle('open', surveyOpen);
     document.getElementById('bubble-badge').style.display = 'none';
-    if (surveyOpen && document.getElementById('chat-log').children.length === 0) {
-      startSurvey();
-    }
+    if (surveyOpen && document.getElementById('chat-log').children.length === 0) startSurvey();
   }
 
   function startSurvey() {
@@ -971,17 +805,7 @@
     const wrap = document.createElement('div');
     wrap.className = 'chat-msg';
     wrap.innerHTML = '<div class="chat-avatar">🌸</div><div class="chat-bubble">' + html + '</div>';
-    log.appendChild(wrap);
-    log.scrollTop = log.scrollHeight;
-  }
-
-  function addUserMsg(text) {
-    const log = document.getElementById('chat-log');
-    const wrap = document.createElement('div');
-    wrap.className = 'chat-msg user-msg';
-    wrap.innerHTML = '<div class="chat-avatar">👤</div><div class="chat-bubble">' + text + '</div>';
-    log.appendChild(wrap);
-    log.scrollTop = log.scrollHeight;
+    log.appendChild(wrap); log.scrollTop = log.scrollHeight;
   }
 
   function showRatingButtons() {
@@ -996,31 +820,24 @@
     sendBtn.onclick = submitRating;
     [1,2,3,4,5].forEach(n => {
       const btn = document.createElement('button');
-      btn.className = 'survey-btn';
-      btn.textContent = n;
-      btn.onclick = () => {
-        selectedRating = n;
-        row.querySelectorAll('.survey-btn').forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-        sendBtn.disabled = false;
-      };
+      btn.className = 'survey-btn'; btn.textContent = n;
+      btn.onclick = () => { selectedRating = n; row.querySelectorAll('.survey-btn').forEach(b => b.classList.remove('selected')); btn.classList.add('selected'); sendBtn.disabled = false; };
       row.appendChild(btn);
     });
-    area.appendChild(row);
-    area.appendChild(sendBtn);
+    area.appendChild(row); area.appendChild(sendBtn);
   }
 
   async function submitRating() {
     if (!selectedRating) return;
     document.getElementById('survey-input-area').innerHTML = '';
-    addUserMsg('★'.repeat(selectedRating) + '&nbsp;&nbsp;' + selectedRating + ' / 5');
+    const log = document.getElementById('chat-log');
+    const wrap = document.createElement('div');
+    wrap.className = 'chat-msg user-msg';
+    wrap.innerHTML = '<div class="chat-avatar">👤</div><div class="chat-bubble">★'.repeat(selectedRating) + '&nbsp;&nbsp;' + selectedRating + ' / 5</div>';
+    log.appendChild(wrap); log.scrollTop = log.scrollHeight;
     surveyDone = true;
     try {
-      await fetch('https://formspree.io/f/maqvpvoz', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ rating: selectedRating, _subject: '【アンケート】漫画の評価' })
-      });
+      await fetch('https://formspree.io/f/maqvpvoz', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify({ rating: selectedRating, _subject: '【アンケート】漫画の評価' }) });
     } catch(e) {}
     const replies = ['ありがとうございます！😊', '感想、うれしいです🌸', 'これからも創作続けます。また読んでね！'];
     let i = 0;
