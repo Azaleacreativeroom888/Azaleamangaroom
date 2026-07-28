@@ -3,848 +3,738 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Azaleaの創作部屋 | オリジナル漫画・イラスト</title>
-<link rel="icon" href="witch-cover.jpg" type="image/jpeg">
-<link rel="apple-touch-icon" href="witch-cover.jpg">
-<meta name="description" content="漫画家志望のAzalea72（アザレアななじゅうに）の創作サイト。オリジナル漫画・イラストを公開中。持ち込み用漫画制作中。">
-<meta name="keywords" content="オリジナル漫画, 漫画, イラスト, 創作, 漫画家志望, Azalea72, アザレア">
-<meta name="author" content="Azalea72">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://azaleacreativeroom888.github.io/Azaleamangaroom/">
-<meta property="og:title" content="Azalea72の創作部屋🌸" />
-<meta property="og:description" content="漫画家志望のAzalea72のオリジナル漫画・イラスト創作サイト。持ち込み用漫画制作中！" />
-<meta property="og:image" content="https://azaleacreativeroom888.github.io/Azaleamangaroom/witch-cover.jpg" />
-<meta property="og:url" content="https://azaleacreativeroom888.github.io/Azaleamangaroom/" />
-<meta property="og:type" content="website"/>
-<meta property="og:site_name" content="Azaleaの創作部屋" />
-<meta property="og:locale" content="ja_JP" />
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Azalea72の創作部屋🌸">
-<meta name="twitter:description" content="漫画家志望のAzalea72のオリジナル漫画・イラスト創作サイト。持ち込み用漫画制作中！">
-<meta name="twitter:image" content="https://azaleacreativeroom888.github.io/Azaleamangaroom/witch-cover.jpg">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Azalea72の創作部屋",
-  "url": "https://azaleacreativeroom888.github.io/Azaleamangaroom/",
-  "description": "漫画家志望のAzalea72（アザレアななじゅうに）のオリジナル漫画・イラスト創作サイト",
-  "author": { "@type": "Person", "name": "Azalea72", "alternateName": "アザレアななじゅうに" },
-  "inLanguage": "ja"
-}
-</script>
-<meta name="google-site-verification" content="0c3XVY1lM5VqZHuWOtfF5lbEjrFSJyUmFg2IcGc7eSo" />
+<title>灯台日誌 | Toudai Nisshi</title>
+<meta name="description" content="誰かが見ているから、今日も灯を灯す。公開型やることリスト。">
+<meta name="robots" content="noai, noimageai">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --gold: #c9922a;
-    --gold-light: #e8c060;
-    --ink-bg: #1a0e08;
+  :root{
+    --ink:#0d1424;
+    --ink-panel:#161f38;
+    --ink-panel-2:#1c2745;
+    --lantern:#e8a94c;
+    --lantern-dim:#8a6a37;
+    --moon:#f4efe3;
+    --teal:#3c6e6a;
+    --ember:#c0563a;
+    --mist:#8b93ac;
+    --hair:rgba(244,239,227,0.12);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--moon);
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Shippori Mincho', serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:.02em;
+  }
+  .mono{font-family:'JetBrains Mono', monospace;}
+  a{color:var(--lantern);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:70vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+    padding:2rem 1.5rem;
+    background:
+      radial-gradient(ellipse 60% 45% at 50% 0%, rgba(232,169,76,0.10), transparent 70%),
+      linear-gradient(180deg, #0a0f1c 0%, #0d1424 60%, #0d1424 100%);
+  }
+  .beam-wrap{
+    position:absolute;
+    top:-10%;
+    left:50%;
+    width:1px; height:1px;
+    transform:translateX(-50%);
+    pointer-events:none;
+  }
+  .beam{
+    position:absolute;
+    top:0; left:0;
+    width:2600px; height:2600px;
+    margin-left:-1300px;
+    background:conic-gradient(from 0deg,
+      transparent 0deg,
+      rgba(232,169,76,0.14) 6deg,
+      transparent 16deg,
+      transparent 360deg);
+    animation:sweep 9s linear infinite;
+    filter:blur(1px);
+  }
+  @keyframes sweep{ to{ transform:rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce){ .beam{ animation:none; } }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:.72rem;
+    letter-spacing:.28em;
+    text-transform:uppercase;
+    color:var(--mist);
+    margin-bottom:1.4rem;
+    z-index:1;
+  }
+  .hero h1{
+    font-size:clamp(2.1rem, 6vw, 3.4rem);
+    z-index:1;
+    color:var(--moon);
+  }
+  .hero h1 span{ color:var(--lantern); }
+  .hero p.lead{
+    z-index:1;
+    max-width:34em;
+    color:var(--mist);
+    margin-top:1.2rem;
+    font-size:1.02rem;
+  }
+  .streak-badge{
+    z-index:1;
+    margin-top:2.2rem;
+    display:inline-flex;
+    align-items:baseline;
+    gap:.5rem;
+    padding:.9rem 1.6rem;
+    border:1px solid var(--hair);
+    border-radius:2px;
+    background:rgba(22,31,56,0.6);
+    backdrop-filter:blur(6px);
+  }
+  .streak-badge .num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:1.9rem;
+    color:var(--lantern);
+    font-weight:700;
+  }
+  .streak-badge .label{
+    font-size:.85rem;
+    color:var(--mist);
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'Noto Serif JP', 'メイリオ', serif;
-    background-color: var(--ink-bg);
-    background-image:
-      radial-gradient(ellipse at 20% 20%, rgba(42,24,14,0.8) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 80%, rgba(45,26,74,0.4) 0%, transparent 60%),
-      repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(201,146,42,0.03) 40px, rgba(201,146,42,0.03) 41px);
-    background-attachment: fixed;
-    color: #e8d5a3;
-    min-height: 100vh;
+  /* ---------- SECTIONS ---------- */
+  section{
+    max-width:900px;
+    margin:0 auto;
+    padding:5rem 1.5rem;
   }
-
-  /* ナビ */
-  .navbar {
-    background: linear-gradient(135deg, #0f2018 0%, #1a3020 50%, #0f1a28 100%);
-    border-bottom: 2px solid var(--gold);
-    padding: 0 24px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 20px rgba(201,146,42,0.3), 0 0 40px rgba(201,146,42,0.1);
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:.9rem;
+    margin-bottom:.6rem;
+    border-bottom:1px solid var(--hair);
+    padding-bottom:1rem;
   }
-
-  .navbar-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 0;
-    position: relative;
+  .section-head .no{
+    font-family:'JetBrains Mono', monospace;
+    color:var(--lantern-dim);
+    font-size:.85rem;
   }
+  .section-head h2{ font-size:1.5rem; }
+  .section-sub{ color:var(--mist); font-size:.9rem; margin-top:.8rem; margin-bottom:2rem;}
 
-  .navbar h1 a {
-    font-family: 'Cinzel', serif;
-    font-size: 20px;
-    color: var(--gold-light);
-    text-decoration: none;
-    letter-spacing: 2px;
-    text-shadow: 0 0 12px rgba(201,146,42,0.6);
+  /* ---------- MATRIX (Excel-style table) ---------- */
+  .matrix-toolbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:1rem;
   }
-
-  .nav-links { display: flex; gap: 4px; }
-
-  .nav-links a {
-    color: #c8b88a;
-    text-decoration: none;
-    font-size: 13px;
-    padding: 6px 12px;
-    border: 1px solid transparent;
-    border-radius: 3px;
-    transition: all 0.3s;
-    letter-spacing: 0.5px;
-    position: relative;
+  .matrix-toolbar .nav-btns{ display:flex; gap:.4rem; }
+  .nav-btn{
+    background:var(--ink-panel);
+    border:1px solid var(--hair);
+    color:var(--moon);
+    width:2rem; height:2rem;
+    border-radius:2px;
+    cursor:pointer;
+    font-size:.85rem;
   }
+  .nav-btn:hover{ border-color:var(--lantern); color:var(--lantern); }
+  .nav-btn:disabled{ opacity:.3; cursor:not-allowed; }
+  .matrix-range{ font-size:.78rem; color:var(--mist); }
 
-  .nav-links a::before {
-    content: '✦';
-    position: absolute;
-    left: 4px; top: 50%;
-    transform: translateY(-50%);
-    font-size: 7px;
-    opacity: 0;
-    color: var(--gold);
-    transition: opacity 0.3s;
+  .matrix-wrap{
+    overflow-x:auto;
+    border:1px solid var(--hair);
+    border-radius:3px;
   }
-
-  .nav-links a:hover {
-    color: var(--gold-light);
-    border-color: rgba(201,146,42,0.4);
-    background: rgba(201,146,42,0.08);
-    padding-left: 18px;
+  table.matrix{
+    border-collapse:collapse;
+    width:100%;
+    min-width:640px;
   }
-
-  .nav-links a:hover::before { opacity: 1; }
-
-  .menu-toggle {
-    display: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: var(--gold-light);
-    background: none;
-    border: none;
+  table.matrix th, table.matrix td{
+    border:1px solid var(--hair);
+    text-align:center;
+    padding:0;
   }
-
-  /* ★ ヘッダーバナー ★ */
-  .hero-banner {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    background: #0f0a06;
-    border-bottom: 2px solid rgba(201,146,42,0.3);
+  table.matrix thead th{
+    background:var(--ink-panel);
+    font-family:'JetBrains Mono', monospace;
+    font-weight:500;
+    font-size:.68rem;
+    color:var(--mist);
+    padding:.5rem .2rem;
+    line-height:1.3;
+    white-space:nowrap;
   }
-
-  /* PC画像 */
-  .hero-banner .banner-pc {
-    display: block;
-    width: 100%;
-    max-height: 500px;
-    object-fit: cover;
-    object-position: center center;
+  table.matrix thead th.today{ color:var(--lantern); }
+  table.matrix thead th.task-col-head{
+    text-align:left;
+    padding-left:1rem;
+    position:sticky; left:0;
+    background:var(--ink-panel);
+    z-index:2;
   }
-
-  /* SP画像 */
-  .hero-banner .banner-sp {
-    display: none;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-    object-position: center top;
+  table.matrix td.task-col{
+    text-align:left;
+    padding:.7rem 1rem;
+    font-size:.9rem;
+    position:sticky; left:0;
+    background:var(--ink);
+    z-index:1;
+    white-space:nowrap;
+    max-width:220px;
+    overflow:hidden;
+    text-overflow:ellipsis;
   }
-
-  /* 下部グラデーション */
-  .hero-banner::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 140px;
-    background: linear-gradient(to bottom, transparent, #1a0e08);
-    pointer-events: none;
-    z-index: 1;
+  table.matrix td.task-col .row-flex{
+    display:flex; align-items:center; justify-content:space-between; gap:.5rem;
   }
-
-  /* ★ オーバーレイテキスト ★ */
-  .banner-overlay {
-    position: absolute;
-    bottom: 28px;
-    left: 0; right: 0;
-    z-index: 2;
-    text-align: center;
-    padding: 0 24px;
+  table.matrix td.task-col .del-btn{
+    flex:none;
+    background:none; border:none;
+    color:var(--mist);
+    cursor:pointer;
+    font-size:.72rem;
+    opacity:.4;
   }
-
-  .banner-overlay-text {
-    display: inline-block;
-    font-size: 15px;
-    line-height: 2.1;
-    letter-spacing: 1px;
-
-    /* ★ 黄金グラデーション文字 ★ */
-    background: linear-gradient(
-      90deg,
-      #8a6010 0%,
-      #c9922a 20%,
-      #f0d060 40%,
-      #ffe890 50%,
-      #f0d060 60%,
-      #c9922a 80%,
-      #8a6010 100%
-    );
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-
-    /* ★ キラキラ流れるアニメーション ★ */
-    animation: goldShine 3s linear infinite;
-
-    /* テキストシャドウは -webkit-text-fill-color:transparent と併用できないので
-       drop-shadow filterで代用 */
-    filter: drop-shadow(0 0 8px rgba(240,200,80,0.55));
+  table.matrix td.task-col .del-btn:hover{ opacity:1; color:var(--ember); }
+  table.matrix tbody tr:nth-child(odd) td.task-col{ background:var(--ink); }
+  table.matrix tbody tr:nth-child(even) td.task-col{ background:#0f1729; }
+  table.matrix td.mark-cell{ width:2.6rem; height:2.6rem; }
+  .mark-btn{
+    width:1.15rem; height:1.15rem;
+    border-radius:50%;
+    border:1.5px solid var(--lantern-dim);
+    background:transparent;
+    cursor:pointer;
+    transition:all .2s ease;
   }
-
-  @keyframes goldShine {
-    0%   { background-position: 200% center; }
-    100% { background-position: -200% center; }
+  .mark-btn:hover{ border-color:var(--lantern); }
+  .mark-btn.on{
+    background:var(--lantern);
+    border-color:var(--lantern);
+    box-shadow:0 0 8px 1px rgba(232,169,76,0.5);
   }
+  .mark-btn:disabled{ cursor:default; }
+  .matrix-empty{ padding:2rem 1rem; color:var(--mist); font-size:.9rem; text-align:center; }
 
-  /* ★ 星のキラキラ（疑似要素で追加） ★ */
-  .banner-overlay-text::before {
-    content: '✦ ';
-    animation: twinkle 1.8s ease-in-out infinite;
-    display: inline-block;
+  .add-row{
+    display:flex; gap:.6rem; margin-top:1.4rem;
   }
-
-  .banner-overlay-text::after {
-    content: ' ✦';
-    animation: twinkle 1.8s ease-in-out infinite 0.9s;
-    display: inline-block;
+  .add-row input[type=text]{
+    flex:1;
+    background:var(--ink-panel);
+    border:1px solid var(--hair);
+    color:var(--moon);
+    padding:.75rem .9rem;
+    border-radius:2px;
+    font-family:inherit;
+    font-size:.95rem;
   }
-
-  @keyframes twinkle {
-    0%, 100% { opacity: 0.3; transform: scale(0.8); }
-    50%       { opacity: 1;   transform: scale(1.2); }
+  .add-row input[type=text]:focus{ outline:2px solid var(--lantern); outline-offset:1px; }
+  button.primary{
+    background:var(--lantern);
+    color:#1a1200;
+    border:none;
+    padding:.75rem 1.3rem;
+    border-radius:2px;
+    font-weight:700;
+    cursor:pointer;
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-size:.92rem;
   }
+  button.primary:hover{ filter:brightness(1.08); }
+  button.primary:disabled{ opacity:.4; cursor:not-allowed; }
 
-  /* ヒーローセクション（バナー下のテキストエリア） */
-  .hero {
-    text-align: center;
-    padding: 40px 24px 28px;
-    position: relative;
+  /* ---------- BLOG ---------- */
+  .blog-compose{ display:none; margin-bottom:2rem; }
+  .blog-compose.open{ display:block; }
+  .blog-compose textarea{
+    width:100%;
+    background:var(--ink-panel);
+    border:1px solid var(--hair);
+    color:var(--moon);
+    padding:.8rem .9rem;
+    border-radius:2px;
+    font-family:inherit;
+    font-size:.95rem;
+    resize:vertical;
+    margin-bottom:.7rem;
   }
-
-  .hero::before {
-    content: '';
-    display: block;
-    width: 200px;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 0 auto 28px;
+  .blog-compose textarea:focus{ outline:2px solid var(--lantern); outline-offset:1px; }
+  .blog-list{ list-style:none; margin:0; padding:0; }
+  .blog-list li{
+    padding:1.2rem 0;
+    border-bottom:1px solid var(--hair);
   }
-
-  .hero-seal {
-    width: 72px; height: 72px;
-    margin: 0 auto 18px;
-    animation: rotateSeal 20s linear infinite;
+  .blog-list li:last-child{ border-bottom:none; }
+  .blog-date{
+    font-family:'JetBrains Mono', monospace;
+    font-size:.72rem;
+    color:var(--lantern-dim);
+    display:block;
+    margin-bottom:.4rem;
   }
+  .blog-text{ font-size:.96rem; white-space:pre-wrap; }
+  .blog-empty{ color:var(--mist); font-size:.9rem; padding:1.5rem 0; }
 
-  @keyframes rotateSeal {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
+  /* ---------- CHEER FORM ---------- */
+  .cheer-panel{
+    background:var(--ink-panel);
+    border:1px solid var(--hair);
+    padding:2rem;
+    border-radius:3px;
   }
-
-  .hero-greeting {
-    font-size: 13px;
-    color: #a89060;
-    letter-spacing: 1px;
-    line-height: 2;
-    max-width: 600px;
-    margin: 0 auto 16px;
+  .cheer-panel textarea, .cheer-panel input[type=text]{
+    width:100%;
+    background:var(--ink);
+    border:1px solid var(--hair);
+    color:var(--moon);
+    padding:.75rem .9rem;
+    border-radius:2px;
+    font-family:inherit;
+    font-size:.95rem;
+    margin-bottom:.9rem;
+    resize:vertical;
   }
+  .cheer-panel textarea:focus, .cheer-panel input[type=text]:focus{ outline:2px solid var(--lantern); outline-offset:1px; }
+  .cheer-sent{ display:none; color:var(--lantern); font-size:.9rem; margin-top:.9rem; }
 
-  .hero-greeting strong a {
-    color: var(--gold-light);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(201,146,42,0.4);
-    transition: border-color 0.3s;
+  /* ---------- ADMIN ---------- */
+  .admin-fab{
+    position:fixed;
+    right:1.2rem; bottom:1.2rem;
+    width:2.6rem; height:2.6rem;
+    border-radius:50%;
+    background:var(--ink-panel);
+    border:1px solid var(--hair);
+    color:var(--mist);
+    font-size:1rem;
+    cursor:pointer;
+    z-index:20;
   }
-
-  .hero-greeting strong a:hover { border-color: var(--gold-light); }
-
-  .hero-notice {
-    display: inline-block;
-    background: linear-gradient(135deg, rgba(201,146,42,0.15), rgba(201,146,42,0.05));
-    border: 1px solid rgba(201,146,42,0.5);
-    border-radius: 4px;
-    padding: 10px 24px;
-    font-size: 13px;
-    color: var(--gold-light);
-    margin-top: 16px;
-    letter-spacing: 1px;
+  .admin-fab:hover{ color:var(--lantern); border-color:var(--lantern); }
+  .admin-panel{
+    display:none;
+    position:fixed;
+    right:1.2rem; bottom:4.4rem;
+    width:min(280px, 80vw);
+    background:var(--ink-panel-2);
+    border:1px solid var(--hair);
+    padding:1.2rem;
+    border-radius:4px;
+    z-index:20;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
   }
-
-  .hero-notice::before { content: '📜 '; }
-
-  .divider {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    max-width: 600px;
-    margin: 32px auto;
-    padding: 0 24px;
+  .admin-panel.open{ display:block; }
+  .admin-panel input{
+    width:100%;
+    background:var(--ink);
+    border:1px solid var(--hair);
+    color:var(--moon);
+    padding:.6rem .7rem;
+    border-radius:2px;
+    margin-bottom:.6rem;
+    font-family:inherit;
   }
+  .admin-panel small{ color:var(--mist); display:block; margin-top:.5rem; font-size:.72rem; }
+  .admin-status{ font-size:.75rem; margin-top:.5rem; }
+  .admin-status.on{ color:var(--lantern); }
+  .admin-status.off{ color:var(--ember); }
 
-  .divider-line {
-    flex: 1; height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(201,146,42,0.5));
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid var(--hair);
+    padding:3rem 1.5rem 4rem;
+    text-align:center;
+    color:var(--mist);
+    font-size:.82rem;
   }
-
-  .divider-line.right {
-    background: linear-gradient(90deg, rgba(201,146,42,0.5), transparent);
-  }
-
-  .divider-star { color: var(--gold); font-size: 16px; letter-spacing: 4px; }
-
-  /* スライダー */
-  .manga-section {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 24px 48px;
-  }
-
-  .section-title {
-    font-family: 'Cinzel', serif;
-    text-align: center;
-    font-size: 13px;
-    color: #a89060;
-    letter-spacing: 4px;
-    margin-bottom: 24px;
-    text-transform: uppercase;
-  }
-
-  .section-title::after {
-    content: '';
-    display: block;
-    width: 60px; height: 1px;
-    background: var(--gold);
-    margin: 10px auto 0;
-  }
-
-  .slider-wrapper { display: flex; align-items: center; gap: 12px; }
-
-  .slider-btn {
-    flex-shrink: 0;
-    width: 44px; height: 80px;
-    background: linear-gradient(135deg, rgba(42,72,53,0.8), rgba(26,48,32,0.9));
-    border: 1px solid rgba(201,146,42,0.4);
-    border-radius: 4px;
-    color: var(--gold-light);
-    font-size: 22px;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.3s;
-    user-select: none;
-  }
-
-  .slider-btn:hover {
-    background: linear-gradient(135deg, rgba(60,100,70,0.9), rgba(42,72,53,0.9));
-    border-color: var(--gold);
-    box-shadow: 0 0 12px rgba(201,146,42,0.3);
-  }
-
-  .slider-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-
-  .slider-window { overflow: hidden; flex: 1; }
-
-  .slider-track {
-    display: flex; gap: 12px;
-    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  .slide-item { flex-shrink: 0; width: 160px; }
-  .slide-item a { display: block; text-decoration: none; }
-
-  .slide-frame {
-    border: 2px solid rgba(201,146,42,0.35);
-    border-radius: 3px; overflow: hidden;
-    position: relative; background: #1a0e08;
-    transition: all 0.3s; aspect-ratio: 3/4;
-  }
-
-  .slide-frame::before {
-    content: '';
-    position: absolute; inset: 0;
-    border-radius: 2px;
-    border: 1px solid rgba(201,146,42,0.1);
-    z-index: 1; pointer-events: none;
-  }
-
-  .slide-item:hover .slide-frame {
-    border-color: var(--gold);
-    box-shadow: 0 0 16px rgba(201,146,42,0.35), 0 4px 20px rgba(0,0,0,0.5);
-    transform: translateY(-3px);
-  }
-
-  .slide-frame img {
-    width: 100%; height: 100%;
-    object-fit: cover; display: block;
-    transition: transform 0.4s;
-  }
-
-  .slide-item:hover .slide-frame img { transform: scale(1.04); }
-
-  .slide-number {
-    text-align: center; font-size: 11px;
-    color: #7a6040; margin-top: 6px;
-    letter-spacing: 2px; font-family: 'Cinzel', serif;
-  }
-
-  /* ページリンク */
-  .page-links {
-    max-width: 700px;
-    margin: 0 auto;
-    padding: 0 24px 48px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  .page-link-card {
-    display: block; text-decoration: none;
-    background: linear-gradient(135deg, rgba(26,48,32,0.6), rgba(15,26,40,0.4));
-    border: 1px solid rgba(201,146,42,0.25);
-    border-radius: 4px; padding: 14px 16px;
-    transition: all 0.3s; color: #c8b88a;
-    font-size: 13px; letter-spacing: 0.5px;
-  }
-
-  .page-link-card:hover {
-    border-color: rgba(201,146,42,0.6);
-    background: linear-gradient(135deg, rgba(42,72,53,0.7), rgba(30,40,60,0.5));
-    color: var(--gold-light); transform: translateX(4px);
-  }
-
-  .page-link-card .link-icon { display: block; font-size: 18px; margin-bottom: 4px; }
-  .page-link-card .link-label { display: block; font-weight: 600; color: var(--gold-light); margin-bottom: 2px; }
-  .page-link-card .link-desc { display: block; font-size: 11px; color: #7a6040; line-height: 1.5; }
-
-  .counter-area { text-align: center; padding: 20px; margin-bottom: 20px; }
-
-  .footer-notice {
-    background: rgba(26,48,32,0.4);
-    border-top: 1px solid rgba(201,146,42,0.2);
-    padding: 24px; text-align: center;
-  }
-
-  .footer-notice p {
-    font-size: 11px; color: #6a5840;
-    line-height: 1.9; max-width: 800px;
-    margin: 0 auto 8px;
-  }
-
-  .slider-dots { display: flex; justify-content: center; gap: 6px; margin-top: 16px; }
-
-  .dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: rgba(201,146,42,0.25);
-    cursor: pointer; transition: background 0.3s;
-    border: none; padding: 0;
-  }
-
-  .dot.active { background: rgba(201,146,42,0.9); }
-
-  @media (max-width: 768px) {
-    .menu-toggle { display: block; }
-    .nav-links {
-      display: none; flex-direction: column;
-      position: absolute; top: 56px; right: 0;
-      width: 200px; background: #0f2018;
-      border: 1px solid rgba(201,146,42,0.3);
-      border-radius: 0 0 8px 8px; padding: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    }
-    .nav-links.active { display: flex; }
-
-    /* スマホ：PC画像非表示、SP画像表示 */
-    .hero-banner .banner-pc { display: none; }
-    .hero-banner .banner-sp { display: block; }
-
-    /* スマホではオーバーレイを小さく */
-    .banner-overlay-text { font-size: 11px; line-height: 1.9; }
-    .banner-overlay { bottom: 16px; }
-
-    .slide-item { width: 130px; }
-    .page-links { grid-template-columns: 1fr; }
-    .hero { padding: 28px 16px 20px; }
-  }
+  footer a{ color:var(--mist); text-decoration:underline; text-underline-offset:3px; }
+  footer a:hover{ color:var(--lantern); }
+  footer .links{ margin-bottom:1.4rem; display:flex; gap:1.4rem; justify-content:center; flex-wrap:wrap; }
+  footer .ai-notice{ font-size:.72rem; opacity:.6; max-width:32em; margin:0 auto; }
 </style>
 </head>
-
 <body>
 
-<nav class="navbar">
-  <div class="navbar-inner">
-    <h1><a href="index.html">✦ Azalea72の創作部屋 ✦</a></h1>
-    <button class="menu-toggle" onclick="toggleMenu()" aria-label="メニューを開く">☰</button>
-    <nav class="nav-links" id="navLinks" aria-label="メインナビゲーション">
-      <a href="news.html">最新情報</a>
-      <a href="manga.html">漫画</a>
-      <a href="blog.html">ブログ</a>
-      <a href="about.html">自己紹介</a>
-      <a href="contact.html">リンク</a>
-      <a href="https://azaleacreativeroom888.github.io/fan-english/">English</a>
-    </nav>
-  </div>
-</nav>
-
-<!-- ヘッダーバナー -->
-<div class="hero-banner">
-  <img class="banner-pc" src="websitewitchcover.jpg" alt="Azalea72のキャラクターイラスト" loading="eager">
-  <img class="banner-sp" src="witch-cover.jpg" alt="Azalea72のキャラクターイラスト" loading="eager">
-
-  <!-- ★ オーバーレイテキスト ★ -->
-  <div class="banner-overlay">
-    <span class="banner-overlay-text">
-      こんにちは！オリジナル漫画を中心に創作している<br>
-      Azalea72（アザレアななじゅうに）です。<br>
-      このサイトでは私の漫画やイラスト、ブログなどを紹介しています🎨<br>
-      漫画には一切のAIを使用していません。<br>
-      いろいろな人に見てほしいと思いこのウェブサイトを制作しました。
-    </span>
+<div class="hero">
+  <div class="beam-wrap"><div class="beam"></div></div>
+  <div class="eyebrow">TOUDAI NISSHI — 灯台日誌</div>
+  <h1>誰かが見ているから、<br><span>今日も灯を灯す。</span></h1>
+  <p class="lead">これは公開型のやることリストです。タスクをこなすたびに表へ〇を付けていきます。その記録は誰でも見ることができます。</p>
+  <div class="streak-badge">
+    <span class="num mono" id="streak-num">0</span>
+    <span class="label">日連続で灯り続けています</span>
   </div>
 </div>
 
-<main>
-  <section class="hero" aria-label="サイト紹介">
-    <svg class="hero-seal" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <circle cx="40" cy="40" r="36" fill="none" stroke="rgba(201,146,42,0.4)" stroke-width="1"/>
-      <circle cx="40" cy="40" r="30" fill="rgba(201,146,42,0.06)" stroke="rgba(201,146,42,0.3)" stroke-width="0.5"/>
-      <polygon points="40,12 44,28 60,28 47,37 52,53 40,44 28,53 33,37 20,28 36,28" fill="none" stroke="rgba(201,146,42,0.6)" stroke-width="1"/>
-      <circle cx="40" cy="40" r="5" fill="rgba(201,146,42,0.3)" stroke="rgba(201,146,42,0.7)" stroke-width="0.5"/>
-    </svg>
+<section id="matrix-section">
+  <div class="section-head"><span class="no mono">01</span><h2>灯りの表</h2></div>
+  <p class="section-sub">縦がタスク、横が日付です。こなした日に〇を付けます。〇の追加・編集は管理者のみです。</p>
 
-    <p class="hero-greeting">
-      このサイトはオリジナル作品のみで、二次創作はリンクからpixivをご覧ください。<br>
-      初めての方は⇒ <strong><a href="about.html">自己紹介</a></strong> をどうぞ。
-    </p>
-
-    <p class="hero-notice">持ち込み用漫画、制作中です！</p>
-  </section>
-
-  <div class="divider" aria-hidden="true">
-    <div class="divider-line"></div>
-    <span class="divider-star">✦✦✦</span>
-    <div class="divider-line right"></div>
-  </div>
-
-  <section class="manga-section" aria-label="漫画一覧">
-    <h2 class="section-title">— 画像をクリックして漫画を読む —</h2>
-
-    <div class="slider-wrapper">
-      <button class="slider-btn" id="prevBtn" onclick="moveSlider(-1)" aria-label="前へ">‹</button>
-
-      <div class="slider-window" role="region" aria-label="漫画スライダー">
-        <div class="slider-track" id="sliderTrack">
-
-          <div class="slide-item">
-            <a href="manga11-1.html"><div class="slide-frame"><img src="manga11-page1.jpg" alt="No.11" loading="lazy" width="160" height="213"></div></a>
-            <p class="slide-number">No. 11</p>
-          </div>
-          <div class="slide-item">
-            <a href="manga4-1.html"><div class="slide-frame"><img src="manga4-thumb.jpg" alt="No.04" loading="lazy" width="160" height="213"></div></a>
-            <p class="slide-number">No. 04</p>
-          </div>
-          <div class="slide-item">
-            <a href="manga7-1.html"><div class="slide-frame"><img src="manga7-page1.jpg" alt="No.07" loading="lazy" width="160" height="213"></div></a>
-            <p class="slide-number">No. 07</p>
-          </div>
-          <div class="slide-item">
-            <a href="manga1-1.html"><div class="slide-frame"><img src="manga1-thumb.jpg" alt="No.01" loading="lazy" width="160" height="213"></div></a>
-            <p class="slide-number">No. 01</p>
-          </div>
-          <div class="slide-item">
-            <a href="manga2-1.html"><div class="slide-frame"><img src="illust12.jpg" alt="No.02" loading="lazy" width="160" height="213"></div></a>
-            <p class="slide-number">No. 02</p>
-          </div>
-          <div class="slide-item">
-            <a href="manga9-1.html"><div class="slide-frame"><img src="manga9-page1.jpg" alt="No.09" loading="lazy" width="160" height="213"></div></a>
-            <p class="slide-number">No. 09</p>
-          </div>
-          <div class="slide-item">
-            <a href="manga3-1.html"><div class="slide-frame"><img src="manga3-thumb.jpg" alt="No.03" loading="lazy" width="160" height="213"></div></a>
-            <p class="slide-number">No. 03</p>
-          </div>
-          <div class="slide-item">
-            <a href="manga8-1.html"><div class="slide-frame"><img src="manga8-page1.jpg" alt="No.08" loading="lazy" width="160" height="213"></div></a>
-            <p class="slide-number">No. 08</p>
-          </div>
-          <div class="slide-item">
-            <a href="manga5-1.html"><div class="slide-frame"><img src="manga5-page1.jpg" alt="No.05" loading="lazy" width="160" height="213"></div></a>
-            <p class="slide-number">No. 05</p>
-          </div>
-          <div class="slide-item">
-            <a href="manga6-1.html"><div class="slide-frame"><img src="manga6-page1.jpg" alt="No.06" loading="lazy" width="160" height="213"></div></a>
-            <p class="slide-number">No. 06</p>
-          </div>
-
-        </div>
-      </div>
-
-      <button class="slider-btn" id="nextBtn" onclick="moveSlider(1)" aria-label="次へ">›</button>
+  <div class="matrix-toolbar">
+    <div class="nav-btns">
+      <button class="nav-btn" id="prev-week">◀</button>
+      <button class="nav-btn" id="next-week" disabled>▶</button>
     </div>
-
-    <div class="slider-dots" id="dots" role="tablist" aria-label="ページ選択"></div>
-  </section>
-
-  <div class="divider" aria-hidden="true">
-    <div class="divider-line"></div>
-    <span class="divider-star">✦</span>
-    <div class="divider-line right"></div>
+    <span class="matrix-range mono" id="matrix-range"></span>
   </div>
 
-  <nav class="page-links" aria-label="各ページへのリンク">
-    <a class="page-link-card" href="news.html">
-      <span class="link-icon">📰</span>
-      <span class="link-label">最新情報</span>
-      <span class="link-desc">漫画に関する最新のお知らせ</span>
-    </a>
-    <a class="page-link-card" href="manga.html">
-      <span class="link-icon">📖</span>
-      <span class="link-label">漫画</span>
-      <span class="link-desc">最新の漫画を読む</span>
-    </a>
-    <a class="page-link-card" href="blog.html">
-      <span class="link-icon">✒️</span>
-      <span class="link-label">ブログ</span>
-      <span class="link-desc">日々の気づきや思いを綴っています</span>
-    </a>
-    <a class="page-link-card" href="about.html">
-      <span class="link-icon">🌸</span>
-      <span class="link-label">自己紹介</span>
-      <span class="link-desc">作者Azalea72について</span>
-    </a>
-    <a class="page-link-card" href="contact.html">
-      <span class="link-icon">🔗</span>
-      <span class="link-label">リンク</span>
-      <span class="link-desc">各種SNS・連絡先</span>
-    </a>
-    <a class="page-link-card" href="https://azaleacreativeroom888.github.io/fan-english/">
-      <span class="link-icon">🌏</span>
-      <span class="link-label">English</span>
-      <span class="link-desc">English translated manga (in progress)</span>
-    </a>
-  </nav>
-</main>
+  <div class="matrix-wrap">
+    <table class="matrix" id="matrix-table">
+      <thead><tr id="matrix-head-row"></tr></thead>
+      <tbody id="matrix-body"><tr><td class="matrix-empty">読み込み中…</td></tr></tbody>
+    </table>
+  </div>
 
-<div class="counter-area">
-  <script language="javascript" type="text/javascript" src="//counter1.fc2.com/counter.php?id=40461671&main=1"></script>
-  <noscript><img src="//counter1.fc2.com/counter_img.php?id=40461671&main=1" alt="アクセスカウンター"></noscript>
+  <div class="add-row" id="add-row" style="display:none;">
+    <input type="text" id="new-task-input" placeholder="新しいタスクを入力…" maxlength="60">
+    <button class="primary" id="add-task-btn">追加</button>
+  </div>
+</section>
+
+<section id="blog">
+  <div class="section-head"><span class="no mono">02</span><h2>灯台だより</h2></div>
+  <p class="section-sub">思ったことを、日付だけつけて残す場所です。</p>
+
+  <div class="blog-compose" id="blog-compose">
+    <textarea id="blog-input" rows="3" placeholder="今日のひとこと…" maxlength="400"></textarea>
+    <button class="primary" id="blog-post-btn">投稿する</button>
+  </div>
+
+  <ul class="blog-list" id="blog-list"><li class="blog-empty">読み込み中…</li></ul>
+</section>
+
+<section id="cheer">
+  <div class="section-head"><span class="no mono">03</span><h2>応援メッセージ</h2></div>
+  <p class="section-sub">見ているよ、というひとことを送ってください。それだけで灯は消えにくくなります。</p>
+  <div class="cheer-panel">
+    <form id="cheer-form">
+      <input type="text" name="name" placeholder="お名前（任意）" maxlength="30">
+      <textarea name="message" rows="3" placeholder="応援メッセージ…" maxlength="300" required></textarea>
+      <button class="primary" type="submit">送る</button>
+      <div class="cheer-sent" id="cheer-sent">灯りが少し強くなりました。ありがとうございます。</div>
+    </form>
+  </div>
+</section>
+
+<button class="admin-fab" id="admin-fab" title="管理者ログイン">🔒</button>
+<div class="admin-panel" id="admin-panel">
+  <input type="password" id="admin-pass" placeholder="合言葉">
+  <button class="primary" id="admin-login-btn" style="width:100%;">ログイン</button>
+  <div class="admin-status off" id="admin-status">未ログイン</div>
+  <small>表への〇の記入・タスクの追加削除・ブログ投稿は合言葉でロック解除された状態のみ有効です。</small>
 </div>
 
-<footer class="footer-notice">
-  <p>ご案内：当サイトに掲載されている画像・文章・作品について、個人のAI学習への利用、トレース（トレパク）、無断転載を禁止します。当サイト内の作品・文章について、悪意のあるスクリーンショットの転載は禁止および無断引用はご遠慮ください。</p>
-  <p>information: Please refrain from using any images, text, or works on this website for AI training, tracing, unauthorized reproduction, redistribution, or secondary use. Screenshots and unauthorized quotations of the content on this website are not allowed.</p>
-  <p style="margin-top:8px; font-size:10px; color:#4a3820;">© 2024 Azalea72 All Rights Reserved.</p>
+<footer>
+  <div class="links">
+    <a href="https://azaleacreativeroom888.github.io/" target="_blank" rel="noopener">Azalea Creative Room</a>
+    <a href="https://azaleacreativeroom888.github.io/links.html" target="_blank" rel="noopener">Links</a>
+  </div>
+  <p class="ai-notice">This site and its content are not to be used for AI training purposes. / このサイトのコンテンツをAI学習目的で使用することを禁じます。</p>
 </footer>
 
-<!-- アンケート小窓 -->
-<div id="survey-bubble" onclick="toggleSurvey()" aria-label="アンケートを開く">
-  <span id="bubble-icon">🌸</span>
-  <span id="bubble-badge"></span>
-</div>
-
-<div id="survey-window" aria-live="polite">
-  <div id="survey-header">
-    <span id="survey-title">✦ Azaleaへのアンケート</span>
-    <button id="survey-close" onclick="toggleSurvey()" aria-label="閉じる">✕</button>
-  </div>
-  <div id="survey-body">
-    <div id="chat-log"></div>
-    <div id="survey-input-area"></div>
-  </div>
-</div>
-
-<style>
-  #survey-bubble {
-    position: fixed; bottom: 28px; right: 28px;
-    width: 56px; height: 56px; border-radius: 50%;
-    background: linear-gradient(135deg, #1a3020, #2a4835);
-    border: 2px solid var(--gold);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px; cursor: pointer; z-index: 999;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5), 0 0 16px rgba(201,146,42,0.3);
-    transition: transform 0.2s, box-shadow 0.2s;
-    animation: bubblePop 0.5s cubic-bezier(0.34,1.56,0.64,1) 1.5s both;
-  }
-  @keyframes bubblePop {
-    from { transform: scale(0); opacity: 0; }
-    to   { transform: scale(1); opacity: 1; }
-  }
-  #survey-bubble:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 24px rgba(0,0,0,0.5), 0 0 22px rgba(201,146,42,0.45);
-  }
-  #bubble-badge {
-    position: absolute; top: -3px; right: -3px;
-    width: 16px; height: 16px; border-radius: 50%;
-    background: #c9922a; border: 2px solid #1a0e08; display: none;
-  }
-  #survey-window {
-    position: fixed; bottom: 96px; right: 28px;
-    width: 320px; max-height: 440px;
-    background: #12100e; border: 1px solid rgba(201,146,42,0.45);
-    border-radius: 12px;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.7), 0 0 20px rgba(201,146,42,0.15);
-    z-index: 998; display: flex; flex-direction: column; overflow: hidden;
-    transform: scale(0.85) translateY(20px); opacity: 0; pointer-events: none;
-    transform-origin: bottom right;
-    transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s;
-  }
-  #survey-window.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
-  #survey-header {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 14px 16px;
-    background: linear-gradient(135deg, #0f2018, #1a3020);
-    border-bottom: 1px solid rgba(201,146,42,0.3); flex-shrink: 0;
-  }
-  #survey-title { font-family: 'Cinzel', serif; font-size: 12px; color: var(--gold-light); letter-spacing: 1.5px; }
-  #survey-close { background: none; border: none; color: #7a6040; font-size: 14px; cursor: pointer; transition: color 0.2s; line-height: 1; }
-  #survey-close:hover { color: var(--gold-light); }
-  #survey-body { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px; scrollbar-width: thin; scrollbar-color: rgba(201,146,42,0.2) transparent; }
-  #chat-log { display: flex; flex-direction: column; gap: 10px; }
-  .chat-msg { display: flex; gap: 8px; align-items: flex-end; animation: msgIn 0.3s ease; }
-  @keyframes msgIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-  .chat-avatar { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #1a3020, #2a4835); border: 1px solid rgba(201,146,42,0.35); display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
-  .chat-bubble { background: linear-gradient(135deg, rgba(26,48,32,0.85), rgba(20,24,40,0.75)); border: 1px solid rgba(201,146,42,0.2); border-radius: 12px 12px 12px 2px; padding: 9px 12px; font-size: 12.5px; color: #c8b070; line-height: 1.75; max-width: 210px; }
-  .chat-msg.user-msg { flex-direction: row-reverse; }
-  .chat-msg.user-msg .chat-bubble { background: linear-gradient(135deg, rgba(42,26,74,0.65), rgba(30,20,55,0.75)); border-color: rgba(201,146,42,0.3); border-radius: 12px 12px 2px 12px; color: var(--gold-light); }
-  #survey-input-area { display: flex; flex-direction: column; gap: 7px; margin-top: 4px; flex-shrink: 0; }
-  .survey-btn-row { display: flex; gap: 5px; }
-  .survey-btn { flex: 1; padding: 9px 4px; background: rgba(10,8,4,0.6); border: 1px solid rgba(201,146,42,0.28); border-radius: 6px; color: #a89060; font-size: 14px; font-family: 'Cinzel', serif; font-weight: 600; cursor: pointer; transition: all 0.2s; text-align: center; }
-  .survey-btn:hover, .survey-btn.selected { background: rgba(201,146,42,0.15); border-color: var(--gold); color: var(--gold-light); }
-  .survey-send-btn { padding: 9px; background: linear-gradient(135deg, rgba(42,72,53,0.85), rgba(26,48,32,0.9)); border: 1px solid rgba(201,146,42,0.4); border-radius: 6px; color: var(--gold-light); font-size: 13px; font-family: 'Noto Serif JP', serif; cursor: pointer; transition: all 0.25s; letter-spacing: 1px; }
-  .survey-send-btn:hover { border-color: var(--gold); box-shadow: 0 0 10px rgba(201,146,42,0.2); }
-  .survey-send-btn:disabled { opacity: 0.35; cursor: not-allowed; }
-  @media (max-width: 400px) { #survey-window { width: calc(100vw - 40px); right: 20px; } #survey-bubble { right: 20px; bottom: 20px; } }
-</style>
-
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
-  function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+/* =========================================================
+   設定：ここを自分のFirebaseプロジェクトの値に書き換えてください。
+   Firebase Console > プロジェクトの設定 > 全般 > マイアプリ で取得できます。
+   ========================================================= */
+const firebaseConfig = {
+  apiKey: "AIzaSyD7k_NZFzq-MRmFA-NhtXYCrG_mXus4IdI",
+  authDomain: "todolist-eacb5.firebaseapp.com",
+  projectId: "todolist-eacb5",
+  storageBucket: "todolist-eacb5.firebasestorage.app",
+  messagingSenderId: "983523227038",
+  appId: "1:983523227038:web:26d3da9d2bc1d23d90d28f",
+  measurementId: "G-H8GZGR47YS"
+};
 
-  const ITEM_WIDTH = 172;
-  let currentIndex = 0;
-  const items = document.querySelectorAll('.slide-item');
-  const totalItems = items.length;
-  const track = document.getElementById('sliderTrack');
-  const prevBtn = document.getElementById('prevBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const dotsEl = document.getElementById('dots');
+/* 管理者用の合言葉。他人に推測されにくいものに変更してください。
+   Firestoreのセキュリティルール側でも同じ文字列をチェックするので、
+   下記のルール例とセットで必ず変更すること。 */
+const ADMIN_KEY = "9753";
 
-  function getVisible() { return Math.max(1, Math.floor(document.querySelector('.slider-window').offsetWidth / ITEM_WIDTH)); }
-  function getMaxIndex() { return Math.max(0, totalItems - getVisible()); }
+let isAdmin = false;
+let app, db;
+try{
+  app = firebase.initializeApp(firebaseConfig);
+  db = firebase.firestore();
+}catch(e){
+  console.error("Firebase init failed", e);
+}
 
-  function buildDots() {
-    dotsEl.innerHTML = '';
-    const pages = Math.ceil(totalItems / getVisible());
-    for (let i = 0; i < pages; i++) {
-      const dot = document.createElement('button');
-      dot.className = 'dot';
-      dot.setAttribute('role', 'tab');
-      dot.setAttribute('aria-label', (i + 1) + 'ページ目');
-      dot.onclick = () => goTo(i * getVisible());
-      dotsEl.appendChild(dot);
-    }
-    updateDots();
+let currentTasks = [];
+let currentPosts = [];
+let weekOffset = 0; // 0 = 今日を含む直近14日。7ずつ過去へ。
+
+const DAYS_IN_WINDOW = 14;
+
+function dateKey(d){
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+function fmtShort(d){
+  const wd = ['日','月','火','水','木','金','土'][d.getDay()];
+  return `${d.getMonth()+1}/${d.getDate()}<br>(${wd})`;
+}
+function getWindowDates(){
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  const end = new Date(today);
+  end.setDate(end.getDate() - weekOffset*7);
+  const dates = [];
+  for(let i=DAYS_IN_WINDOW-1;i>=0;i--){
+    const d = new Date(end);
+    d.setDate(d.getDate()-i);
+    dates.push(d);
+  }
+  return dates;
+}
+
+function renderMatrix(){
+  const headRow = document.getElementById('matrix-head-row');
+  const body = document.getElementById('matrix-body');
+  const rangeEl = document.getElementById('matrix-range');
+  const todayKey = dateKey(new Date());
+  const dates = getWindowDates();
+
+  rangeEl.textContent = `${dateKey(dates[0])} 〜 ${dateKey(dates[dates.length-1])}`;
+  document.getElementById('next-week').disabled = (weekOffset === 0);
+
+  headRow.innerHTML = '<th class="task-col-head">タスク</th>' +
+    dates.map(d=>{
+      const k = dateKey(d);
+      return `<th class="${k===todayKey?'today':''}">${fmtShort(d)}</th>`;
+    }).join('');
+
+  if(currentTasks.length === 0){
+    body.innerHTML = '<tr><td class="matrix-empty" colspan="15">まだタスクがありません。</td></tr>';
+    return;
   }
 
-  function updateDots() {
-    const page = Math.floor(currentIndex / Math.max(1, getVisible()));
-    dotsEl.querySelectorAll('.dot').forEach((d, i) => { d.classList.toggle('active', i === page); });
+  body.innerHTML = currentTasks.map(t=>{
+    const marks = t.marks || {};
+    const cells = dates.map(d=>{
+      const k = dateKey(d);
+      const on = !!marks[k];
+      return `<td class="mark-cell"><button class="mark-btn ${on?'on':''}" ${isAdmin?'':'disabled'} data-task="${t.id}" data-date="${k}"></button></td>`;
+    }).join('');
+    const delBtn = isAdmin ? `<button class="del-btn" data-del="${t.id}">削除</button>` : '';
+    return `<tr>
+      <td class="task-col"><div class="row-flex"><span>${escapeHtml(t.text)}</span>${delBtn}</div></td>
+      ${cells}
+    </tr>`;
+  }).join('');
+
+  body.querySelectorAll('.mark-btn').forEach(btn=>{
+    btn.onclick = ()=> toggleMark(btn.dataset.task, btn.dataset.date);
+  });
+  body.querySelectorAll('[data-del]').forEach(btn=>{
+    btn.onclick = ()=> deleteTask(btn.dataset.del);
+  });
+}
+
+function escapeHtml(s){
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function computeStreak(){
+  const today = new Date();
+  today.setHours(0,0,0,0);
+  let streak = 0;
+  let cursor = new Date(today);
+  while(true){
+    const k = dateKey(cursor);
+    const anyDone = currentTasks.some(t => t.marks && t.marks[k]);
+    if(!anyDone) break;
+    streak++;
+    cursor.setDate(cursor.getDate()-1);
   }
+  document.getElementById('streak-num').textContent = streak;
+}
 
-  function goTo(idx) {
-    currentIndex = Math.max(0, Math.min(idx, getMaxIndex()));
-    track.style.transform = 'translateX(' + (-(currentIndex * ITEM_WIDTH)) + 'px)';
-    prevBtn.disabled = currentIndex === 0;
-    nextBtn.disabled = currentIndex >= getMaxIndex();
-    updateDots();
+function subscribeTasks(){
+  if(!db) return;
+  db.collection('tasks').orderBy('createdAt','asc').onSnapshot(snap=>{
+    currentTasks = [];
+    snap.forEach(doc=> currentTasks.push({ id: doc.id, ...doc.data() }));
+    renderMatrix();
+    computeStreak();
+  }, err=>{
+    document.getElementById('matrix-body').innerHTML = '<tr><td class="matrix-empty">読み込みに失敗しました。Firebase設定を確認してください。</td></tr>';
+    console.error(err);
+  });
+}
+
+function addTask(text){
+  if(!db || !text.trim()) return;
+  db.collection('tasks').add({
+    text: text.trim(),
+    marks: {},
+    createdAt: new Date().toISOString(),
+    adminKey: ADMIN_KEY
+  });
+}
+
+function toggleMark(taskId, dateK){
+  if(!db || !isAdmin) return;
+  const task = currentTasks.find(t=>t.id===taskId);
+  const current = !!(task && task.marks && task.marks[dateK]);
+  db.collection('tasks').doc(taskId).update({
+    [`marks.${dateK}`]: !current,
+    adminKey: ADMIN_KEY
+  });
+}
+
+function deleteTask(taskId){
+  if(!db || !isAdmin) return;
+  db.collection('tasks').doc(taskId).delete();
+}
+
+document.getElementById('add-task-btn').onclick = ()=>{
+  const input = document.getElementById('new-task-input');
+  addTask(input.value);
+  input.value = '';
+};
+document.getElementById('new-task-input').addEventListener('keydown', e=>{
+  if(e.key === 'Enter'){
+    document.getElementById('add-task-btn').click();
   }
+});
+document.getElementById('prev-week').onclick = ()=>{ weekOffset += 7; renderMatrix(); };
+document.getElementById('next-week').onclick = ()=>{ if(weekOffset>0){ weekOffset -= 7; renderMatrix(); } };
 
-  function moveSlider(dir) { goTo(currentIndex + dir * getVisible()); }
+/* ---------- Blog ---------- */
+function fmtBlogDate(iso){
+  const d = new Date(iso);
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  const hh = String(d.getHours()).padStart(2,'0');
+  const mm = String(d.getMinutes()).padStart(2,'0');
+  return `${y}.${m}.${day} ${hh}:${mm}`;
+}
 
-  buildDots(); goTo(0);
-  window.addEventListener('resize', () => { buildDots(); goTo(Math.min(currentIndex, getMaxIndex())); });
-
-  // アンケート
-  let surveyOpen = false, selectedRating = null, surveyDone = false;
-  setTimeout(() => { if (!surveyDone) document.getElementById('bubble-badge').style.display = 'block'; }, 3500);
-
-  function toggleSurvey() {
-    surveyOpen = !surveyOpen;
-    document.getElementById('survey-window').classList.toggle('open', surveyOpen);
-    document.getElementById('bubble-badge').style.display = 'none';
-    if (surveyOpen && document.getElementById('chat-log').children.length === 0) startSurvey();
+function renderBlog(){
+  const list = document.getElementById('blog-list');
+  if(currentPosts.length === 0){
+    list.innerHTML = '<li class="blog-empty">まだ投稿がありません。</li>';
+    return;
   }
+  list.innerHTML = currentPosts.map(p=>`
+    <li>
+      <span class="blog-date mono">${fmtBlogDate(p.createdAt)}</span>
+      <div class="blog-text">${escapeHtml(p.text)}</div>
+    </li>
+  `).join('');
+}
 
-  function startSurvey() {
-    addBotMsg('こんにちは！🌸<br>漫画を見てくれてありがとう。<br>ひとつだけ聞かせてください！');
-    setTimeout(() => {
-      addBotMsg('Azaleaの漫画は好きですか？<br><small style="color:#7a6040">1（あまり…）〜 5（大好き！）</small>');
-      setTimeout(showRatingButtons, 500);
-    }, 800);
+function subscribeBlog(){
+  if(!db) return;
+  db.collection('posts').orderBy('createdAt','desc').onSnapshot(snap=>{
+    currentPosts = [];
+    snap.forEach(doc=> currentPosts.push({ id: doc.id, ...doc.data() }));
+    renderBlog();
+  }, err=>{
+    document.getElementById('blog-list').innerHTML = '<li class="blog-empty">読み込みに失敗しました。</li>';
+    console.error(err);
+  });
+}
+
+document.getElementById('blog-post-btn').onclick = ()=>{
+  if(!db || !isAdmin) return;
+  const input = document.getElementById('blog-input');
+  const text = input.value.trim();
+  if(!text) return;
+  db.collection('posts').add({
+    text,
+    createdAt: new Date().toISOString(),
+    adminKey: ADMIN_KEY
+  });
+  input.value = '';
+};
+
+/* ---------- Admin login ---------- */
+const adminFab = document.getElementById('admin-fab');
+const adminPanel = document.getElementById('admin-panel');
+adminFab.onclick = ()=> adminPanel.classList.toggle('open');
+
+document.getElementById('admin-login-btn').onclick = ()=>{
+  const val = document.getElementById('admin-pass').value;
+  const statusEl = document.getElementById('admin-status');
+  if(val === ADMIN_KEY){
+    isAdmin = true;
+    statusEl.textContent = 'ログイン中';
+    statusEl.className = 'admin-status on';
+    document.getElementById('add-row').style.display = 'flex';
+    document.getElementById('blog-compose').classList.add('open');
+  }else{
+    isAdmin = false;
+    statusEl.textContent = '合言葉が違います';
+    statusEl.className = 'admin-status off';
   }
+  renderMatrix();
+};
 
-  function addBotMsg(html) {
-    const log = document.getElementById('chat-log');
-    const wrap = document.createElement('div');
-    wrap.className = 'chat-msg';
-    wrap.innerHTML = '<div class="chat-avatar">🌸</div><div class="chat-bubble">' + html + '</div>';
-    log.appendChild(wrap); log.scrollTop = log.scrollHeight;
-  }
-
-  function showRatingButtons() {
-    const area = document.getElementById('survey-input-area');
-    area.innerHTML = '';
-    const row = document.createElement('div');
-    row.className = 'survey-btn-row';
-    const sendBtn = document.createElement('button');
-    sendBtn.className = 'survey-send-btn';
-    sendBtn.textContent = '📮 送信する';
-    sendBtn.disabled = true;
-    sendBtn.onclick = submitRating;
-    [1,2,3,4,5].forEach(n => {
-      const btn = document.createElement('button');
-      btn.className = 'survey-btn'; btn.textContent = n;
-      btn.onclick = () => { selectedRating = n; row.querySelectorAll('.survey-btn').forEach(b => b.classList.remove('selected')); btn.classList.add('selected'); sendBtn.disabled = false; };
-      row.appendChild(btn);
+/* ---------- Cheer form (Formspree) ---------- */
+const cheerForm = document.getElementById('cheer-form');
+cheerForm.action = 'https://formspree.io/f/maqvpvoz';
+cheerForm.method = 'POST';
+cheerForm.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const data = new FormData(cheerForm);
+  data.append('_subject', '灯台日誌 - 応援メッセージ');
+  try{
+    const res = await fetch(cheerForm.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
     });
-    area.appendChild(row); area.appendChild(sendBtn);
+    if(res.ok){
+      document.getElementById('cheer-sent').style.display = 'block';
+      cheerForm.reset();
+    }
+  }catch(err){
+    console.error(err);
   }
+});
 
-  async function submitRating() {
-    if (!selectedRating) return;
-    document.getElementById('survey-input-area').innerHTML = '';
-    const log = document.getElementById('chat-log');
-    const wrap = document.createElement('div');
-    wrap.className = 'chat-msg user-msg';
-    wrap.innerHTML = '<div class="chat-avatar">👤</div><div class="chat-bubble">★'.repeat(selectedRating) + '&nbsp;&nbsp;' + selectedRating + ' / 5</div>';
-    log.appendChild(wrap); log.scrollTop = log.scrollHeight;
-    surveyDone = true;
-    try {
-      await fetch('https://formspree.io/f/maqvpvoz', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify({ rating: selectedRating, _subject: '【アンケート】漫画の評価' }) });
-    } catch(e) {}
-    const replies = ['ありがとうございます！😊', '感想、うれしいです🌸', 'これからも創作続けます。また読んでね！'];
-    let i = 0;
-    const next = () => { if (i < replies.length) { addBotMsg(replies[i++]); setTimeout(next, 650); } };
-    setTimeout(next, 400);
-  }
+subscribeTasks();
+subscribeBlog();
 </script>
-
 </body>
 </html>
