@@ -992,7 +992,7 @@
     const log = document.getElementById('chat-log');
     const wrap = document.createElement('div');
     wrap.className = 'chat-msg user-msg';
-    wrap.innerHTML = '<div class="chat-avatar">👤</div><div class="chat-bubble">★'.repeat(selectedRating) + '&nbsp;&nbsp;' + selectedRating + ' / 5</div>';
+    wrap.innerHTML = '<div class="chat-avatar">👤</div><div class="chat-bubble">' + '★'.repeat(selectedRating) + '&nbsp;&nbsp;' + selectedRating + ' / 5</div>';
     log.appendChild(wrap); log.scrollTop = log.scrollHeight;
     surveyDone = true;
     try {
