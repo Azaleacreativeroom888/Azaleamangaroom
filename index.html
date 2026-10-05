@@ -11,13 +11,13 @@
 <meta name="author" content="Azalea72">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://azaleamangaroom.com/">
-<meta property="og:title" content="Azalea72の創作部屋🌸" />
-<meta property="og:description" content="漫画家志望のAzalea72のオリジナル漫画・イラスト創作サイト。持ち込み用漫画制作中！" />
-<meta property="og:image" content="https://azaleamangaroom.com/witch-cover.jpg" />
-<meta property="og:url" content="https://azaleamangaroom.com/" />
-<meta property="og:type" content="website"/>
-<meta property="og:site_name" content="Azaleaの創作部屋" />
-<meta property="og:locale" content="ja_JP" />
+<meta property="og:title" content="Azalea72の創作部屋🌸">
+<meta property="og:description" content="漫画家志望のAzalea72のオリジナル漫画・イラスト創作サイト。持ち込み用漫画制作中！">
+<meta property="og:image" content="https://azaleamangaroom.com/witch-cover.jpg">
+<meta property="og:url" content="https://azaleamangaroom.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Azaleaの創作部屋">
+<meta property="og:locale" content="ja_JP">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Azalea72の創作部屋🌸">
 <meta name="twitter:description" content="漫画家志望のAzalea72のオリジナル漫画・イラスト創作サイト。持ち込み用漫画制作中！">
@@ -33,7 +33,7 @@
   "inLanguage": "ja"
 }
 </script>
-<meta name="google-site-verification" content="0c3XVY1lM5VqZHuWOtfF5lbEjrFSJyUmFg2IcGc7eSo" />
+<meta name="google-site-verification" content="0c3XVY1lM5VqZHuWOtfF5lbEjrFSJyUmFg2IcGc7eSo">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Noto+Serif+JP:wght@300;400;600&display=swap" rel="stylesheet">
@@ -131,7 +131,7 @@
     border: none;
   }
 
-  /* ★ ヘッダーバナー ★ */
+  /* ヘッダーバナー */
   .hero-banner {
     position: relative;
     width: 100%;
@@ -140,7 +140,6 @@
     border-bottom: 2px solid rgba(201,146,42,0.3);
   }
 
-  /* PC画像 */
   .hero-banner .banner-pc {
     display: block;
     width: 100%;
@@ -149,7 +148,6 @@
     object-position: center center;
   }
 
-  /* SP画像 */
   .hero-banner .banner-sp {
     display: none;
     width: 100%;
@@ -158,7 +156,6 @@
     object-position: center top;
   }
 
-  /* 下部グラデーション */
   .hero-banner::after {
     content: '';
     position: absolute;
@@ -169,7 +166,7 @@
     z-index: 1;
   }
 
-  /* ★ オーバーレイテキスト ★ */
+  /* オーバーレイテキスト */
   .banner-overlay {
     position: absolute;
     bottom: 28px;
@@ -184,8 +181,6 @@
     font-size: 15px;
     line-height: 2.1;
     letter-spacing: 1px;
-
-    /* ★ 黄金グラデーション文字 ★ */
     background: linear-gradient(
       90deg,
       #8a6010 0%,
@@ -200,12 +195,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-
-    /* ★ キラキラ流れるアニメーション ★ */
     animation: goldShine 3s linear infinite;
-
-    /* テキストシャドウは -webkit-text-fill-color:transparent と併用できないので
-       drop-shadow filterで代用 */
     filter: drop-shadow(0 0 8px rgba(240,200,80,0.55));
   }
 
@@ -214,7 +204,6 @@
     100% { background-position: -200% center; }
   }
 
-  /* ★ 星のキラキラ（疑似要素で追加） ★ */
   .banner-overlay-text::before {
     content: '✦ ';
     animation: twinkle 1.8s ease-in-out infinite;
@@ -229,10 +218,10 @@
 
   @keyframes twinkle {
     0%, 100% { opacity: 0.3; transform: scale(0.8); }
-    50%       { opacity: 1;   transform: scale(1.2); }
+    50%      { opacity: 1;   transform: scale(1.2); }
   }
 
-  /* ヒーローセクション（バナー下のテキストエリア） */
+  /* ヒーローセクション */
   .hero {
     text-align: center;
     padding: 40px 24px 28px;
@@ -311,7 +300,7 @@
 
   .divider-star { color: var(--gold); font-size: 16px; letter-spacing: 4px; }
 
-  /* ★ 最新作バナー ★ */
+  /* 最新作バナー */
   .new-manga-section {
     max-width: 1100px;
     margin: 0 auto 40px;
@@ -393,7 +382,7 @@
 
   @keyframes badgePulse {
     0%, 100% { box-shadow: 0 0 0 0 rgba(201,146,42,0.4); }
-    50%       { box-shadow: 0 0 0 6px rgba(201,146,42,0); }
+    50%      { box-shadow: 0 0 0 6px rgba(201,146,42,0); }
   }
 
   .new-manga-label {
@@ -445,7 +434,6 @@
     .new-manga-info { padding: 20px 20px 24px; }
     .new-manga-title { font-size: 20px; }
   }
-
 
   /* スライダー */
   .manga-section {
@@ -607,11 +595,9 @@
     }
     .nav-links.active { display: flex; }
 
-    /* スマホ：PC画像非表示、SP画像表示 */
     .hero-banner .banner-pc { display: none; }
     .hero-banner .banner-sp { display: block; }
 
-    /* スマホではオーバーレイを小さく */
     .banner-overlay-text { font-size: 11px; line-height: 1.9; }
     .banner-overlay { bottom: 16px; }
 
@@ -644,7 +630,6 @@
   <img class="banner-pc" src="websitewitchcover.jpg" alt="Azalea72のキャラクターイラスト" loading="eager">
   <img class="banner-sp" src="witch-cover.jpg" alt="Azalea72のキャラクターイラスト" loading="eager">
 
-  <!-- ★ オーバーレイテキスト ★ -->
   <div class="banner-overlay">
     <span class="banner-overlay-text">
       こんにちは！オリジナル漫画を中心に創作している<br>
@@ -679,7 +664,7 @@
     <div class="divider-line right"></div>
   </div>
 
-  <!-- ★ 最新作バナー ★ -->
+  <!-- 最新作バナー -->
   <section class="new-manga-section" aria-label="最新作">
     <a class="new-manga-banner" href="manga12-1.html">
       <div class="new-manga-img-wrap">
@@ -948,62 +933,7 @@
     surveyOpen = !surveyOpen;
     document.getElementById('survey-window').classList.toggle('open', surveyOpen);
     document.getElementById('bubble-badge').style.display = 'none';
-    if (surveyOpen && document.getElementById('chat-log').children.length === 0) startSurvey();
-  }
-
-  function startSurvey() {
-    addBotMsg('こんにちは！🌸<br>漫画を見てくれてありがとう。<br>ひとつだけ聞かせてください！');
-    setTimeout(() => {
-      addBotMsg('Azaleaの漫画は好きですか？<br><small style="color:#7a6040">1（あまり…）〜 5（大好き！）</small>');
-      setTimeout(showRatingButtons, 500);
-    }, 800);
-  }
-
-  function addBotMsg(html) {
-    const log = document.getElementById('chat-log');
-    const wrap = document.createElement('div');
-    wrap.className = 'chat-msg';
-    wrap.innerHTML = '<div class="chat-avatar">🌸</div><div class="chat-bubble">' + html + '</div>';
-    log.appendChild(wrap); log.scrollTop = log.scrollHeight;
-  }
-
-  function showRatingButtons() {
-    const area = document.getElementById('survey-input-area');
-    area.innerHTML = '';
-    const row = document.createElement('div');
-    row.className = 'survey-btn-row';
-    const sendBtn = document.createElement('button');
-    sendBtn.className = 'survey-send-btn';
-    sendBtn.textContent = '📮 送信する';
-    sendBtn.disabled = true;
-    sendBtn.onclick = submitRating;
-    [1,2,3,4,5].forEach(n => {
-      const btn = document.createElement('button');
-      btn.className = 'survey-btn'; btn.textContent = n;
-      btn.onclick = () => { selectedRating = n; row.querySelectorAll('.survey-btn').forEach(b => b.classList.remove('selected')); btn.classList.add('selected'); sendBtn.disabled = false; };
-      row.appendChild(btn);
-    });
-    area.appendChild(row); area.appendChild(sendBtn);
-  }
-
-  async function submitRating() {
-    if (!selectedRating) return;
-    document.getElementById('survey-input-area').innerHTML = '';
-    const log = document.getElementById('chat-log');
-    const wrap = document.createElement('div');
-    wrap.className = 'chat-msg user-msg';
-    wrap.innerHTML = '<div class="chat-avatar">👤</div><div class="chat-bubble">' + '★'.repeat(selectedRating) + '&nbsp;&nbsp;' + selectedRating + ' / 5</div>';
-    log.appendChild(wrap); log.scrollTop = log.scrollHeight;
-    surveyDone = true;
-    try {
-      await fetch('https://formspree.io/f/maqvpvoz', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify({ rating: selectedRating, _subject: '【アンケート】漫画の評価' }) });
-    } catch(e) {}
-    const replies = ['ありがとうございます！😊', '感想、うれしいです🌸', 'これからも創作続けます。また読んでね！'];
-    let i = 0;
-    const next = () => { if (i < replies.length) { addBotMsg(replies[i++]); setTimeout(next, 650); } };
-    setTimeout(next, 400);
   }
 </script>
-
 </body>
 </html>
